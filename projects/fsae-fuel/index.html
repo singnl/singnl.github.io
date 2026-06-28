@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purdue FSAE Fuel System — Nathan Lee</title>
+<meta name="description" content="E85-compatible fuel system designed for Purdue FSAE PF25">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+
+<div class="cover-wrap">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" alt="Formula SAE race car on track">
+</div>
+
+<main>
+
+  <div class="project-hero">
+    <p class="project-year">2024</p>
+    <h1 class="project-title">Purdue FSAE Fuel System</h1>
+    <p class="project-subtitle">E85-compatible fuel system designed for Purdue FSAE PF25</p>
+    <div class="project-chips">
+      <span class="chip">Siemens NX</span><span class="chip">Fuel Systems</span>
+    </div>
+  </div>
+
+  <div class="project-content">
+    <div class="project-description">
+      <p>Designed the fuel system for Purdue FSAE's PF25 race car to accommodate E85 fuel for endurance events, replacing the previous 93 octane setup.</p><p>Fuel capacity was calculated from MoTeC i2 telemetry data from PF24's Michigan endurance run, which consumed approximately 5L on 93 octane. Since ethanol has roughly 33% less energy content than gasoline (per the U.S. Energy Information Administration), the equivalent E85 volume was calculated at 5L × 1.33 = 6.65L. A 10% safety margin brought the final target to 7.315L. The manufactured tank came in at approximately 7.65L, with size and location optimized for regulation compliance on the PF25 chassis.</p><p>Modeled in Siemens NX. The fuel system integrates a Yamaha R6 fuel rail with Bosch injectors, a Daschewerk fuel pump, Holley HydraMat, EFI fuel pressure regulator, and a fuel cell with custom internal baffles and chassis mounts.</p>
+    </div>
+    <div class="project-gallery">
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&q=80" alt="Fuel system components"
+             data-lightbox="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">Daschewerk pump, HydraMat, and Bosch injector rail assembly</div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&q=80" alt="Tank packaging in chassis"
+             data-lightbox="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">Tank volume and position optimized for PF25 chassis compliance</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  <p>Nathan Lee · Mechanical Engineer</p>
+  <p>singnl.github.io</p>
+</footer>
+
+<script>
+
+  document.querySelectorAll('[data-lightbox]').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.dataset.lightbox;
+      document.getElementById('lightbox-img').alt = img.alt || '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+</script>
+
+</body>
+</html>

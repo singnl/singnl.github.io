@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio Equalizer — Nathan Lee</title>
+<meta name="description" content="3-band analog equalizer with passive RC filters and LM386 power amp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+
+<div class="cover-wrap">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=900&q=80" alt="Audio equalizer circuit board">
+</div>
+
+<main>
+
+  <div class="project-hero">
+    <p class="project-year">2026</p>
+    <h1 class="project-title">Audio Equalizer</h1>
+    <p class="project-subtitle">3-band analog equalizer with passive RC filters and LM386 power amp</p>
+    <div class="project-chips">
+      <span class="chip">Analog Circuits</span><span class="chip">LTSpice</span><span class="chip">RC Filters</span><span class="chip">Op-Amps</span><span class="chip">LM386</span>
+    </div>
+  </div>
+
+  <div class="project-content">
+    <div class="project-description">
+      <p>Designed, constructed, and evaluated a 3-band analog audio equalizer capable of splitting an input signal into low, mid, and high frequency bands, independently adjusting each, recombining them, and amplifying the output to drive an 8Ω speaker.</p><p>The system uses passive RC filters (low-pass at 320 Hz, band-pass from 320–3200 Hz, high-pass at 3200 Hz), potentiometer-based volume controls per band, an op-amp inverting summing stage, and an LM386 power amplifier. Cutoff frequencies were verified via experimental frequency response analysis (FRA). Additional measurements confirmed amplifier input levels, ripple performance under 15 mVRMS, and output power exceeding 400 mW across the full 100 Hz–10 kHz band.</p><p>Results met all design specifications within tolerance. Minor deviations from theoretical values were attributed to component tolerances, breadboard parasitics, and measurement uncertainty.</p>
+    </div>
+    <div class="project-gallery">
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" alt="Filter stages"
+             data-lightbox="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85"
+             loading="lazy">
+        <div class="gallery-caption">Passive RC filter stages: low-pass (320 Hz), band-pass, high-pass (3200 Hz)</div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80" alt="LM386 amplifier stage"
+             data-lightbox="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">LM386 power amp stage — >400 mW output into 8Ω speaker load</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  <p>Nathan Lee · Mechanical Engineer</p>
+  <p>singnl.github.io</p>
+</footer>
+
+<script>
+
+  document.querySelectorAll('[data-lightbox]').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.dataset.lightbox;
+      document.getElementById('lightbox-img').alt = img.alt || '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+</script>
+
+</body>
+</html>

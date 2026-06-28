@@ -1,0 +1,164 @@
+[
+  {
+    "id": "psr-suspension",
+    "title": "PSR Pushrod Suspension",
+    "subtitle": "Redesigned front suspension for Purdue Solar Racing — 20% weight reduction",
+    "description": "Redesigned the front suspension architecture for Purdue Solar Racing from a double wishbone configuration to a pushrod system, achieving a 20% weight reduction while improving packaging and load paths into the carbon fiber monocoque.\n\nSuspension geometry was modeled to optimize camber and toe change across the full travel range. Turning, bump, and braking load cases were simulated using FEA in Siemens NASTRAN to validate structural integrity of all components.\n\nAll suspension components were designed in Siemens NX from the optimized geometry and fabricated on 3-axis and 5-axis CNC machines.",
+    "coverImage": "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1200&q=85",
+    "coverImageAlt": "Solar race car on open road",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80",
+        "alt": "Suspension CAD model",
+        "caption": "Siemens NX assembly — pushrod geometry optimized for camber and toe"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=900&q=80",
+        "alt": "FEA results",
+        "caption": "NASTRAN FEA validation under combined cornering and braking loads"
+      }
+    ],
+    "tags": [
+      "Siemens NX",
+      "NASTRAN FEA",
+      "CNC Machining",
+      "Suspension Kinematics"
+    ],
+    "year": "2025 - CURRENT"
+  },
+  {
+    "id": "fsae-fuel",
+    "title": "Purdue FSAE Fuel System",
+    "subtitle": "E85-compatible fuel system designed for Purdue FSAE PF25",
+    "description": "Designed the fuel system for Purdue FSAE's PF25 race car to accommodate E85 fuel for endurance events, replacing the previous 93 octane setup.\n\nFuel capacity was calculated from MoTeC i2 telemetry data from PF24's Michigan endurance run, which consumed approximately 5L on 93 octane. Since ethanol has roughly 33% less energy content than gasoline (per the U.S. Energy Information Administration), the equivalent E85 volume was calculated at 5L × 1.33 = 6.65L. A 10% safety margin brought the final target to 7.315L. The manufactured tank came in at approximately 7.65L, with size and location optimized for regulation compliance on the PF25 chassis.\n\nModeled in Siemens NX. The fuel system integrates a Yamaha R6 fuel rail with Bosch injectors, a Daschewerk fuel pump, Holley HydraMat, EFI fuel pressure regulator, and a fuel cell with custom internal baffles and chassis mounts.",
+    "coverImage": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85",
+    "coverImageAlt": "Formula SAE race car on track",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&q=80",
+        "alt": "Fuel system components",
+        "caption": "Daschewerk pump, HydraMat, and Bosch injector rail assembly"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&q=80",
+        "alt": "Tank packaging in chassis",
+        "caption": "Tank volume and position optimized for PF25 chassis compliance"
+      }
+    ],
+    "tags": [
+      "Siemens NX",
+      "Fuel Systems"
+    ],
+    "year": "2024"
+  },
+  {
+    "id": "amp-carbon",
+    "title": "AMP Front Fairing",
+    "subtitle": "Carbon fiber fairing with custom aluminum uprights for an autonomous go-kart",
+    "description": "Designed the front carbon fiber fairing for an autonomous go-kart, including custom aluminum uprights and mounts. Currently in manufacturing.\n\nFoam molds were CNC machined to the outer mold line geometry, and the fairing is being produced via carbon fiber wet layup over those forms. Custom aluminum uprights were designed to interface the fairing structure with the chassis and suspension pickup points.",
+    "coverImage": "https://images.unsplash.com/photo-1626197031507-c17099753214?w=1200&q=85",
+    "coverImageAlt": "Carbon fiber composite fairing",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=900&q=80",
+        "alt": "CNC foam mold",
+        "caption": "CNC machined foam mold for carbon fiber layup"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=900&q=80",
+        "alt": "Aluminum upright",
+        "caption": "Custom aluminum uprights and chassis mount interfaces"
+      }
+    ],
+    "tags": [
+      "Composites",
+      "CNC Machining",
+      "In Progress"
+    ],
+    "year": "2024 - CURRENT"
+  },
+  {
+    "id": "lego-rovers",
+    "title": "Lego Rovers",
+    "subtitle": "Two Lego rover systems built for simulated Martian cargo delivery and disaster relief",
+    "description": "Two separate autonomous rover projects — MACRO and GEARS — each designed around a different mission profile, sensor stack, and navigation strategy.\n\nMACRO (Mars Cargo Rover) simulates autonomous cargo delivery across rugged Martian terrain. The platform uses a Raspberry Pi on a Lego-bracket chassis with a rear motorized ramp and front-mounted battery as a counterweight. Five sensors handle full perceptual awareness: a front ultrasonic triggers emergency stops within 15 cm; dual IR line finders correct lateral drift; a center RGB color sensor manages forward velocity; and a front IMU counts magnetic sub-beacons to identify target drop-off sites. A priority control loop runs hazard detection → beacon counting → line tracking. A flood-fill pathfinding algorithm replaced an earlier left-hand rule for significantly faster completion times. Validated: speed tracking within 1.3% error, payload capacity up to 1029g without tipping, slope traversal up to 24°.\n\nGEARS (Grand Emergency Aid Resource System) navigates disaster environments to deliver humanitarian aid and map terrain for secondary relief teams. The final chassis uses high-traction treads for zero-radius turning, driven by a Raspberry Pi. Sensors include front and right-mounted ultrasonics for obstacle avoidance and wall-following, a front IR sensor for thermal hazard detection (120W at 30 cm), and an under-chassis IMU detecting magnetic field spikes (10× ambient) simulating infrastructure faults. The software advances in precise 10 cm increments, logging a coordinate grid at each step and rolling back on hazard detection. On completion, the path matrix exports as a .csv for secondary teams. Validated: 13-minute mission time (vs. 18-minute target), 4 cm payload placement accuracy, 10 cm hazard clearance, 100% hazard mapping accuracy.",
+    "coverImage": "https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?w=1200&q=85",
+    "coverImageAlt": "Autonomous rover on track",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&q=80",
+        "alt": "MACRO rover",
+        "caption": "MACRO — Raspberry Pi core with ultrasonic, IR, color, and IMU sensors"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80",
+        "alt": "GEARS rover",
+        "caption": "GEARS — tread chassis with four-sensor SLAM stack and swivel-claw actuator"
+      }
+    ],
+    "tags": [
+      "Raspberry Pi",
+      "Autonomous Systems",
+      "Sensors",
+      "Python"
+    ],
+    "year": "2024 - 2025"
+  },
+  {
+    "id": "desk-organizer",
+    "title": "Desk Organizer",
+    "subtitle": "Multi-process fabrication across manual machining, CNC, sheet metal, and SLS printing",
+    "description": "A collection of fabricated objects built across multiple manufacturing processes, each designed to challenge a different production method.\n\nThe hammer was built on a manual lathe and mill. The nameplate was machined on a 3-axis CNC with turning on a Tormach lathe. The desk organizer features wood top panels, a sheet metal drawer (laser cut, brake formed, and spot welded), and a wooden key holder. The clock enclosure was laser cut from acrylic. An additional part was produced via SLS nylon printing.\n\nBy combining subtractive machining (manual and CNC milling/turning), form-fitting sheet metal work, and additive manufacturing (SLS), the project minimizes raw material waste while maintaining strict part-to-part tolerances across multiple material interfaces.",
+    "coverImage": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&q=85",
+    "coverImageAlt": "Fabricated desk organizer and shop parts",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=900&q=80",
+        "alt": "Sheet metal drawer",
+        "caption": "Laser cut, brake formed, and spot welded sheet metal drawer"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=900&q=80",
+        "alt": "SLS printed part",
+        "caption": "SLS nylon print alongside CNC-machined aluminum nameplate"
+      }
+    ],
+    "tags": [
+      "CNC Machining",
+      "Sheet Metal",
+      "SLS Printing",
+      "Manual Mill/Lathe",
+      "Laser Cutting",
+      "Wood Working"
+    ],
+    "year": "2025"
+  },
+  {
+    "id": "audio-equalizer",
+    "title": "Audio Equalizer",
+    "subtitle": "3-band analog equalizer with passive RC filters and LM386 power amp",
+    "description": "Designed, constructed, and evaluated a 3-band analog audio equalizer capable of splitting an input signal into low, mid, and high frequency bands, independently adjusting each, recombining them, and amplifying the output to drive an 8Ω speaker.\n\nThe system uses passive RC filters (low-pass at 320 Hz, band-pass from 320–3200 Hz, high-pass at 3200 Hz), potentiometer-based volume controls per band, an op-amp inverting summing stage, and an LM386 power amplifier. Cutoff frequencies were verified via experimental frequency response analysis (FRA). Additional measurements confirmed amplifier input levels, ripple performance under 15 mVRMS, and output power exceeding 400 mW across the full 100 Hz–10 kHz band.\n\nResults met all design specifications within tolerance. Minor deviations from theoretical values were attributed to component tolerances, breadboard parasitics, and measurement uncertainty.",
+    "coverImage": "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=900&q=80",
+    "coverImageAlt": "Audio equalizer circuit board",
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85",
+        "alt": "Filter stages",
+        "caption": "Passive RC filter stages: low-pass (320 Hz), band-pass, high-pass (3200 Hz)"
+      },
+      {
+        "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80",
+        "alt": "LM386 amplifier stage",
+        "caption": "LM386 power amp stage — >400 mW output into 8Ω speaker load"
+      }
+    ],
+    "tags": [
+      "Analog Circuits",
+      "LTSpice",
+      "RC Filters",
+      "Op-Amps",
+      "LM386"
+    ],
+    "year": "2026"
+  }
+]

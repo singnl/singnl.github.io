@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nathan Lee ME</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#" class="header-logo">Nathan Lee</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Mechanical<br>Engineer.</h1>
+    <p class="hero-desc">I design, prototype, and build.</p>
+    <div class="hero-actions">
+      <a href="https://drive.google.com/file/d/13Z3duVzh-gguPU5r03oJVEE6rV9rd3DS/view?usp=sharing" target="_blank" class="btn btn-dark">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download résumé
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-eyebrow">About</p>
+    <div class="about-grid">
+      <div>
+        <div class="headshot-wrap">
+          <img src="./assets/images/profile-image/avatar.jpeg" alt="" class="headshot"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="headshot-placeholder">NL</div>
+        </div>
+        <div class="social-links" style="margin-top: 1rem;">
+          <a href="https://www.linkedin.com/in/nathansinglee" target="_blank" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h2>Building things that work in the real world.</h2>
+        <p>I'm Nathan, a mechanical engineering at Purdue University with a passion for solving hard problems through design and fabrication. My work spans the full product lifecycle, from early concept and CAD through prototype, test, and production.</p>
+        <p>I'm especially interested in mechanical design work that interfaces with testing, data, and controls.</p>
+        <div class="tl-wrap">
+          <div class="tl-item">
+            <div class="tl-spine">
+              <div class="tl-dot tl-dot--current"></div>
+              <div class="tl-line"></div>
+            </div>
+            <div>
+              <p class="tl-label">May 2026 — present</p>
+              <p class="tl-role">Product Engineering Intern</p>
+              <p class="tl-org">Metal Components LLC</p>
+              <span class="tl-badge">Current</span>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-spine">
+              <div class="tl-dot"></div>
+            </div>
+            <div>
+              <p class="tl-label">Expected May 2028</p>
+              <p class="tl-role">B.S. Mechanical Engineering</p>
+              <p class="tl-org">Purdue University</p>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-eyebrow">Projects</p>
+    <div class="projects-grid" id="projects-grid">
+      <div class="projects-loading">Loading projects…</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Nathan Lee · Mechanical Engineer</p>
+  <p>singnl.github.io</p>
+</footer>
+
+<script>
+  async function loadProjects() {
+    const grid = document.getElementById('projects-grid');
+    try {
+      const res = await fetch('/projects.json');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const projects = await res.json();
+
+      if (!projects.length) {
+        grid.innerHTML = '<p class="projects-loading">No projects yet.</p>';
+        return;
+      }
+
+      grid.innerHTML = projects.map(p => `
+        <a href="/projects/${esc(p.id)}/" class="project-card">
+          <img class="project-img"
+               src="${esc(p.coverImage)}"
+               alt="${esc(p.coverImageAlt || p.title)}"
+               loading="lazy"
+               onerror="this.style.background='var(--border)';this.style.opacity='0'">
+          <div class="project-body">
+            <h3>${esc(p.title)}</h3>
+            <p>${esc(p.description.split('\n')[0])}</p>
+            <div class="project-chips">
+              ${(p.tags || []).map(t => `<span class="chip">${esc(t)}</span>`).join('')}
+            </div>
+            <div class="project-arrow">View project →</div>
+          </div>
+        </a>
+      `).join('');
+
+    } catch (err) {
+      grid.innerHTML = `
+        <div class="projects-error">
+          <strong>Couldn't load projects.json</strong> — ${esc(err.message)}<br>
+          <small>Make sure the site is served over HTTP, not opened as a local file.</small>
+        </div>`;
+    }
+  }
+
+  function esc(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  loadProjects();
+</script>
+
+</body>
+</html>

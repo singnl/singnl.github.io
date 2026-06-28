@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMP Front Fairing — Nathan Lee</title>
+<meta name="description" content="Carbon fiber fairing with custom aluminum uprights for an autonomous go-kart">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+
+<div class="cover-wrap">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1626197031507-c17099753214?w=1200&q=85" alt="Carbon fiber composite fairing">
+</div>
+
+<main>
+
+  <div class="project-hero">
+    <p class="project-year">2024 - CURRENT</p>
+    <h1 class="project-title">AMP Front Fairing</h1>
+    <p class="project-subtitle">Carbon fiber fairing with custom aluminum uprights for an autonomous go-kart</p>
+    <div class="project-chips">
+      <span class="chip">Composites</span><span class="chip">CNC Machining</span><span class="chip">In Progress</span>
+    </div>
+  </div>
+
+  <div class="project-content">
+    <div class="project-description">
+      <p>Designed the front carbon fiber fairing for an autonomous go-kart, including custom aluminum uprights and mounts. Currently in manufacturing.</p><p>Foam molds were CNC machined to the outer mold line geometry, and the fairing is being produced via carbon fiber wet layup over those forms. Custom aluminum uprights were designed to interface the fairing structure with the chassis and suspension pickup points.</p>
+    </div>
+    <div class="project-gallery">
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=900&q=80" alt="CNC foam mold"
+             data-lightbox="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">CNC machined foam mold for carbon fiber layup</div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=900&q=80" alt="Aluminum upright"
+             data-lightbox="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">Custom aluminum uprights and chassis mount interfaces</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  <p>Nathan Lee · Mechanical Engineer</p>
+  <p>singnl.github.io</p>
+</footer>
+
+<script>
+
+  document.querySelectorAll('[data-lightbox]').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.dataset.lightbox;
+      document.getElementById('lightbox-img').alt = img.alt || '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+</script>
+
+</body>
+</html>

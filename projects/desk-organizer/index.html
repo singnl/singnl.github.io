@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desk Organizer — Nathan Lee</title>
+<meta name="description" content="Multi-process fabrication across manual machining, CNC, sheet metal, and SLS printing">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+
+<div class="cover-wrap">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&q=85" alt="Fabricated desk organizer and shop parts">
+</div>
+
+<main>
+
+  <div class="project-hero">
+    <p class="project-year">2025</p>
+    <h1 class="project-title">Desk Organizer</h1>
+    <p class="project-subtitle">Multi-process fabrication across manual machining, CNC, sheet metal, and SLS printing</p>
+    <div class="project-chips">
+      <span class="chip">CNC Machining</span><span class="chip">Sheet Metal</span><span class="chip">SLS Printing</span><span class="chip">Manual Mill/Lathe</span><span class="chip">Laser Cutting</span><span class="chip">Wood Working</span>
+    </div>
+  </div>
+
+  <div class="project-content">
+    <div class="project-description">
+      <p>A collection of fabricated objects built across multiple manufacturing processes, each designed to challenge a different production method.</p><p>The hammer was built on a manual lathe and mill. The nameplate was machined on a 3-axis CNC with turning on a Tormach lathe. The desk organizer features wood top panels, a sheet metal drawer (laser cut, brake formed, and spot welded), and a wooden key holder. The clock enclosure was laser cut from acrylic. An additional part was produced via SLS nylon printing.</p><p>By combining subtractive machining (manual and CNC milling/turning), form-fitting sheet metal work, and additive manufacturing (SLS), the project minimizes raw material waste while maintaining strict part-to-part tolerances across multiple material interfaces.</p>
+    </div>
+    <div class="project-gallery">
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=900&q=80" alt="Sheet metal drawer"
+             data-lightbox="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">Laser cut, brake formed, and spot welded sheet metal drawer</div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=900&q=80" alt="SLS printed part"
+             data-lightbox="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">SLS nylon print alongside CNC-machined aluminum nameplate</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  <p>Nathan Lee · Mechanical Engineer</p>
+  <p>singnl.github.io</p>
+</footer>
+
+<script>
+
+  document.querySelectorAll('[data-lightbox]').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.dataset.lightbox;
+      document.getElementById('lightbox-img').alt = img.alt || '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+</script>
+
+</body>
+</html>

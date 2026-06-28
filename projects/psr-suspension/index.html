@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSR Pushrod Suspension — Nathan Lee</title>
+<meta name="description" content="Redesigned front suspension for Purdue Solar Racing — 20% weight reduction">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+
+<div class="cover-wrap">
+  <img class="cover-img" src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1200&q=85" alt="Solar race car on open road">
+</div>
+
+<main>
+
+  <div class="project-hero">
+    <p class="project-year">2025 - CURRENT</p>
+    <h1 class="project-title">PSR Pushrod Suspension</h1>
+    <p class="project-subtitle">Redesigned front suspension for Purdue Solar Racing — 20% weight reduction</p>
+    <div class="project-chips">
+      <span class="chip">Siemens NX</span><span class="chip">NASTRAN FEA</span><span class="chip">CNC Machining</span><span class="chip">Suspension Kinematics</span>
+    </div>
+  </div>
+
+  <div class="project-content">
+    <div class="project-description">
+      <p>Redesigned the front suspension architecture for Purdue Solar Racing from a double wishbone configuration to a pushrod system, achieving a 20% weight reduction while improving packaging and load paths into the carbon fiber monocoque.</p><p>Suspension geometry was modeled to optimize camber and toe change across the full travel range. Turning, bump, and braking load cases were simulated using FEA in Siemens NASTRAN to validate structural integrity of all components.</p><p>All suspension components were designed in Siemens NX from the optimized geometry and fabricated on 3-axis and 5-axis CNC machines.</p>
+    </div>
+    <div class="project-gallery">
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80" alt="Suspension CAD model"
+             data-lightbox="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">Siemens NX assembly — pushrod geometry optimized for camber and toe</div>
+      </div>
+      <div class="gallery-item">
+        <img class="gallery-img"
+             src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=900&q=80" alt="FEA results"
+             data-lightbox="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=900&q=80"
+             loading="lazy">
+        <div class="gallery-caption">NASTRAN FEA validation under combined cornering and braking loads</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  <p>Nathan Lee · Mechanical Engineer</p>
+  <p>singnl.github.io</p>
+</footer>
+
+<script>
+
+  document.querySelectorAll('[data-lightbox]').forEach(img => {
+    img.addEventListener('click', () => {
+      document.getElementById('lightbox-img').src = img.dataset.lightbox;
+      document.getElementById('lightbox-img').alt = img.alt || '';
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+</script>
+
+</body>
+</html>
