@@ -9,9 +9,118 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/style.css">
+ 
+<style>
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 1.75rem 0;
+  }
+  .spec-table th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-3);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .spec-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+  .spec-table td:first-child { color: var(--text); font-weight: 500; }
+  .spec-table tr:last-child td { border-bottom: none; }
+ 
+  .pipeline-wrap {
+    margin: 1.75rem 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+  }
+ 
+  .pipeline-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.75rem;
+  }
+ 
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: var(--text-2);
+    white-space: nowrap;
+  }
+ 
+  .pipeline-row { display: flex; align-items: center; gap: 0; }
+ 
+  .pl-node {
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid #c7d9fd;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+ 
+  .pl-arrow {
+    color: var(--text-3);
+    padding: 0 6px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+ 
+  .pl-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+ 
+  .pl-band-row {
+    display: flex;
+    align-items: center;
+  }
+ 
+  .pl-connector {
+    color: var(--text-3);
+    font-family: monospace;
+    font-size: 13px;
+    padding: 0 4px;
+    white-space: pre;
+  }
+ 
+  .embed-placeholder {
+    margin: 1.75rem 0;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-3);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+ 
+  .embed-placeholder strong { display: block; color: var(--text-2); margin-bottom: 4px; font-size: 14px; }
+</style>
 </head>
 <body>
-
+ 
 <header>
   <div class="header-inner">
     <a href="/" class="back-btn">
@@ -23,13 +132,13 @@
     </a>
   </div>
 </header>
-
+ 
 <div class="cover-wrap">
   <img class="cover-img" src="https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=900&q=80" alt="Audio equalizer circuit board">
 </div>
-
+ 
 <main>
-
+ 
   <div class="project-hero">
     <p class="project-year">2026</p>
     <h1 class="project-title">Audio Equalizer</h1>
@@ -38,11 +147,108 @@
       <span class="chip">Analog Circuits</span><span class="chip">LTSpice</span><span class="chip">RC Filters</span><span class="chip">Op-Amps</span><span class="chip">LM386</span>
     </div>
   </div>
-
+ 
   <div class="project-content">
-    <div class="project-description">
-      <p>Designed, constructed, and evaluated a 3-band analog audio equalizer capable of splitting an input signal into low, mid, and high frequency bands, independently adjusting each, recombining them, and amplifying the output to drive an 8Ω speaker.</p><p>The system uses passive RC filters (low-pass at 320 Hz, band-pass from 320–3200 Hz, high-pass at 3200 Hz), potentiometer-based volume controls per band, an op-amp inverting summing stage, and an LM386 power amplifier. Cutoff frequencies were verified via experimental frequency response analysis (FRA). Additional measurements confirmed amplifier input levels, ripple performance under 15 mVRMS, and output power exceeding 400 mW across the full 100 Hz–10 kHz band.</p><p>Results met all design specifications within tolerance. Minor deviations from theoretical values were attributed to component tolerances, breadboard parasitics, and measurement uncertainty.</p>
+    <div>
+ 
+      <div class="project-description">
+        <p>Designed, constructed, and evaluated a 3-band analog audio equalizer capable of splitting an input signal into low, mid, and high frequency bands, independently adjusting each, recombining them, and amplifying the output to drive an 8Ω speaker.</p>
+        <p>The system uses passive RC filters (low-pass at 320 Hz, band-pass from 320–3200 Hz, high-pass at 3200 Hz), potentiometer-based volume controls per band, an op-amp inverting summing stage, and an LM386 power amplifier. Cutoff frequencies were verified via experimental frequency response analysis (FRA). Additional measurements confirmed amplifier input levels, ripple performance under 15 mVRMS, and output power exceeding 400 mW across the full 100 Hz–10 kHz band.</p>
+        <p>Results met all design specifications within tolerance. Minor deviations from theoretical values were attributed to component tolerances, breadboard parasitics, and measurement uncertainty.</p>
+      </div>
+ 
+      <!-- Spec table -->
+      <p class="section-eyebrow" style="margin-top: 2rem;">Design Specifications</p>
+      <table class="spec-table">
+        <thead>
+          <tr><th>Specification</th><th>Requirement</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Speaker Impedance</td><td>8Ω</td></tr>
+          <tr><td>Bass filter −3 dB cutoff</td><td>320 Hz ± 10%</td></tr>
+          <tr><td>Mid filter −3 dB cutoffs</td><td>320–3200 Hz ± 10%</td></tr>
+          <tr><td>Treble filter −3 dB cutoff</td><td>3200 Hz ± 10%</td></tr>
+          <tr><td>V<sub>amp</sub> (minimum settings)</td><td>&lt; 15 mV<sub>RMS</sub> @ 100, 1k, 10k Hz</td></tr>
+          <tr><td>V<sub>amp</sub> (maximum settings)</td><td>100 mV<sub>RMS</sub> ± 10% @ 100, 1k, 10k Hz</td></tr>
+          <tr><td>Maximum ripple</td><td>15 mV<sub>RMS</sub></td></tr>
+          <tr><td>Output power</td><td>&gt;400 mW @ 100 Hz – 10 kHz</td></tr>
+        </tbody>
+      </table>
+ 
+      <!-- Signal pipeline -->
+      <p class="section-eyebrow" style="margin-top: 2rem;">System Architecture &amp; Theory</p>
+      <p class="project-description" style="margin-bottom: 1rem;">The audio equalizer splits, processes, and recombines signals via a 5-stage analog pipeline. Further documentation can be seen in the embedded report below.</p>
+ 
+      <div class="pipeline-wrap">
+        <p class="pipeline-label">Signal flow</p>
+        <div style="overflow-x:auto;">
+          <table style="border-collapse:collapse; font-size:12px; font-family:'Inter',sans-serif; white-space:nowrap;">
+            <tr>
+              <td rowspan="3" style="padding:4px 0; vertical-align:middle;">
+                <span class="pl-node">V<sub>in</sub></span>
+              </td>
+              <td rowspan="3" style="padding:0 4px; color:var(--text-3); vertical-align:middle; font-size:13px;">──&gt;<br>U1 Buffer<br>──┬──&gt;</td>
+              <td style="padding:3px 0;">
+                <div class="pl-band-row">
+                  <span class="pl-node" style="background:#f0fdf4; color:#16a34a; border-color:#bbf7d0;">Bass LP (R1, C1)</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node" style="background:#f0fdf4; color:#16a34a; border-color:#bbf7d0;">R8 10k-POT</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node" style="background:#f0fdf4; color:#16a34a; border-color:#bbf7d0;">U2 + R5, R11</span>
+                  <span class="pl-arrow">──┐</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:3px 0;">
+                <div class="pl-band-row">
+                  <span class="pl-node" style="background:#eff6ff; color:#2563eb; border-color:#bfdbfe;">Mid BP (R2, C2, C3, R3)</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node" style="background:#eff6ff; color:#2563eb; border-color:#bfdbfe;">R9 10k-POT</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node" style="background:#eff6ff; color:#2563eb; border-color:#bfdbfe;">U3 + R6, R12</span>
+                  <span class="pl-arrow">──┤</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:3px 0;">
+                <div class="pl-band-row">
+                  <span class="pl-node" style="background:#fdf4ff; color:#9333ea; border-color:#e9d5ff;">Treble HP (C4, R4)</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node" style="background:#fdf4ff; color:#9333ea; border-color:#e9d5ff;">R10 10k-POT</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node" style="background:#fdf4ff; color:#9333ea; border-color:#e9d5ff;">U4 + R7, R13</span>
+                  <span class="pl-arrow">──┘</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td style="padding:3px 0;">
+                <div class="pl-band-row">
+                  <span class="pl-arrow" style="padding-left:0;">──&gt;</span>
+                  <span class="pl-node">U5 Inverting Sum (R14 10k-POT)</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node">U6 LM386</span>
+                  <span class="pl-arrow">──&gt;</span>
+                  <span class="pl-node">C6 250 / V<sub>out</sub></span>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+ 
+      <!-- Embed placeholder — replace src with your actual PDF/Google Doc embed URL -->
+      <div class="embed-placeholder">
+        <strong>Full Report</strong>
+        Replace this block with your embed — e.g.:<br>
+        <code style="font-size:11px; color: var(--text-3);">&lt;iframe src="YOUR_PDF_OR_GDOC_URL" width="100%" height="600" style="border:none; border-radius:8px;"&gt;&lt;/iframe&gt;</code>
+      </div>
+ 
     </div>
+ 
     <div class="project-gallery">
       <div class="gallery-item">
         <img class="gallery-img"
@@ -56,25 +262,24 @@
              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80" alt="LM386 amplifier stage"
              data-lightbox="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80"
              loading="lazy">
-        <div class="gallery-caption">LM386 power amp stage — >400 mW output into 8Ω speaker load</div>
+        <div class="gallery-caption">LM386 power amp stage — &gt;400 mW output into 8Ω speaker load</div>
       </div>
     </div>
   </div>
-
+ 
 </main>
-
+ 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
-
+ 
 <footer>
   <p>Nathan Lee · Mechanical Engineer</p>
   <p>singnl.github.io</p>
 </footer>
-
+ 
 <script>
-
   document.querySelectorAll('[data-lightbox]').forEach(img => {
     img.addEventListener('click', () => {
       document.getElementById('lightbox-img').src = img.dataset.lightbox;
@@ -83,19 +288,18 @@
       document.body.style.overflow = 'hidden';
     });
   });
-
+ 
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
-
+ 
   document.getElementById('lightbox').addEventListener('click', e => {
     if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
   });
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
 </script>
-
+ 
 </body>
 </html>
