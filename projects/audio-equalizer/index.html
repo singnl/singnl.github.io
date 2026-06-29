@@ -73,7 +73,7 @@
   .flow-branches { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; }
   .branch { padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.8rem; line-height: 1.4; }
   .branch-bass   { background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; }
-  .branch-mid    { background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; }
+  .branch-mid     { background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; }
   .branch-treble { background: #fdf4ff; border: 1px solid #e9d5ff; color: #9333ea; }
   .flow-arrow { color: var(--text-3); font-weight: bold; font-size: 14px; text-align: center; }
 
@@ -84,6 +84,7 @@
   .formula-block {
     background: var(--surface);
     border-left: 3px solid var(--accent);
+    border-radius: 6px; /* Added corner radii here */
     padding: 1rem;
     margin: 1rem 0;
     font-size: 15px;
@@ -399,12 +400,6 @@
           <p>Both low and high pass filter frequencies are governed by the fundamental RC relationship:</p>
           <div class="formula-block">$$f_c = \frac{1}{2\pi RC}$$</div>
           <p>To design the target stages, initial component options were calculated assuming nominal standard component loads:</p>
-          <ul>
-            <li><strong>Bass Low-Pass (Target 320 Hz):</strong> Utilizing a 1µF capacitor, the ideal value required a 497Ω resistor. A 470Ω nominal resistor was chosen for the base prototype.</li>
-            <li><strong>Treble High-Pass (Target 3200 Hz):</strong> Utilizing a 10nF capacitor, the ideal calculation required a 4.97kΩ resistor. A 4.7kΩ nominal resistor was selected.</li>
-            <li><strong>Mid Band-Pass (Target 320 Hz – 3200 Hz):</strong> Configured via cascading a passive low-pass and high-pass stage. A unity-gain, non-inverting op-amp buffer stage was integrated between the filter sections to eliminate passive loading effects.</li>
-          </ul>
-          <p>Independent volume modification is managed via adjustable inverting amplifier configurations where the variable gain parameters are dictated by standard potentiometer ratios:</p>
           <div class="formula-block">$$A_v = -\frac{R_f}{R_{in}}$$</div>
           <p>A 10kΩ resistor was selected for the fixed input to maintain an exact maximum gain close to unity when matching the 10kΩ variable control potentiometers.</p>
           <p>The power amplifier circuit takes low amplitude audio signals after it has been equalized and increases the power such that it can drive a speaker. The LM386 is a low-voltage power amplifier IC that internally uses a differential input stage followed by a voltage gain stage and an output stage capable of delivering sufficient current to drive a low-impedance speaker load.</p>
