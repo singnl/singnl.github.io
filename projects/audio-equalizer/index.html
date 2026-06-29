@@ -10,12 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/style.css">
 <style>
-  /* ── Bottom gallery ── */
-  .bottom-gallery {
-    max-width: var(--content-width, 900px);
-    margin: 0 auto 3rem;
-    padding: 0 var(--page-pad, 1.5rem);
+  /* ── Force single-column full-width layout ── */
+  .project-content {
+    display: block !important;
+    grid-template-columns: unset !important;
+    max-width: 100% !important;
   }
+  .project-gallery { display: none !important; }
  
   /* ── Spec table ── */
   .spec-table {
@@ -59,51 +60,13 @@
     color: var(--text-3);
     margin-bottom: 1rem;
   }
-  .flow-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    font-family: 'Inter', sans-serif;
-    width: 100%;
-  }
-  .flow-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-  }
-  .flow-node {
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    text-align: center;
-    box-sizing: border-box;
-  }
-  .flow-node.io {
-    background: #0f172a;
-    color: #fff;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-  }
-  .flow-node.stage {
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    color: #334155;
-    font-weight: 500;
-  }
-  .flow-branches {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
-  }
-  .branch {
-    padding: 0.6rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    line-height: 1.4;
-  }
+  .flow-container { display: flex; flex-direction: column; gap: 1rem; font-family: 'Inter', sans-serif; width: 100%; }
+  .flow-row { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; }
+  .flow-node { padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.8rem; text-align: center; box-sizing: border-box; }
+  .flow-node.io { background: #0f172a; color: #fff; font-weight: bold; padding: 0.5rem 1rem; }
+  .flow-node.stage { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; font-weight: 500; }
+  .flow-branches { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; }
+  .branch { padding: 0.6rem 0.8rem; border-radius: 6px; font-size: 0.8rem; line-height: 1.4; }
   .branch-bass   { background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; }
   .branch-mid    { background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; }
   .branch-treble { background: #fdf4ff; border: 1px solid #e9d5ff; color: #9333ea; }
@@ -123,10 +86,82 @@
     color: var(--text-2);
   }
  
-  /* ── Image gallery ── */
+  /* ── Stack Gallery ── */
+  .stack-gallery {
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .stack-main {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0a0a0a;
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+  .stack-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.2s ease;
+  }
+  .stack-main-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 1.5rem 1rem 0.75rem;
+    pointer-events: none;
+  }
+  .stack-thumbs {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .stack-thumbs::-webkit-scrollbar { display: none; }
+  .stack-thumb {
+    flex: 0 0 auto;
+    width: calc(100% / 4);
+    min-width: 80px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border-right: 1px solid var(--border);
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
+  }
+  .stack-thumb:last-child { border-right: none; }
+  .stack-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  .stack-thumb:hover { opacity: 0.85; }
+  .stack-thumb:hover img { transform: scale(1.06); }
+  .stack-thumb.active { opacity: 1; }
+  .stack-thumb.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent, #2563eb);
+  }
+ 
+  /* ── Simple thumbnail gallery (2-image sets) ── */
   .fig-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 10px;
     margin: 1.25rem 0;
   }
@@ -140,57 +175,13 @@
     aspect-ratio: 4 / 3;
   }
   .fig-item img {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.22s ease;
   }
-  .fig-item:hover img,
-  .fig-item:focus-within img {
-    transform: scale(1.04);
-  }
+  .fig-item:hover img, .fig-item:focus-within img { transform: scale(1.04); }
   .fig-caption {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(0, 0, 0, 0.70);
-    color: #fff;
-    font-size: 11px;
-    line-height: 1.4;
-    padding: 6px 8px;
-    opacity: 0;
-    transform: translateY(5px);
-    transition: opacity 0.18s ease, transform 0.18s ease;
-    pointer-events: none;
-  }
-  .fig-item:hover .fig-caption,
-  .fig-item:focus-within .fig-caption {
-    opacity: 1;
-    transform: translateY(0);
-  }
- 
-  /* single-wide figure (ripple, schematic) */
-  .fig-single {
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    cursor: pointer;
-    margin: 1.25rem 0;
-    max-width: 480px;
-  }
-  .fig-single img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.22s ease;
-  }
-  .fig-single:hover img,
-  .fig-single:focus-within img {
-    transform: scale(1.02);
-  }
-  .fig-single .fig-caption {
     position: absolute;
     bottom: 0; left: 0; right: 0;
     background: rgba(0,0,0,0.70);
@@ -203,10 +194,8 @@
     transition: opacity 0.18s ease, transform 0.18s ease;
     pointer-events: none;
   }
-  .fig-single:hover .fig-caption,
-  .fig-single:focus-within .fig-caption {
-    opacity: 1;
-    transform: translateY(0);
+  .fig-item:hover .fig-caption, .fig-item:focus-within .fig-caption {
+    opacity: 1; transform: translateY(0);
   }
 </style>
 </head>
@@ -261,9 +250,7 @@
       <div class="portfolio-section">
         <p class="section-eyebrow">Design Specifications</p>
         <table class="spec-table">
-          <thead>
-            <tr><th>Specification</th><th>Requirement</th></tr>
-          </thead>
+          <thead><tr><th>Specification</th><th>Requirement</th></tr></thead>
           <tbody>
             <tr><td>Speaker Impedance</td><td>8Ω</td></tr>
             <tr><td>Bass filter −3 dB cutoff</td><td>320 Hz ± 10%</td></tr>
@@ -280,38 +267,23 @@
       <!-- System Architecture -->
       <div class="portfolio-section">
         <p class="section-eyebrow">System Architecture</p>
-        <p class="project-description" style="margin-bottom: 1rem;">The audio equalizer splits, processes, and recombines signals via an optimized multi-stage analog pipeline.</p>
- 
+        <p class="project-description" style="margin-bottom:1rem;">The audio equalizer splits, processes, and recombines signals via an optimized multi-stage analog pipeline.</p>
         <div class="pipeline-wrap">
           <p class="pipeline-label">Signal flow</p>
           <div class="flow-container">
-            <div class="flow-row">
-              <div class="flow-node io">Vin</div>
-            </div>
+            <div class="flow-row"><div class="flow-node io">Vin</div></div>
             <div class="flow-arrow">&#x25BC;</div>
             <div class="flow-branches">
-              <div class="branch branch-bass">
-                <strong style="color:#15803d;">Bass Band:</strong> Low Pass Filter &#x2794; Pre-amplifier Stage with Bass Potentiometer
-              </div>
-              <div class="branch branch-mid">
-                <strong style="color:#1d4ed8;">Mid Band:</strong> Low Pass Filter &#x2794; Isolation Buffer &#x2794; High Pass Filter &#x2794; Pre-amplifier Stage with Mid Potentiometer
-              </div>
-              <div class="branch branch-treble">
-                <strong style="color:#7e22ce;">Treble Band:</strong> High Pass Filter &#x2794; Pre-amplifier Stage with Treble Potentiometer
-              </div>
+              <div class="branch branch-bass"><strong style="color:#15803d;">Bass Band:</strong> Low Pass Filter &#x2794; Pre-amplifier Stage with Bass Potentiometer</div>
+              <div class="branch branch-mid"><strong style="color:#1d4ed8;">Mid Band:</strong> Low Pass Filter &#x2794; Isolation Buffer &#x2794; High Pass Filter &#x2794; Pre-amplifier Stage with Mid Potentiometer</div>
+              <div class="branch branch-treble"><strong style="color:#7e22ce;">Treble Band:</strong> High Pass Filter &#x2794; Pre-amplifier Stage with Treble Potentiometer</div>
             </div>
             <div class="flow-arrow">&#x25BC;</div>
-            <div class="flow-row">
-              <div class="flow-node stage" style="width:100%;"><strong>Inverting Summing Amplifier</strong> (Master Volume Control)</div>
-            </div>
+            <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>Inverting Summing Amplifier</strong> (Master Volume Control)</div></div>
             <div class="flow-arrow">&#x25BC;</div>
-            <div class="flow-row">
-              <div class="flow-node stage" style="width:100%;"><strong>LM386 Power Amplifier</strong> (Output Coupling &amp; Filtering Network)</div>
-            </div>
+            <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>LM386 Power Amplifier</strong> (Output Coupling &amp; Filtering Network)</div></div>
             <div class="flow-arrow">&#x25BC;</div>
-            <div class="flow-row">
-              <div class="flow-node io">Vout</div>
-            </div>
+            <div class="flow-row"><div class="flow-node io">Vout</div></div>
           </div>
         </div>
       </div>
@@ -322,18 +294,15 @@
         <div class="project-description">
           <p>Both low and high pass filter frequencies are governed by the fundamental RC relationship:</p>
           <div class="formula-block">fc = 1 / (2 * π * R * C)</div>
- 
           <p>To design the target stages, initial component options were calculated assuming nominal standard component loads:</p>
           <ul>
             <li><strong>Bass Low-Pass (Target 320 Hz):</strong> Utilizing a 1µF capacitor, the ideal value required a 497Ω resistor. A 470Ω nominal resistor was chosen for the base prototype.</li>
             <li><strong>Treble High-Pass (Target 3200 Hz):</strong> Utilizing a 10nF capacitor, the ideal calculation required a 4.97kΩ resistor. A 4.7kΩ nominal resistor was selected.</li>
             <li><strong>Mid Band-Pass (Target 320 Hz – 3200 Hz):</strong> Configured via cascading a passive low-pass and high-pass stage. A unity-gain, non-inverting op-amp buffer stage was integrated between the filter sections to eliminate passive loading effects.</li>
           </ul>
- 
           <p>Independent volume modification is managed via adjustable inverting amplifier configurations where the variable gain parameters are dictated by standard potentiometer ratios:</p>
           <div class="formula-block">Gain (Av) = -Rf / Rin</div>
           <p>A 10kΩ resistor was selected for the fixed input to maintain an exact maximum gain close to unity when matching the 10kΩ variable control potentiometers.</p>
- 
           <p>The power amplifier circuit takes low amplitude audio signals after it has been equalized and increases the power such that it can drive a speaker. The LM386 is a low-voltage power amplifier IC that internally uses a differential input stage followed by a voltage gain stage and an output stage capable of delivering sufficient current to drive a low-impedance speaker load.</p>
         </div>
       </div>
@@ -365,65 +334,65 @@
             <li><strong>Band-Pass Filter:</strong> Cutoff ranges localized precisely at 345.3 Hz (lower cutoff) and 3.238 kHz (upper cutoff).</li>
           </ul>
  
-          <!-- Filter FRA gallery -->
-          <div class="fig-gallery">
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-lowpass-fra.png">
-              <img src="placeholder-lowpass-fra.png" alt="Low Pass Filter Frequency Response Curve">
-              <div class="fig-caption">Fig. 1 — Low pass filter frequency response curve</div>
+          <!-- Filter FRA — stack gallery -->
+          <div class="stack-gallery" data-gallery="fra">
+            <div class="stack-main">
+              <img id="fra-main-img" src="placeholder-lowpass-fra.png" alt="Low Pass Filter Frequency Response Curve">
+              <div class="stack-main-caption" id="fra-main-cap">Fig. 1 — Low pass filter frequency response curve</div>
             </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-highpass-fra.png">
-              <img src="placeholder-highpass-fra.png" alt="High Pass Filter Frequency Response Curve">
-              <div class="fig-caption">Fig. 2 — High pass filter frequency response curve</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-bandpass-low-fra.png">
-              <img src="placeholder-bandpass-low-fra.png" alt="Band Pass Filter Low Cutoff">
-              <div class="fig-caption">Fig. 3 — Band pass filter response (lower attenuation bound)</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-bandpass-high-fra.png">
-              <img src="placeholder-bandpass-high-fra.png" alt="Band Pass Filter High Cutoff">
-              <div class="fig-caption">Fig. 4 — Band pass filter response (upper attenuation bound)</div>
+            <div class="stack-thumbs">
+              <div class="stack-thumb active" data-gallery="fra" data-src="placeholder-lowpass-fra.png" data-caption="Fig. 1 — Low pass filter frequency response curve" data-alt="Low Pass Filter Frequency Response Curve">
+                <img src="placeholder-lowpass-fra.png" alt="Low pass">
+              </div>
+              <div class="stack-thumb" data-gallery="fra" data-src="placeholder-highpass-fra.png" data-caption="Fig. 2 — High pass filter frequency response curve" data-alt="High Pass Filter Frequency Response Curve">
+                <img src="placeholder-highpass-fra.png" alt="High pass">
+              </div>
+              <div class="stack-thumb" data-gallery="fra" data-src="placeholder-bandpass-low-fra.png" data-caption="Fig. 3 — Band pass filter response (lower attenuation bound)" data-alt="Band Pass Filter Low Cutoff">
+                <img src="placeholder-bandpass-low-fra.png" alt="Band pass low">
+              </div>
+              <div class="stack-thumb" data-gallery="fra" data-src="placeholder-bandpass-high-fra.png" data-caption="Fig. 4 — Band pass filter response (upper attenuation bound)" data-alt="Band Pass Filter High Cutoff">
+                <img src="placeholder-bandpass-high-fra.png" alt="Band pass high">
+              </div>
             </div>
           </div>
  
           <p><strong>System Gain Stability &amp; Uniformity:</strong><br>
           With the system set to maximum operational capacity, output tracking metrics demonstrated an exceptionally flat frequency response profile. The total output variation (passband ripple deviation) between peak boundaries across the entire sweep spectrum was merely 1.5 mV<sub>RMS</sub> (spanning from 94.32 mV<sub>RMS</sub> up to 95.82 mV<sub>RMS</sub>), easily beating the required 15 mV<sub>RMS</sub> cap.</p>
  
-          <!-- Minimum output gallery -->
-          <div class="fig-gallery">
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vamp-min-100.png">
-              <img src="placeholder-vamp-min-100.png" alt="Vamp Minimum at 100Hz">
-              <div class="fig-caption">Fig. 5 — Minimum output tracking at 100 Hz</div>
+          <!-- Min/Max output — stack gallery -->
+          <div class="stack-gallery" data-gallery="vamp">
+            <div class="stack-main">
+              <img id="vamp-main-img" src="placeholder-vamp-min-100.png" alt="Vamp Minimum at 100Hz">
+              <div class="stack-main-caption" id="vamp-main-cap">Fig. 5 — Minimum output tracking at 100 Hz</div>
             </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vamp-min-1k.png">
-              <img src="placeholder-vamp-min-1k.png" alt="Vamp Minimum at 1kHz">
-              <div class="fig-caption">Fig. 6 — Minimum output tracking at 1 kHz</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vamp-min-10k.png">
-              <img src="placeholder-vamp-min-10k.png" alt="Vamp Minimum at 10kHz">
-              <div class="fig-caption">Fig. 7 — Minimum output tracking at 10 kHz</div>
-            </div>
-          </div>
- 
-          <!-- Maximum output gallery -->
-          <div class="fig-gallery">
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vamp-max-100.png">
-              <img src="placeholder-vamp-max-100.png" alt="Vamp Maximum at 100Hz">
-              <div class="fig-caption">Fig. 8 — Maximum envelope capture at 100 Hz</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vamp-max-1k.png">
-              <img src="placeholder-vamp-max-1k.png" alt="Vamp Maximum at 1kHz">
-              <div class="fig-caption">Fig. 9 — Maximum envelope capture at 1 kHz</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vamp-max-10k.png">
-              <img src="placeholder-vamp-max-10k.png" alt="Vamp Maximum at 10kHz">
-              <div class="fig-caption">Fig. 10 — Maximum envelope capture at 10 kHz</div>
+            <div class="stack-thumbs">
+              <div class="stack-thumb active" data-gallery="vamp" data-src="placeholder-vamp-min-100.png" data-caption="Fig. 5 — Minimum output tracking at 100 Hz" data-alt="Vamp Minimum at 100Hz">
+                <img src="placeholder-vamp-min-100.png" alt="Min 100Hz">
+              </div>
+              <div class="stack-thumb" data-gallery="vamp" data-src="placeholder-vamp-min-1k.png" data-caption="Fig. 6 — Minimum output tracking at 1 kHz" data-alt="Vamp Minimum at 1kHz">
+                <img src="placeholder-vamp-min-1k.png" alt="Min 1kHz">
+              </div>
+              <div class="stack-thumb" data-gallery="vamp" data-src="placeholder-vamp-min-10k.png" data-caption="Fig. 7 — Minimum output tracking at 10 kHz" data-alt="Vamp Minimum at 10kHz">
+                <img src="placeholder-vamp-min-10k.png" alt="Min 10kHz">
+              </div>
+              <div class="stack-thumb" data-gallery="vamp" data-src="placeholder-vamp-max-100.png" data-caption="Fig. 8 — Maximum envelope capture at 100 Hz" data-alt="Vamp Maximum at 100Hz">
+                <img src="placeholder-vamp-max-100.png" alt="Max 100Hz">
+              </div>
+              <div class="stack-thumb" data-gallery="vamp" data-src="placeholder-vamp-max-1k.png" data-caption="Fig. 9 — Maximum envelope capture at 1 kHz" data-alt="Vamp Maximum at 1kHz">
+                <img src="placeholder-vamp-max-1k.png" alt="Max 1kHz">
+              </div>
+              <div class="stack-thumb" data-gallery="vamp" data-src="placeholder-vamp-max-10k.png" data-caption="Fig. 10 — Maximum envelope capture at 10 kHz" data-alt="Vamp Maximum at 10kHz">
+                <img src="placeholder-vamp-max-10k.png" alt="Max 10kHz">
+              </div>
             </div>
           </div>
  
-          <!-- Ripple — single figure -->
-          <div class="fig-single" tabindex="0" data-lightbox="placeholder-ripple-analysis.png">
-            <img src="placeholder-ripple-analysis.png" alt="Peak Passband Ripple Variance Profile">
-            <div class="fig-caption">Fig. 11 — Peak passband ripple variance profile line graph</div>
+          <!-- Ripple — simple two-item thumbnail gallery -->
+          <div class="fig-gallery">
+            <div class="fig-item" tabindex="0" data-lightbox="placeholder-ripple-analysis.png">
+              <img src="placeholder-ripple-analysis.png" alt="Peak Passband Ripple Variance Profile">
+              <div class="fig-caption">Fig. 11 — Peak passband ripple variance profile line graph</div>
+            </div>
           </div>
  
           <p><strong>Power Stage Evaluation:</strong><br>
@@ -431,60 +400,58 @@
           <div class="formula-block">P_out = (V_RMS)^2 / R_load</div>
           <p>The system successfully matched specified design outputs across the target spectrum, delivering 483.2 mW at 1 kHz and 417.2 mW at 10 kHz. At the 100 Hz extreme, the system recorded 397.8 mW. This subtle 0.55% marginal deficit highlights real-world hardware design characteristics like wire contact impedances and breadboard stray parasitic paths.</p>
  
-          <!-- Amplifier output gallery -->
-          <div class="fig-gallery">
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-amp-out-100.png">
-              <img src="placeholder-amp-out-100.png" alt="Amplifier Output 100Hz">
-              <div class="fig-caption">Fig. 12 — Power waveform output at 100 Hz</div>
+          <!-- Amplifier + volume sweep — stack gallery -->
+          <div class="stack-gallery" data-gallery="power">
+            <div class="stack-main">
+              <img id="power-main-img" src="placeholder-amp-out-100.png" alt="Amplifier Output 100Hz">
+              <div class="stack-main-caption" id="power-main-cap">Fig. 12 — Power waveform output at 100 Hz</div>
             </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-amp-out-1k.png">
-              <img src="placeholder-amp-out-1k.png" alt="Amplifier Output 1kHz">
-              <div class="fig-caption">Fig. 13 — Power waveform output at 1 kHz</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-amp-out-10k.png">
-              <img src="placeholder-amp-out-10k.png" alt="Amplifier Output 10kHz">
-              <div class="fig-caption">Fig. 14 — Power waveform output at 10 kHz</div>
-            </div>
-          </div>
- 
-          <!-- Volume sweep gallery -->
-          <div class="fig-gallery">
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vol-low.png">
-              <img src="placeholder-vol-low.png" alt="Low Volume Output">
-              <div class="fig-caption">Fig. 15 — Oscilloscope waveform at low vol gain</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vol-med.png">
-              <img src="placeholder-vol-med.png" alt="Medium Volume Output">
-              <div class="fig-caption">Fig. 16 — Oscilloscope waveform at median vol gain</div>
-            </div>
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-vol-high.png">
-              <img src="placeholder-vol-high.png" alt="High Volume Output">
-              <div class="fig-caption">Fig. 17 — Oscilloscope waveform at maximum vol gain</div>
+            <div class="stack-thumbs">
+              <div class="stack-thumb active" data-gallery="power" data-src="placeholder-amp-out-100.png" data-caption="Fig. 12 — Power waveform output at 100 Hz" data-alt="Amplifier Output 100Hz">
+                <img src="placeholder-amp-out-100.png" alt="100Hz">
+              </div>
+              <div class="stack-thumb" data-gallery="power" data-src="placeholder-amp-out-1k.png" data-caption="Fig. 13 — Power waveform output at 1 kHz" data-alt="Amplifier Output 1kHz">
+                <img src="placeholder-amp-out-1k.png" alt="1kHz">
+              </div>
+              <div class="stack-thumb" data-gallery="power" data-src="placeholder-amp-out-10k.png" data-caption="Fig. 14 — Power waveform output at 10 kHz" data-alt="Amplifier Output 10kHz">
+                <img src="placeholder-amp-out-10k.png" alt="10kHz">
+              </div>
+              <div class="stack-thumb" data-gallery="power" data-src="placeholder-vol-low.png" data-caption="Fig. 15 — Oscilloscope waveform at low vol gain" data-alt="Low Volume Output">
+                <img src="placeholder-vol-low.png" alt="Low vol">
+              </div>
+              <div class="stack-thumb" data-gallery="power" data-src="placeholder-vol-med.png" data-caption="Fig. 16 — Oscilloscope waveform at median vol gain" data-alt="Medium Volume Output">
+                <img src="placeholder-vol-med.png" alt="Med vol">
+              </div>
+              <div class="stack-thumb" data-gallery="power" data-src="placeholder-vol-high.png" data-caption="Fig. 17 — Oscilloscope waveform at maximum vol gain" data-alt="High Volume Output">
+                <img src="placeholder-vol-high.png" alt="High vol">
+              </div>
             </div>
           </div>
  
         </div>
       </div>
  
-    </div><!-- /left column -->
- 
-  </div><!-- /project-content -->
- 
-  <!-- Full-width schematic + breadboard gallery -->
-  <div class="bottom-gallery">
-    <p class="section-eyebrow" style="margin-bottom: 1rem;">Hardware &amp; Schematics</p>
-    <div class="fig-gallery" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
-      <div class="fig-item" tabindex="0" data-lightbox="complete-system-schematic.png" style="aspect-ratio: 16/9;">
-        <img src="complete-system-schematic.png" alt="Complete 3-Band Audio Equalizer System Schematic" loading="lazy">
-        <div class="fig-caption">Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)</div>
+      <!-- Hardware & Schematics -->
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Hardware &amp; Schematics</p>
+        <div class="stack-gallery" data-gallery="hw">
+          <div class="stack-main">
+            <img id="hw-main-img" src="complete-system-schematic.png" alt="Complete 3-Band Audio Equalizer System Schematic">
+            <div class="stack-main-caption" id="hw-main-cap">Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)</div>
+          </div>
+          <div class="stack-thumbs">
+            <div class="stack-thumb active" data-gallery="hw" data-src="complete-system-schematic.png" data-caption="Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)" data-alt="Complete 3-Band Audio Equalizer System Schematic">
+              <img src="complete-system-schematic.png" alt="Schematic">
+            </div>
+            <div class="stack-thumb" data-gallery="hw" data-src="final-circuit-breadboard.png" data-caption="Final Fabricated Analog Equalizer Circuit and LM386 Power Stage on Breadboard" data-alt="Final Fabricated Equalizer and Amplifier Circuit on Breadboard">
+              <img src="final-circuit-breadboard.png" alt="Breadboard">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="fig-item" tabindex="0" data-lightbox="final-circuit-breadboard.png" style="aspect-ratio: 16/9;">
-        <img src="final-circuit-breadboard.png" alt="Final Fabricated Equalizer and Amplifier Circuit on Breadboard" loading="lazy">
-        <div class="fig-caption">Final Fabricated Analog Equalizer Circuit and LM386 Power Stage on Breadboard</div>
-      </div>
+ 
     </div>
   </div>
- 
 </main>
  
 <!-- Lightbox -->
@@ -499,40 +466,56 @@
 </footer>
  
 <script>
+  /* ── Stack gallery ── */
+  document.querySelectorAll('.stack-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const gid = thumb.dataset.gallery;
+      const gallery = thumb.closest('.stack-gallery');
+      const mainImg = gallery.querySelector('.stack-main img');
+      const mainCap = gallery.querySelector('.stack-main-caption');
+ 
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = thumb.dataset.src;
+        mainImg.alt = thumb.dataset.alt;
+        mainCap.textContent = thumb.dataset.caption;
+        mainImg.style.opacity = '1';
+      }, 120);
+ 
+      gallery.querySelectorAll('.stack-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+  });
+ 
+  /* Click main image → open lightbox */
+  document.querySelectorAll('.stack-main').forEach(main => {
+    main.addEventListener('click', () => {
+      const img = main.querySelector('img');
+      openLightbox(img.src, img.alt);
+    });
+  });
+ 
+  /* ── Simple thumbnail lightbox ── */
+  document.querySelectorAll('.fig-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const img = el.querySelector('img');
+      openLightbox(el.dataset.lightbox || img.src, img.alt);
+    });
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+    });
+  });
+ 
   function openLightbox(src, alt) {
-    document.getElementById('lightbox-img').src  = src;
-    document.getElementById('lightbox-img').alt  = alt || '';
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-img').alt = alt || '';
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
- 
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
- 
-  /* fig-item thumbnails */
-  document.querySelectorAll('.fig-item, .fig-single').forEach(el => {
-    el.addEventListener('click', () => {
-      const img = el.querySelector('img');
-      const src = el.dataset.lightbox || img.src;
-      openLightbox(src, img.alt);
-    });
-    el.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        el.click();
-      }
-    });
-  });
- 
-  /* existing gallery images */
-  document.querySelectorAll('[data-lightbox]:not(.fig-item):not(.fig-single), .gallery-img').forEach(img => {
-    img.addEventListener('click', () => {
-      const src = img.dataset.lightbox || img.src;
-      openLightbox(src, img.alt);
-    });
-  });
  
   document.getElementById('lightbox').addEventListener('click', e => {
     if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
