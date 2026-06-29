@@ -54,12 +54,6 @@ header {
   text-decoration: none;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
 /* ─── Layout ─────────────────────────────────────────────────────────────── */
 main { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
 
@@ -466,43 +460,6 @@ footer p { font-size: 12px; color: var(--text-3); }
 
 .lightbox-close:hover { background: rgba(255,255,255,0.25); }
 
-/* ─── Project page: Prev/next nav ────────────────────────────────────────── */
-.project-nav {
-  border-top: 1px solid var(--border);
-  padding: 2rem 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.nav-link {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  text-decoration: none;
-  color: var(--text);
-  max-width: 45%;
-}
-
-.nav-link:last-child { text-align: right; }
-
-.nav-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-3);
-}
-
-.nav-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--accent);
-  line-height: 1.4;
-}
-
-.nav-title:hover { text-decoration: underline; }
 
 /* ─── State messages ─────────────────────────────────────────────────────── */
 .state-wrap {
