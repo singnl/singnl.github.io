@@ -128,9 +128,8 @@
   }
   .stack-thumbs::-webkit-scrollbar { display: none; }
   .stack-thumb {
-    flex: 0 0 auto;
-    width: calc(100% / 4);
-    min-width: 80px;
+    flex: 1 1 0;
+    min-width: 60px;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     cursor: pointer;
@@ -400,11 +399,12 @@
           <div class="formula-block">P_out = (V_RMS)^2 / R_load</div>
           <p>The system successfully matched specified design outputs across the target spectrum, delivering 483.2 mW at 1 kHz and 417.2 mW at 10 kHz. At the 100 Hz extreme, the system recorded 397.8 mW. This subtle 0.55% marginal deficit highlights real-world hardware design characteristics like wire contact impedances and breadboard stray parasitic paths.</p>
  
-          <!-- Amplifier + volume sweep — stack gallery -->
+          <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Frequency sweep — 100 Hz, 1 kHz, 10 kHz</p>
+          <!-- Frequency sweep — 100 Hz, 1 kHz, 10 kHz -->
           <div class="stack-gallery" data-gallery="power">
             <div class="stack-main">
-              <img id="power-main-img" src="placeholder-amp-out-100.png" alt="Amplifier Output 100Hz">
-              <div class="stack-main-caption" id="power-main-cap">Fig. 12 — Power waveform output at 100 Hz</div>
+              <img src="placeholder-amp-out-100.png" alt="Amplifier Output 100Hz">
+              <div class="stack-main-caption">Fig. 12 — Power waveform output at 100 Hz</div>
             </div>
             <div class="stack-thumbs">
               <div class="stack-thumb active" data-gallery="power" data-src="placeholder-amp-out-100.png" data-caption="Fig. 12 — Power waveform output at 100 Hz" data-alt="Amplifier Output 100Hz">
@@ -416,13 +416,24 @@
               <div class="stack-thumb" data-gallery="power" data-src="placeholder-amp-out-10k.png" data-caption="Fig. 14 — Power waveform output at 10 kHz" data-alt="Amplifier Output 10kHz">
                 <img src="placeholder-amp-out-10k.png" alt="10kHz">
               </div>
-              <div class="stack-thumb" data-gallery="power" data-src="placeholder-vol-low.png" data-caption="Fig. 15 — Oscilloscope waveform at low vol gain" data-alt="Low Volume Output">
+            </div>
+          </div>
+ 
+          <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Volume sweep — low, medium, high</p>
+          <!-- Volume sweep — low, med, high -->
+          <div class="stack-gallery" data-gallery="vol">
+            <div class="stack-main">
+              <img src="placeholder-vol-low.png" alt="Low Volume Output">
+              <div class="stack-main-caption">Fig. 15 — Oscilloscope waveform at low vol gain</div>
+            </div>
+            <div class="stack-thumbs">
+              <div class="stack-thumb active" data-gallery="vol" data-src="placeholder-vol-low.png" data-caption="Fig. 15 — Oscilloscope waveform at low vol gain" data-alt="Low Volume Output">
                 <img src="placeholder-vol-low.png" alt="Low vol">
               </div>
-              <div class="stack-thumb" data-gallery="power" data-src="placeholder-vol-med.png" data-caption="Fig. 16 — Oscilloscope waveform at median vol gain" data-alt="Medium Volume Output">
+              <div class="stack-thumb" data-gallery="vol" data-src="placeholder-vol-med.png" data-caption="Fig. 16 — Oscilloscope waveform at median vol gain" data-alt="Medium Volume Output">
                 <img src="placeholder-vol-med.png" alt="Med vol">
               </div>
-              <div class="stack-thumb" data-gallery="power" data-src="placeholder-vol-high.png" data-caption="Fig. 17 — Oscilloscope waveform at maximum vol gain" data-alt="High Volume Output">
+              <div class="stack-thumb" data-gallery="vol" data-src="placeholder-vol-high.png" data-caption="Fig. 17 — Oscilloscope waveform at high vol gain" data-alt="High Volume Output">
                 <img src="placeholder-vol-high.png" alt="High vol">
               </div>
             </div>
