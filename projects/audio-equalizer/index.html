@@ -10,6 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/style.css">
 <style>
+  /* ── Bottom gallery ── */
+  .bottom-gallery {
+    max-width: var(--content-width, 900px);
+    margin: 0 auto 3rem;
+    padding: 0 var(--page-pad, 1.5rem);
+  }
+ 
   /* ── Spec table ── */
   .spec-table {
     width: 100%;
@@ -461,27 +468,23 @@
  
     </div><!-- /left column -->
  
-    <!-- Project gallery (schematic + breadboard) -->
-    <div class="project-gallery">
-      <div class="gallery-item">
-        <img class="gallery-img"
-             src="complete-system-schematic.png"
-             alt="Complete 3-Band Audio Equalizer System Schematic"
-             data-lightbox="complete-system-schematic.png"
-             loading="lazy">
-        <div class="gallery-caption">Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)</div>
+  </div><!-- /project-content -->
+ 
+  <!-- Full-width schematic + breadboard gallery -->
+  <div class="bottom-gallery">
+    <p class="section-eyebrow" style="margin-bottom: 1rem;">Hardware &amp; Schematics</p>
+    <div class="fig-gallery" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+      <div class="fig-item" tabindex="0" data-lightbox="complete-system-schematic.png" style="aspect-ratio: 16/9;">
+        <img src="complete-system-schematic.png" alt="Complete 3-Band Audio Equalizer System Schematic" loading="lazy">
+        <div class="fig-caption">Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)</div>
       </div>
-      <div class="gallery-item">
-        <img class="gallery-img"
-             src="final-circuit-breadboard.png"
-             alt="Final Fabricated Equalizer and Amplifier Circuit on Breadboard"
-             data-lightbox="final-circuit-breadboard.png"
-             loading="lazy">
-        <div class="gallery-caption">Final Fabricated Analog Equalizer Circuit and LM386 Power Stage on Breadboard</div>
+      <div class="fig-item" tabindex="0" data-lightbox="final-circuit-breadboard.png" style="aspect-ratio: 16/9;">
+        <img src="final-circuit-breadboard.png" alt="Final Fabricated Equalizer and Amplifier Circuit on Breadboard" loading="lazy">
+        <div class="fig-caption">Final Fabricated Analog Equalizer Circuit and LM386 Power Stage on Breadboard</div>
       </div>
     </div>
+  </div>
  
-  </div><!-- /project-content -->
 </main>
  
 <!-- Lightbox -->
