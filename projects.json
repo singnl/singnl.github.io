@@ -141,11 +141,12 @@
     "coverImage": "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=900&q=80",
     "coverImageAlt": "Audio equalizer circuit board",
     "tags": [
-      "Analog Circuits",
-      "LTSpice",
+      "LTspice",
+      "Analog Circuit Design",
       "RC Filters",
-      "Op-Amps",
-      "LM386"
+      "Operational Amplifiers",
+      "LM386 Audio Power Amplifier",
+      "Oscilloscope & Lab Instrumentation"
     ],
     "year": "2026"
   }
