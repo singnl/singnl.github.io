@@ -9,6 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/style.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
 <style>
   /* ── Force single-column full-width layout ── */
   .project-content {
@@ -79,11 +84,11 @@
   .formula-block {
     background: var(--surface);
     border-left: 3px solid var(--accent);
-    padding: 0.75rem 1rem;
+    padding: 1rem;
     margin: 1rem 0;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    color: var(--text-2);
+    font-size: 15px;
+    color: var(--text);
+    overflow-x: auto;
   }
  
   /* ── Stack Gallery ── */
@@ -235,7 +240,6 @@
   <div class="project-content">
     <div>
  
-      <!-- Overview -->
       <div class="portfolio-section">
         <p class="section-eyebrow">Overview</p>
         <div class="project-description">
@@ -245,7 +249,6 @@
         </div>
       </div>
  
-      <!-- Design Specifications -->
       <div class="portfolio-section">
         <p class="section-eyebrow">Design Specifications</p>
         <table class="spec-table">
@@ -263,7 +266,6 @@
         </table>
       </div>
  
-      <!-- System Architecture -->
       <div class="portfolio-section">
         <p class="section-eyebrow">System Architecture</p>
         <p class="project-description" style="margin-bottom:1rem;">The audio equalizer splits, processes, and recombines signals via an optimized multi-stage analog pipeline.</p>
@@ -287,12 +289,11 @@
         </div>
       </div>
  
-      <!-- Circuit Theory -->
       <div class="portfolio-section">
         <p class="section-eyebrow">Circuit Theory &amp; Calculations</p>
         <div class="project-description">
           <p>Both low and high pass filter frequencies are governed by the fundamental RC relationship:</p>
-          <div class="formula-block">fc = 1 / (2 * π * R * C)</div>
+          <div class="formula-block">$$f_c = \frac{1}{2\pi RC}$$</div>
           <p>To design the target stages, initial component options were calculated assuming nominal standard component loads:</p>
           <ul>
             <li><strong>Bass Low-Pass (Target 320 Hz):</strong> Utilizing a 1µF capacitor, the ideal value required a 497Ω resistor. A 470Ω nominal resistor was chosen for the base prototype.</li>
@@ -300,13 +301,12 @@
             <li><strong>Mid Band-Pass (Target 320 Hz – 3200 Hz):</strong> Configured via cascading a passive low-pass and high-pass stage. A unity-gain, non-inverting op-amp buffer stage was integrated between the filter sections to eliminate passive loading effects.</li>
           </ul>
           <p>Independent volume modification is managed via adjustable inverting amplifier configurations where the variable gain parameters are dictated by standard potentiometer ratios:</p>
-          <div class="formula-block">Gain (Av) = -Rf / Rin</div>
+          <div class="formula-block">$$A_v = -\frac{R_f}{R_{in}}$$</div>
           <p>A 10kΩ resistor was selected for the fixed input to maintain an exact maximum gain close to unity when matching the 10kΩ variable control potentiometers.</p>
           <p>The power amplifier circuit takes low amplitude audio signals after it has been equalized and increases the power such that it can drive a speaker. The LM386 is a low-voltage power amplifier IC that internally uses a differential input stage followed by a voltage gain stage and an output stage capable of delivering sufficient current to drive a low-impedance speaker load.</p>
         </div>
       </div>
  
-      <!-- Hardware Verification -->
       <div class="portfolio-section">
         <p class="section-eyebrow">Hardware Verification &amp; Iterative Tweaks</p>
         <div class="project-description">
@@ -320,7 +320,6 @@
         </div>
       </div>
  
-      <!-- Performance Metrics -->
       <div class="portfolio-section">
         <p class="section-eyebrow">Performance Metrics Analysis</p>
         <div class="project-description">
@@ -333,7 +332,6 @@
             <li><strong>Band-Pass Filter:</strong> Cutoff ranges localized precisely at 345.3 Hz (lower cutoff) and 3.238 kHz (upper cutoff).</li>
           </ul>
  
-          <!-- Filter FRA — stack gallery -->
           <div class="stack-gallery" data-gallery="fra">
             <div class="stack-main">
               <img id="fra-main-img" src="placeholder-lowpass-fra.png" alt="Low Pass Filter Frequency Response Curve">
@@ -358,7 +356,6 @@
           <p><strong>System Gain Stability &amp; Uniformity:</strong><br>
           With the system set to maximum operational capacity, output tracking metrics demonstrated an exceptionally flat frequency response profile. The total output variation (passband ripple deviation) between peak boundaries across the entire sweep spectrum was merely 1.5 mV<sub>RMS</sub> (spanning from 94.32 mV<sub>RMS</sub> up to 95.82 mV<sub>RMS</sub>), easily beating the required 15 mV<sub>RMS</sub> cap.</p>
  
-          <!-- Min/Max output — stack gallery -->
           <div class="stack-gallery" data-gallery="vamp">
             <div class="stack-main">
               <img id="vamp-main-img" src="placeholder-vamp-min-100.png" alt="Vamp Minimum at 100Hz">
@@ -386,7 +383,6 @@
             </div>
           </div>
  
-          <!-- Ripple — simple two-item thumbnail gallery -->
           <div class="fig-gallery">
             <div class="fig-item" tabindex="0" data-lightbox="placeholder-ripple-analysis.png">
               <img src="placeholder-ripple-analysis.png" alt="Peak Passband Ripple Variance Profile">
@@ -396,11 +392,10 @@
  
           <p><strong>Power Stage Evaluation:</strong><br>
           Total output power was monitored across the speaker load via the standard RMS power formula:</p>
-          <div class="formula-block">P_out = (V_RMS)^2 / R_load</div>
+          <div class="formula-block">$$P_{out} = \frac{V_{RMS}^2}{R_{load}}$$</div>
           <p>The system successfully matched specified design outputs across the target spectrum, delivering 483.2 mW at 1 kHz and 417.2 mW at 10 kHz. At the 100 Hz extreme, the system recorded 397.8 mW. This subtle 0.55% marginal deficit highlights real-world hardware design characteristics like wire contact impedances and breadboard stray parasitic paths.</p>
  
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Frequency sweep — 100 Hz, 1 kHz, 10 kHz</p>
-          <!-- Frequency sweep — 100 Hz, 1 kHz, 10 kHz -->
           <div class="stack-gallery" data-gallery="power">
             <div class="stack-main">
               <img src="placeholder-amp-out-100.png" alt="Amplifier Output 100Hz">
@@ -420,7 +415,6 @@
           </div>
  
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Volume sweep — low, medium, high</p>
-          <!-- Volume sweep — low, med, high -->
           <div class="stack-gallery" data-gallery="vol">
             <div class="stack-main">
               <img src="placeholder-vol-low.png" alt="Low Volume Output">
@@ -442,7 +436,6 @@
         </div>
       </div>
  
-      <!-- Hardware & Schematics -->
       <div class="portfolio-section">
         <p class="section-eyebrow">Hardware &amp; Schematics</p>
         <div class="stack-gallery" data-gallery="hw">
@@ -465,7 +458,6 @@
   </div>
 </main>
  
-<!-- Lightbox -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
   <img id="lightbox-img" src="" alt="">
