@@ -9,11 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../css/style.css">
-
+ 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
-
+ 
 <style>
   /* ── Force single-column full-width layout ── */
   .project-content {
@@ -22,7 +22,7 @@
     max-width: 100% !important;
   }
   .project-gallery { display: none !important; }
-
+ 
   /* ── Spec table ── */
   .spec-table {
     width: 100%;
@@ -48,7 +48,7 @@
   }
   .spec-table td:first-child { color: var(--text); font-weight: 500; }
   .spec-table tr:last-child td { border-bottom: none; }
-
+ 
   /* ── Pipeline ── */
   .pipeline-wrap {
     margin: 1.75rem 0;
@@ -76,22 +76,22 @@
   .branch-mid     { background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; }
   .branch-treble { background: #fdf4ff; border: 1px solid #e9d5ff; color: #9333ea; }
   .flow-arrow { color: var(--text-3); font-weight: bold; font-size: 14px; text-align: center; }
-
+ 
   /* ── Section wrapper ── */
   .portfolio-section { margin-bottom: 2.5rem; }
-
+ 
   /* ── Formula block ── */
   .formula-block {
     background: var(--surface);
     border-left: 3px solid var(--accent);
-    border-radius: 6px; /* Added corner radii here */
+    border-radius: 6px;
     padding: 1rem;
     margin: 1rem 0;
     font-size: 15px;
     color: var(--text);
     overflow-x: auto;
   }
-
+ 
   /* ── Stack Gallery ── */
   .stack-gallery {
     margin: 1.5rem 0;
@@ -100,8 +100,7 @@
     border: 1px solid var(--border);
     background: var(--surface);
   }
-
-  /* Main image stage */
+ 
   .stack-main {
     position: relative;
     width: 100%;
@@ -131,8 +130,7 @@
     padding: 1.5rem 1rem 0.75rem;
     pointer-events: none;
   }
-
-  /* Counter badge */
+ 
   .sg-counter {
     position: absolute;
     top: 10px; right: 12px;
@@ -145,8 +143,7 @@
     letter-spacing: 0.03em;
     font-family: 'Inter', sans-serif;
   }
-
-  /* Prev / next arrow buttons */
+ 
   .sg-nav {
     position: absolute;
     top: 50%; transform: translateY(-50%);
@@ -167,8 +164,7 @@
   .sg-prev { left: 10px; }
   .sg-next { right: 10px; }
   .stack-main:hover .sg-nav { opacity: 1; }
-
-  /* Thumbnail strip */
+ 
   .stack-thumbs {
     display: flex;
     gap: 6px;
@@ -180,7 +176,7 @@
     align-items: center;
   }
   .stack-thumbs::-webkit-scrollbar { display: none; }
-
+ 
   .stack-thumb {
     flex: 0 0 auto;
     width: 72px;
@@ -214,8 +210,7 @@
     border-radius: 4px;
     border: 1.5px solid var(--accent, #2563eb);
   }
-
-  /* Pip row */
+ 
   .sg-pips {
     display: flex;
     gap: 5px;
@@ -237,8 +232,7 @@
     border-radius: 3px;
     background: var(--accent, #2563eb);
   }
-
-  /* ── Simple thumbnail gallery (single-image sets) ── */
+ 
   .fig-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -277,8 +271,7 @@
   .fig-item:hover .fig-caption, .fig-item:focus-within .fig-caption {
     opacity: 1; transform: translateY(0);
   }
-
-  /* ── Lightbox ── */
+ 
   .lightbox {
     display: none;
     position: fixed;
@@ -309,7 +302,7 @@
 </style>
 </head>
 <body>
-
+ 
 <header>
   <div class="header-inner">
     <a href="/" class="back-btn">
@@ -321,39 +314,32 @@
     </a>
   </div>
 </header>
-
+ 
 <div class="cover-wrap">
   <img class="cover-img"
        src="https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=900&q=80"
        alt="Audio equalizer circuit board">
 </div>
-
+ 
 <main>
   <div class="project-hero">
     <p class="project-year">2026</p>
     <h1 class="project-title">Audio Equalizer</h1>
     <p class="project-subtitle">3-band analog equalizer with passive RC filters and LM386 power amp</p>
-    <div class="project-chips">
-      <span class="chip">Analog Circuits</span>
-      <span class="chip">LTSpice</span>
-      <span class="chip">RC Filters</span>
-      <span class="chip">Op-Amps</span>
-      <span class="chip">LM386</span>
-    </div>
   </div>
-
+ 
   <div class="project-content">
     <div>
-
+ 
       <div class="portfolio-section">
         <p class="section-eyebrow">Overview</p>
         <div class="project-description">
-          <p>Designed, constructed, and evaluated a 3-band analog audio equalizer capable of splitting an input signal into low, mid, and high frequency bands, independently adjusting each, recombining them, and amplifying the output to drive an 8Ω speaker.</p>
-          <p>The system uses passive RC filters (low-pass at 320 Hz, band-pass from 320–3200 Hz, high-pass at 3200 Hz), potentiometer-based volume controls per band, an op-amp inverting summing stage, and an LM386 power amplifier. Cutoff frequencies were verified via experimental frequency response analysis (FRA).</p>
-          <p>Results met all design specifications within tolerance. Minor deviations from theoretical values were attributed to component tolerances, breadboard parasitics, and measurement uncertainty.</p>
+          <p>The objective of this final project was to design, construct, and evaluate an analog audio equalizer capable of separating an input audio signal into low, mid, and high-frequency bands, independently adjusting each frequency range, recombining the processed signals, and amplifying the final output to drive an 8Ω speaker load. The system was required to satisfy specified cutoff frequencies of approximately 320 Hz for the bass filter, 320 Hz to 3200 Hz for the mid-pass filter, and 3200 Hz for the treble filter, while also meeting voltage and output power requirements.</p>
+          <p>The designed equalizer utilized passive RC filters, potentiometer-based volume controls, an operational amplifier summing stage, and an LM386 power amplifier. Experimental frequency response analysis (FRA) curves were obtained for each filter stage to verify the -3 dB cutoff frequencies.</p>
+          <p>Results demonstrated that the system successfully met the design specifications within acceptable tolerances. Minor deviations from theoretical values were attributed primarily to component tolerances, breadboard parasitics, and measurement uncertainty.</p>
         </div>
       </div>
-
+ 
       <div class="portfolio-section">
         <p class="section-eyebrow">Design Specifications</p>
         <table class="spec-table">
@@ -370,67 +356,72 @@
           </tbody>
         </table>
       </div>
-
+ 
       <div class="portfolio-section">
         <p class="section-eyebrow">System Architecture</p>
-        <p class="project-description" style="margin-bottom:1rem;">The audio equalizer splits, processes, and recombines signals via an optimized multi-stage analog pipeline.</p>
+        <p class="project-description" style="margin-bottom:1rem;">The audio equalizer operates through five main functional stages: signal splitting, frequency filtering, volume adjustment, recombination, and power amplification.</p>
         <div class="pipeline-wrap">
           <p class="pipeline-label">Signal flow</p>
           <div class="flow-container">
             <div class="flow-row"><div class="flow-node io">Vin</div></div>
             <div class="flow-arrow">&#x25BC;</div>
             <div class="flow-branches">
-              <div class="branch branch-bass"><strong style="color:#15803d;">Bass Band:</strong> Low Pass Filter &#x2794; Pre-amplifier Stage with Bass Potentiometer</div>
-              <div class="branch branch-mid"><strong style="color:#1d4ed8;">Mid Band:</strong> Low Pass Filter &#x2794; Isolation Buffer &#x2794; High Pass Filter &#x2794; Pre-amplifier Stage with Mid Potentiometer</div>
-              <div class="branch branch-treble"><strong style="color:#7e22ce;">Treble Band:</strong> High Pass Filter &#x2794; Pre-amplifier Stage with Treble Potentiometer</div>
+              <div class="branch branch-bass"><strong style="color:#15803d;">Bass Band:</strong> Low Pass Filter &#x2794; Volume Control with Bass Potentiometer</div>
+              <div class="branch branch-mid"><strong style="color:#1d4ed8;">Mid Band:</strong> Low Pass Filter &#x2794; Buffer &#x2794; High Pass Filter &#x2794; Volume Control with Mid Potentiometer</div>
+              <div class="branch branch-treble"><strong style="color:#7e22ce;">Treble Band:</strong> High Pass Filter &#x2794; Volume Control with Treble Potentiometer</div>
             </div>
             <div class="flow-arrow">&#x25BC;</div>
             <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>Inverting Summing Amplifier</strong> (Master Volume Control)</div></div>
             <div class="flow-arrow">&#x25BC;</div>
-            <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>LM386 Power Amplifier</strong> (Output Coupling &amp; Filtering Network)</div></div>
+            <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>LM386 Power Amplifier</strong></div></div>
             <div class="flow-arrow">&#x25BC;</div>
             <div class="flow-row"><div class="flow-node io">Vout</div></div>
           </div>
         </div>
       </div>
-
+ 
       <div class="portfolio-section">
-        <p class="section-eyebrow">Circuit Theory &amp; Calculations</p>
+        <p class="section-eyebrow">Theory</p>
         <div class="project-description">
-          <p>Both low and high pass filter frequencies are governed by the fundamental RC relationship:</p>
+          <p>The audio equalizer works by splitting the input signal into three frequency bands using RC filters. A low pass filter allows frequencies below a certain cutoff frequency to pass while attenuating higher frequencies. It consists of a resistor and capacitor that form a frequency dependent voltage divider. At low frequencies, the capacitor has high impedance, so most of the input voltage appears across the capacitor, resulting in a larger output voltage. At high frequencies, the capacitor's impedance decreases, allowing current to bypass the output and reducing the output voltage. This behavior causes high-frequency signals to be attenuated.</p>
+          <p>The high-pass filter operates in the opposite manner, allowing frequencies above the cutoff frequency to pass while attenuating lower frequencies. In this configuration, the capacitor is placed before the resistor, and the output is taken across the resistor. At low frequencies, the capacitor has high impedance, which blocks current flow and results in a small output voltage. At high frequencies, the capacitor's impedance becomes very small, allowing the signal to pass through to the output.</p>
+          <p>Both low and high pass filter frequencies are governed by the following equation:</p>
           <div class="formula-block">$$f_c = \frac{1}{2\pi RC}$$</div>
-          <p>To design the target stages, initial component options were calculated assuming nominal standard component loads:</p>
+          <p>A mid-pass (band-pass) filter is used to filter out the frequencies that lie within a specific range while attenuating those that lie outside. This can be done by connecting a low and high pass filter in series. An operational amplifier is implemented as a buffer to prevent additional voltage division occurring in the circuit.</p>
+          <p>Operational amplifiers are used throughout the system to control gain, isolate stages, and recombine signals without loading effects. In the ideal case, op-amps enforce two key assumptions in negative feedback: no current flows into the input terminals, and the input voltages are approximately equal. This allows each stage to be analyzed independently while maintaining predictable behavior.</p>
+          <p>Each frequency band is passed through a variable gain stage using an inverting op-amp configuration with potentiometers. The gain is controlled by resistor ratios:</p>
           <div class="formula-block">$$A_v = -\frac{R_f}{R_{in}}$$</div>
-          <p>A 10kΩ resistor was selected for the fixed input to maintain an exact maximum gain close to unity when matching the 10kΩ variable control potentiometers.</p>
-          <p>The power amplifier circuit takes low amplitude audio signals after it has been equalized and increases the power such that it can drive a speaker. The LM386 is a low-voltage power amplifier IC that internally uses a differential input stage followed by a voltage gain stage and an output stage capable of delivering sufficient current to drive a low-impedance speaker load.</p>
+          <p>This allows independent adjustment of bass, mid, and treble levels without affecting the filter characteristics. The input resistors are chosen large enough relative to the filter network to minimize loading effects, ensuring the filter response is not distorted by the gain stage.</p>
+          <p>After individual gain adjustment, the three signals are recombined using an inverting summing amplifier. This stage uses negative feedback to add the input signals while maintaining isolation between branches. For equal resistor values, the output becomes the inverted sum of all frequency components. This stage is essential because it prevents interaction between frequency bands while still reconstructing a full audio signal.</p>
+          <p>The power amplifier circuit takes low amplitude audio signals after equalization and increases the power such that it can drive a speaker. The LM386 is a low-voltage power amplifier IC that internally uses a differential input stage followed by a voltage gain stage and an output stage capable of delivering sufficient current to drive a low-impedance speaker load. Power is given by the total output voltage of the circuit and the speaker impedance:</p>
+          <div class="formula-block">$$P_{out} = \frac{V_{RMS}^2}{R_{load}}$$</div>
         </div>
       </div>
-
+ 
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Procedure &amp; Component Selection</p>
+        <div class="project-description">
+          <p>A 470Ω resistor was chosen for the low pass filter given the use of a 1µF capacitor, and a 47Ω resistor was chosen in series for the high pass filter given the use of a 10nF capacitor. Both calculated values fell within the 10% range of the specified frequency value. The band pass filter used the same low and high pass values, since it is simply a low and high pass filter connected in series through a buffering op-amp.</p>
+          <p>Maintaining a gain of one ensures the equalizer acts as a transparent filter that shapes frequency bands without unintentionally boosting the overall signal level. This unity gain preserves headroom within the ±5V power supply, preventing the summing amplifier from clipping or distorting the audio before it reaches the power stage.</p>
+          <p>The variable gain amplifier needs the input resistance to be much greater than that of the filter, so a 10kΩ resistor was chosen as the input, paired with a 10kΩ potentiometer across the op-amp for adjustable gain — giving a gain of approximately 1 when the potentiometer is maxed out. The input into the summation and master volume stage consisted of three 33kΩ output resistors from the variable gain amplifiers, with an equivalent resistance of 11kΩ to maintain similar gain, along with a 10kΩ potentiometer for adjustable master volume. The power amplifier values were based on the LM386 datasheet, set for a gain of 20dB to ensure audible amplification.</p>
+          <p>Testing was performed by injecting a 1 Vpp sinusoidal input signal and sweeping from 10 Hz to 10 kHz at 100 points per decade on an oscilloscope to record the -3 dB cutoff frequencies for each filter stage. Component values were then iteratively adjusted to compensate for non-ideal components and parasitic effects until all measured cutoffs fell within the ±10% tolerance. The summing amplifier and volume control stages were tested at 100 Hz, 1 kHz, and 10 kHz with potentiometers at minimum and maximum positions, recording peak-to-peak and RMS voltages. Ripple was measured across a full frequency sweep by recording the difference between the highest and lowest measured amplitude. Finally, output power was measured across the 8Ω speaker load while playing a music input signal to confirm the >400 mW requirement.</p>
+        </div>
+      </div>
+ 
       <div class="portfolio-section">
         <p class="section-eyebrow">Hardware Verification &amp; Iterative Tweaks</p>
         <div class="project-description">
-          <p>Testing was performed systematically by injecting a 1 Vpp sinusoidal input signal, sweeping from 10 Hz to 10 kHz with a high-density sweep on an oscilloscope to isolate the exact empirical −3 dB drop positions. Due to structural breadboard parasitics and native component tolerances, hardware refinement was necessary to hit tight requirement parameters:</p>
-          <ul>
-            <li><strong>High-Pass adjustment:</strong> Modified the filtering resistance from 47Ω to 56Ω to shift the upper curve into specification alignment.</li>
-            <li><strong>Band-Pass refinement:</strong> Adjusted the internal resistor nodes from 470Ω to 560Ω to precisely match the target envelope center values.</li>
-            <li><strong>Recombination Balancing:</strong> Resistors leading into the summing amplifier node were tuned down from 33kΩ to unique 22kΩ and 18kΩ pathways to align signal amplitudes.</li>
-            <li><strong>Amplifier Headroom Update:</strong> Increased the main Vcc rail feeding the LM386 chip from 5V to 8V. This maximized output voltage swing and headroom into the low-impedance 8Ω speaker load without triggering waveform clipping.</li>
-          </ul>
+          <p>Several values changed as a result of testing. The high-pass filter resistance was changed from 47Ω to 56Ω to shift the upper curve into alignment with the specification. The band-pass filter resistors were likewise adjusted from 470Ω to 560Ω to more precisely match the target cutoff values. The resistors leading into the summing amplifier were changed from 33kΩ to 22kΩ and 18kΩ respectively to achieve more desirable recombined output levels. The output coupling capacitor was changed to 270µF due to component availability, and the LM386 supply voltage was increased from 5V to 8V, which maximized output headroom into the 8Ω speaker without clipping — though this had only a marginal effect on the final output.</p>
         </div>
       </div>
-
+ 
       <div class="portfolio-section">
-        <p class="section-eyebrow">Performance Metrics Analysis</p>
+        <p class="section-eyebrow">Results</p>
         <div class="project-description">
-          <p>Final testing validation sweeps yielded the following empirical performance metrics:</p>
-
+ 
           <p><strong>Filter Cutoff Precision:</strong></p>
-          <ul>
-            <li><strong>Low-Pass Filter:</strong> Calculated cutoff at 348.35 Hz (8.85% error from target, fitting well inside the 10% envelope).</li>
-            <li><strong>High-Pass Filter:</strong> Calculated cutoff at 3.427 kHz (7.09% error from target).</li>
-            <li><strong>Band-Pass Filter:</strong> Cutoff ranges localized precisely at 345.3 Hz (lower cutoff) and 3.238 kHz (upper cutoff).</li>
-          </ul>
-
+          <p>The frequency response analysis of the low pass filter showed the -3dB cutoff point between 331.1Hz and 352.1Hz; through linear interpolation, the estimated cutoff was 348.35Hz, falling within the acceptable range of 320Hz ± 10% with a percentage error of approximately 8.85%. The high pass filter showed a -3dB cutoff between 3.388kHz and 3.631kHz, interpolated to 3.427kHz, within the 3.2kHz ± 10% range with an error of approximately 7.09%. For the band pass filter, the lower cutoff fell between 331.1–363.1Hz and the upper cutoff between 3.020–3.31kHz, interpolating to 345.3Hz and 3.238kHz — errors of approximately 7.09% and 1.19% respectively. All measured cutoffs fell within the required specification.</p>
+ 
           <div class="stack-gallery" data-gallery="fra">
             <div class="stack-main">
               <img src="placeholder-lowpass-fra.png" alt="Low Pass Filter Frequency Response Curve">
@@ -446,19 +437,19 @@
               <div class="stack-thumb" data-src="placeholder-highpass-fra.png" data-caption="Fig. 2 — High pass filter frequency response curve" data-alt="High Pass Filter Frequency Response Curve">
                 <img src="placeholder-highpass-fra.png" alt="High pass">
               </div>
-              <div class="stack-thumb" data-src="placeholder-bandpass-low-fra.png" data-caption="Fig. 3 — Band pass filter response (lower attenuation bound)" data-alt="Band Pass Filter Low Cutoff">
+              <div class="stack-thumb" data-src="placeholder-bandpass-low-fra.png" data-caption="Fig. 3 — Band pass filter response (lower cutoff)" data-alt="Band Pass Filter Low Cutoff">
                 <img src="placeholder-bandpass-low-fra.png" alt="Band pass low">
               </div>
-              <div class="stack-thumb" data-src="placeholder-bandpass-high-fra.png" data-caption="Fig. 4 — Band pass filter response (upper attenuation bound)" data-alt="Band Pass Filter High Cutoff">
+              <div class="stack-thumb" data-src="placeholder-bandpass-high-fra.png" data-caption="Fig. 4 — Band pass filter response (upper cutoff)" data-alt="Band Pass Filter High Cutoff">
                 <img src="placeholder-bandpass-high-fra.png" alt="Band pass high">
               </div>
             </div>
             <div class="sg-pips"></div>
           </div>
-
-          <p><strong>System Gain Stability &amp; Uniformity:</strong><br>
-          With the system set to maximum operational capacity, output tracking metrics demonstrated an exceptionally flat frequency response profile. The total output variation (passband ripple deviation) between peak boundaries across the entire sweep spectrum was merely 1.5 mV<sub>RMS</sub> (spanning from 94.32 mV<sub>RMS</sub> up to 95.82 mV<sub>RMS</sub>), easily beating the required 15 mV<sub>RMS</sub> cap.</p>
-
+ 
+          <p><strong>Amplifier Voltage &amp; Ripple:</strong><br>
+          The Vamp was measured across the summation amplifier at minimum settings across 100, 1k, and 10k Hz, recording 4.61, 4.87, and 4.73 mVrms respectively — all well below the 15 mVrms requirement. At maximum settings, the values recorded were 94.32, 109.31, and 95.82 mVrms, with percentage errors of 5.68%, 9.31%, and 4.18% respectively, all falling within the 100 mVRMS ± 10% threshold.</p>
+ 
           <div class="stack-gallery" data-gallery="vamp">
             <div class="stack-main">
               <img src="placeholder-vamp-min-100.png" alt="Vamp Minimum at 100Hz">
@@ -477,80 +468,91 @@
               <div class="stack-thumb" data-src="placeholder-vamp-min-10k.png" data-caption="Fig. 7 — Minimum output tracking at 10 kHz" data-alt="Vamp Minimum at 10kHz">
                 <img src="placeholder-vamp-min-10k.png" alt="Min 10kHz">
               </div>
-              <div class="stack-thumb" data-src="placeholder-vamp-max-100.png" data-caption="Fig. 8 — Maximum envelope capture at 100 Hz" data-alt="Vamp Maximum at 100Hz">
+              <div class="stack-thumb" data-src="placeholder-vamp-max-100.png" data-caption="Fig. 8 — Maximum output tracking at 100 Hz" data-alt="Vamp Maximum at 100Hz">
                 <img src="placeholder-vamp-max-100.png" alt="Max 100Hz">
               </div>
-              <div class="stack-thumb" data-src="placeholder-vamp-max-1k.png" data-caption="Fig. 9 — Maximum envelope capture at 1 kHz" data-alt="Vamp Maximum at 1kHz">
+              <div class="stack-thumb" data-src="placeholder-vamp-max-1k.png" data-caption="Fig. 9 — Maximum output tracking at 1 kHz" data-alt="Vamp Maximum at 1kHz">
                 <img src="placeholder-vamp-max-1k.png" alt="Max 1kHz">
               </div>
-              <div class="stack-thumb" data-src="placeholder-vamp-max-10k.png" data-caption="Fig. 10 — Maximum envelope capture at 10 kHz" data-alt="Vamp Maximum at 10kHz">
+              <div class="stack-thumb" data-src="placeholder-vamp-max-10k.png" data-caption="Fig. 10 — Maximum output tracking at 10 kHz" data-alt="Vamp Maximum at 10kHz">
                 <img src="placeholder-vamp-max-10k.png" alt="Max 10kHz">
               </div>
             </div>
             <div class="sg-pips"></div>
           </div>
-
+ 
+          <p>The system exhibited an exceptionally flat frequency response profile across the audio spectrum, showing excellent passband uniformity. When sweeping through the targeted frequency bands at maximum gain settings, the maximum output deviation between the extreme values was merely 1.5 mVRMS (a maximum of 95.82 mVRMS and a minimum of 94.32 mVRMS), well below the maximum specified ripple limit of 15 mVRMS.</p>
+ 
           <div class="fig-gallery">
             <div class="fig-item" tabindex="0" data-lightbox="placeholder-ripple-analysis.png">
               <img src="placeholder-ripple-analysis.png" alt="Peak Passband Ripple Variance Profile">
-              <div class="fig-caption">Fig. 11 — Peak passband ripple variance profile line graph</div>
+              <div class="fig-caption">Fig. 11 — Ripple analysis</div>
             </div>
           </div>
-
+ 
           <p><strong>Power Stage Evaluation:</strong><br>
-          Total output power was monitored across the speaker load via the standard RMS power formula:</p>
-          <div class="formula-block">$$P_{out} = \frac{V_{RMS}^2}{R_{load}}$$</div>
-          <p>The system successfully matched specified design outputs across the target spectrum, delivering 483.2 mW at 1 kHz and 417.2 mW at 10 kHz. At the 100 Hz extreme, the system recorded 397.8 mW. This subtle 0.55% marginal deficit highlights real-world hardware design characteristics like wire contact impedances and breadboard stray parasitic paths.</p>
-
+          For a 100Hz input signal, the power was approximately 397.8mW, a slight deviation from the >400mW requirement. Because this deviation is extremely small (0.55%), it is most likely caused by component tolerance, breadboard parasitic resistance, or oscilloscope measurement uncertainty. For a 1kHz input signal, the power was approximately 483.2mW, and for a 10kHz input signal it was approximately 417.2mW — both meeting the >400mW requirement.</p>
+ 
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Frequency sweep — 100 Hz, 1 kHz, 10 kHz</p>
           <div class="stack-gallery" data-gallery="power">
             <div class="stack-main">
               <img src="placeholder-amp-out-100.png" alt="Amplifier Output 100Hz">
-              <div class="stack-main-caption">Fig. 12 — Power waveform output at 100 Hz</div>
+              <div class="stack-main-caption">Fig. 12 — Amplifier output at 100 Hz</div>
               <span class="sg-counter">1 / 3</span>
               <button class="sg-nav sg-prev" aria-label="Previous">&#8249;</button>
               <button class="sg-nav sg-next" aria-label="Next">&#8250;</button>
             </div>
             <div class="stack-thumbs">
-              <div class="stack-thumb active" data-src="placeholder-amp-out-100.png" data-caption="Fig. 12 — Power waveform output at 100 Hz" data-alt="Amplifier Output 100Hz">
+              <div class="stack-thumb active" data-src="placeholder-amp-out-100.png" data-caption="Fig. 12 — Amplifier output at 100 Hz" data-alt="Amplifier Output 100Hz">
                 <img src="placeholder-amp-out-100.png" alt="100Hz">
               </div>
-              <div class="stack-thumb" data-src="placeholder-amp-out-1k.png" data-caption="Fig. 13 — Power waveform output at 1 kHz" data-alt="Amplifier Output 1kHz">
+              <div class="stack-thumb" data-src="placeholder-amp-out-1k.png" data-caption="Fig. 13 — Amplifier output at 1 kHz" data-alt="Amplifier Output 1kHz">
                 <img src="placeholder-amp-out-1k.png" alt="1kHz">
               </div>
-              <div class="stack-thumb" data-src="placeholder-amp-out-10k.png" data-caption="Fig. 14 — Power waveform output at 10 kHz" data-alt="Amplifier Output 10kHz">
+              <div class="stack-thumb" data-src="placeholder-amp-out-10k.png" data-caption="Fig. 14 — Amplifier output at 10 kHz" data-alt="Amplifier Output 10kHz">
                 <img src="placeholder-amp-out-10k.png" alt="10kHz">
               </div>
             </div>
             <div class="sg-pips"></div>
           </div>
-
+ 
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Volume sweep — low, medium, high</p>
           <div class="stack-gallery" data-gallery="vol">
             <div class="stack-main">
               <img src="placeholder-vol-low.png" alt="Low Volume Output">
-              <div class="stack-main-caption">Fig. 15 — Oscilloscope waveform at low vol gain</div>
+              <div class="stack-main-caption">Fig. 15 — Low volume output</div>
               <span class="sg-counter">1 / 3</span>
               <button class="sg-nav sg-prev" aria-label="Previous">&#8249;</button>
               <button class="sg-nav sg-next" aria-label="Next">&#8250;</button>
             </div>
             <div class="stack-thumbs">
-              <div class="stack-thumb active" data-src="placeholder-vol-low.png" data-caption="Fig. 15 — Oscilloscope waveform at low vol gain" data-alt="Low Volume Output">
+              <div class="stack-thumb active" data-src="placeholder-vol-low.png" data-caption="Fig. 15 — Low volume output" data-alt="Low Volume Output">
                 <img src="placeholder-vol-low.png" alt="Low vol">
               </div>
-              <div class="stack-thumb" data-src="placeholder-vol-med.png" data-caption="Fig. 16 — Oscilloscope waveform at median vol gain" data-alt="Medium Volume Output">
+              <div class="stack-thumb" data-src="placeholder-vol-med.png" data-caption="Fig. 16 — Medium volume output" data-alt="Medium Volume Output">
                 <img src="placeholder-vol-med.png" alt="Med vol">
               </div>
-              <div class="stack-thumb" data-src="placeholder-vol-high.png" data-caption="Fig. 17 — Oscilloscope waveform at high vol gain" data-alt="High Volume Output">
+              <div class="stack-thumb" data-src="placeholder-vol-high.png" data-caption="Fig. 17 — High volume output" data-alt="High Volume Output">
                 <img src="placeholder-vol-high.png" alt="High vol">
               </div>
             </div>
             <div class="sg-pips"></div>
           </div>
-
+ 
+          <p>As shown above, the amplitude of the wave is smallest at low volume and highest at high volume, confirming the operational functionality of the summing amplifier. Potential deviations could be attributed to inconsistencies in the volume of the audio supplied itself.</p>
+ 
         </div>
       </div>
-
+ 
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Conclusions</p>
+        <div class="project-description">
+          <p>In this experiment, an audio equalizer circuit was successfully designed and built by combining passive filters, buffer circuits, operational amplifiers, inverting amplifiers, a summing amplifier, and a power amplifier. The completed circuit demonstrated the practical use of multiple circuit concepts working together in a single system. The performance of the equalizer was verified using an oscilloscope to confirm that the cutoff frequencies for the low-pass, mid-pass, and high-pass filters were within the required tolerance range. In addition, the measured output amplitudes at both minimum and maximum volume control settings met the design requirements, the ripple remained below the specified limit, and the output power was sufficient to drive an 8Ω speaker in most cases.</p>
+          <p>Overall, the project successfully met its design objectives by demonstrating that an input signal can be separated into distinct frequency bands, independently adjusted, recombined, and amplified into a usable audio output. The experimental results closely matched the expected theoretical values, with most deviations remaining within the required percent error bounds. One of the main sources of deviation was the inability to use exact resistor and capacitor values due to the limited selection of standard components in the lab kit — in several cases, multiple resistors or capacitors had to be combined to approximate the desired values, introducing small amounts of error.</p>
+          <p>Additional sources of deviation may have included resistor and capacitor tolerances, imperfections in the operational amplifiers, and breadboard parasitic effects. The breadboard setup and component connections were also highly sensitive, such that even slight movement or contact with wires could significantly change the output measurements. These factors collectively explain why minor discrepancies occurred between the designed and measured performance, even though the overall system still met the required specifications.</p>
+        </div>
+      </div>
+ 
       <div class="portfolio-section">
         <p class="section-eyebrow">Hardware &amp; Schematics</p>
         <div class="stack-gallery" data-gallery="hw">
@@ -565,30 +567,39 @@
             <div class="stack-thumb active" data-src="complete-system-schematic.png" data-caption="Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)" data-alt="Complete 3-Band Audio Equalizer System Schematic">
               <img src="complete-system-schematic.png" alt="Schematic">
             </div>
-            <div class="stack-thumb" data-src="breadboard.jpg" data-caption="Final Fabricated Analog Equalizer Circuit and LM386 Power Stage on Breadboard" data-alt="Final Fabricated Equalizer and Amplifier Circuit on Breadboard">
+            <div class="stack-thumb" data-src="breadboard.jpg" data-caption="Final Fabricated Equalizer and LM386 Power Stage on Breadboard" data-alt="Final Fabricated Equalizer and Amplifier Circuit on Breadboard">
               <img src="breadboard.jpg" alt="Breadboard">
             </div>
           </div>
           <div class="sg-pips"></div>
         </div>
       </div>
-
+ 
+      <div class="portfolio-section">
+        <p class="section-eyebrow">References</p>
+        <div class="project-description">
+          <p>Gormley, D., & Manning, B. (2025). ECE20007 Final Project: Audio Equalizer (C. Hack, Ed.).</p>
+          <p>Manning, B. (2025, March 10). ECE20007: Experiment 8 Operational Amplifiers (C. Hack & G. Shaju, Eds.).</p>
+          <p>Manning, B., & Beasley, R. (2024, October 16). ECE20007: Experiment 7 Passive Filters (C. Hack, Ed.).</p>
+          <p>Texas Instruments. (2017). LM386 Low Voltage Audio Power Amplifier. <a href="https://www.ti.com/lit/ds/symlink/lm386.pdf">https://www.ti.com/lit/ds/symlink/lm386.pdf</a></p>
+        </div>
+      </div>
+ 
     </div>
   </div>
 </main>
-
+ 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
-
+ 
 <footer>
   <p>Nathan Lee · Engineering Portfolio</p>
   <p>singnl.github.io</p>
 </footer>
-
+ 
 <script>
-  /* ── Initialize each .stack-gallery independently ── */
   document.querySelectorAll('.stack-gallery').forEach(gallery => {
     const mainImg   = gallery.querySelector('.stack-main img');
     const mainCap   = gallery.querySelector('.stack-main-caption');
@@ -599,8 +610,7 @@
     const nextBtn   = gallery.querySelector('.sg-next');
     const total     = thumbs.length;
     let cur = 0;
-
-    /* Build pip dots */
+ 
     const pips = thumbs.map((_, i) => {
       const p = document.createElement('button');
       p.className = 'sg-pip' + (i === 0 ? ' active' : '');
@@ -609,12 +619,12 @@
       pipsWrap.appendChild(p);
       return p;
     });
-
+ 
     function go(idx) {
       if (idx === cur) return;
       cur = (idx + total) % total;
       const t = thumbs[cur];
-
+ 
       mainImg.classList.add('sg-fading');
       setTimeout(() => {
         mainImg.src = t.dataset.src;
@@ -623,31 +633,28 @@
         if (counter) counter.textContent = (cur + 1) + ' / ' + total;
         mainImg.classList.remove('sg-fading');
       }, 200);
-
+ 
       thumbs.forEach((th, i) => th.classList.toggle('active', i === cur));
       pips.forEach((p, i) => p.classList.toggle('active', i === cur));
-
+ 
       thumbs[cur].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
-
+ 
     thumbs.forEach((t, i) => t.addEventListener('click', () => go(i)));
     if (prevBtn) prevBtn.addEventListener('click', () => go(cur - 1));
     if (nextBtn) nextBtn.addEventListener('click', () => go(cur + 1));
-
-    /* Keyboard navigation when gallery is focused */
+ 
     gallery.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft')  { e.preventDefault(); go(cur - 1); }
       if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); }
     });
-
-    /* Click main image → lightbox */
+ 
     gallery.querySelector('.stack-main').addEventListener('click', e => {
       if (e.target.classList.contains('sg-nav') || e.target.closest('.sg-nav')) return;
       openLightbox(mainImg.src, mainImg.alt);
     });
   });
-
-  /* ── Simple fig-item lightbox ── */
+ 
   document.querySelectorAll('.fig-item').forEach(el => {
     el.addEventListener('click', () => {
       const img = el.querySelector('img');
@@ -657,8 +664,7 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
     });
   });
-
-  /* ── Lightbox ── */
+ 
   function openLightbox(src, alt) {
     document.getElementById('lightbox-img').src = src;
     document.getElementById('lightbox-img').alt = alt || '';
@@ -669,13 +675,13 @@
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
-
+ 
   document.getElementById('lightbox').addEventListener('click', e => {
     if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
   });
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
-
+ 
 </body>
 </html>
