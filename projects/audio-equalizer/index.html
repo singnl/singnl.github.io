@@ -15,7 +15,6 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
  
 <style>
-  /* ── Force single-column full-width layout ── */
   .project-content {
     display: block !important;
     grid-template-columns: unset !important;
@@ -23,7 +22,6 @@
   }
   .project-gallery { display: none !important; }
  
-  /* ── Spec table ── */
   .spec-table {
     width: 100%;
     border-collapse: collapse;
@@ -49,7 +47,6 @@
   .spec-table td:first-child { color: var(--text); font-weight: 500; }
   .spec-table tr:last-child td { border-bottom: none; }
  
-  /* ── Pipeline ── */
   .pipeline-wrap {
     margin: 1.75rem 0;
     background: var(--surface);
@@ -77,10 +74,8 @@
   .branch-treble { background: #fdf4ff; border: 1px solid #e9d5ff; color: #9333ea; }
   .flow-arrow { color: var(--text-3); font-weight: bold; font-size: 14px; text-align: center; }
  
-  /* ── Section wrapper ── */
   .portfolio-section { margin-bottom: 2.5rem; }
  
-  /* ── Formula block ── */
   .formula-block {
     background: var(--surface);
     border-left: 3px solid var(--accent);
@@ -92,7 +87,6 @@
     overflow-x: auto;
   }
  
-  /* ── Stack Gallery ── */
   .stack-gallery {
     margin: 1.5rem 0;
     border-radius: 10px;
@@ -244,17 +238,17 @@
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid var(--border);
-    background: var(--surface);
+    background: #0a0a0a;
     cursor: pointer;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
   }
   .fig-item img {
     width: 100%; height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     transition: transform 0.22s ease;
   }
-  .fig-item:hover img, .fig-item:focus-within img { transform: scale(1.04); }
+  .fig-item:hover img, .fig-item:focus-within img { transform: scale(1.02); }
   .fig-caption {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -449,14 +443,14 @@
                 <img src="max1k.png" alt="Max 1kHz">
               </div>
               <div class="stack-thumb" data-src="max10k.png" data-caption="Fig. 10 — Maximum output tracking at 10 kHz" data-alt="Vamp Maximum at 10kHz">
-                <img src="nax10k.png" alt="Max 10kHz">
+                <img src="max10k.png" alt="Max 10kHz">
               </div>
             </div>
             <div class="sg-pips"></div>
           </div>
  
-          <div class="fig-gallery">
-            <div class="fig-item" tabindex="0" data-lightbox="placeholder-ripple-analysis.png">
+          <div class="fig-gallery" style="grid-template-columns: 1fr;">
+            <div class="fig-item" tabindex="0" data-lightbox="ripple.png">
               <img src="ripple.png" alt="Peak Passband Ripple Variance Profile">
               <div class="fig-caption">Fig. 11 — Ripple analysis</div>
             </div>
