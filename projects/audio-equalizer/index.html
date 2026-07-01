@@ -383,35 +383,11 @@
       <div class="portfolio-section">
         <p class="section-eyebrow">Theory</p>
         <div class="project-description">
-          <p>The audio equalizer works by splitting the input signal into three frequency bands using RC filters. A low pass filter allows frequencies below a certain cutoff frequency to pass while attenuating higher frequencies. It consists of a resistor and capacitor that form a frequency dependent voltage divider. At low frequencies, the capacitor has high impedance, so most of the input voltage appears across the capacitor, resulting in a larger output voltage. At high frequencies, the capacitor's impedance decreases, allowing current to bypass the output and reducing the output voltage. This behavior causes high-frequency signals to be attenuated.</p>
-          <p>The high-pass filter operates in the opposite manner, allowing frequencies above the cutoff frequency to pass while attenuating lower frequencies. In this configuration, the capacitor is placed before the resistor, and the output is taken across the resistor. At low frequencies, the capacitor has high impedance, which blocks current flow and results in a small output voltage. At high frequencies, the capacitor's impedance becomes very small, allowing the signal to pass through to the output.</p>
-          <p>Both low and high pass filter frequencies are governed by the following equation:</p>
+          <p>The equalizer splits the input into three bands using passive RC filters: a low-pass for bass, a high-pass for treble, and a band-pass (low-pass and high-pass in series, joined by a buffer) for the mids. Both filter types share the same governing equation:</p>
           <div class="formula-block">$$f_c = \frac{1}{2\pi RC}$$</div>
-          <p>A mid-pass (band-pass) filter is used to filter out the frequencies that lie within a specific range while attenuating those that lie outside. This can be done by connecting a low and high pass filter in series. An operational amplifier is implemented as a buffer to prevent additional voltage division occurring in the circuit.</p>
-          <p>Operational amplifiers are used throughout the system to control gain, isolate stages, and recombine signals without loading effects. In the ideal case, op-amps enforce two key assumptions in negative feedback: no current flows into the input terminals, and the input voltages are approximately equal. This allows each stage to be analyzed independently while maintaining predictable behavior.</p>
-          <p>Each frequency band is passed through a variable gain stage using an inverting op-amp configuration with potentiometers. The gain is controlled by resistor ratios:</p>
-          <div class="formula-block">$$A_v = -\frac{R_f}{R_{in}}$$</div>
-          <p>This allows independent adjustment of bass, mid, and treble levels without affecting the filter characteristics. The input resistors are chosen large enough relative to the filter network to minimize loading effects, ensuring the filter response is not distorted by the gain stage.</p>
-          <p>After individual gain adjustment, the three signals are recombined using an inverting summing amplifier. This stage uses negative feedback to add the input signals while maintaining isolation between branches. For equal resistor values, the output becomes the inverted sum of all frequency components. This stage is essential because it prevents interaction between frequency bands while still reconstructing a full audio signal.</p>
-          <p>The power amplifier circuit takes low amplitude audio signals after equalization and increases the power such that it can drive a speaker. The LM386 is a low-voltage power amplifier IC that internally uses a differential input stage followed by a voltage gain stage and an output stage capable of delivering sufficient current to drive a low-impedance speaker load. Power is given by the total output voltage of the circuit and the speaker impedance:</p>
+          <p>Each band then runs through an inverting op-amp gain stage controlled by a potentiometer, letting bass/mid/treble levels be adjusted independently before an inverting summing amplifier recombines them and the LM386 boosts the result to drive the speaker:</p>
           <div class="formula-block">$$P_{out} = \frac{V_{RMS}^2}{R_{load}}$$</div>
-        </div>
-      </div>
- 
-      <div class="portfolio-section">
-        <p class="section-eyebrow">Procedure &amp; Component Selection</p>
-        <div class="project-description">
-          <p>A 470Ω resistor was chosen for the low pass filter given the use of a 1µF capacitor, and a 47Ω resistor was chosen in series for the high pass filter given the use of a 10nF capacitor. Both calculated values fell within the 10% range of the specified frequency value. The band pass filter used the same low and high pass values, since it is simply a low and high pass filter connected in series through a buffering op-amp.</p>
-          <p>Maintaining a gain of one ensures the equalizer acts as a transparent filter that shapes frequency bands without unintentionally boosting the overall signal level. This unity gain preserves headroom within the ±5V power supply, preventing the summing amplifier from clipping or distorting the audio before it reaches the power stage.</p>
-          <p>The variable gain amplifier needs the input resistance to be much greater than that of the filter, so a 10kΩ resistor was chosen as the input, paired with a 10kΩ potentiometer across the op-amp for adjustable gain — giving a gain of approximately 1 when the potentiometer is maxed out. The input into the summation and master volume stage consisted of three 33kΩ output resistors from the variable gain amplifiers, with an equivalent resistance of 11kΩ to maintain similar gain, along with a 10kΩ potentiometer for adjustable master volume. The power amplifier values were based on the LM386 datasheet, set for a gain of 20dB to ensure audible amplification.</p>
-          <p>Testing was performed by injecting a 1 Vpp sinusoidal input signal and sweeping from 10 Hz to 10 kHz at 100 points per decade on an oscilloscope to record the -3 dB cutoff frequencies for each filter stage. Component values were then iteratively adjusted to compensate for non-ideal components and parasitic effects until all measured cutoffs fell within the ±10% tolerance. The summing amplifier and volume control stages were tested at 100 Hz, 1 kHz, and 10 kHz with potentiometers at minimum and maximum positions, recording peak-to-peak and RMS voltages. Ripple was measured across a full frequency sweep by recording the difference between the highest and lowest measured amplitude. Finally, output power was measured across the 8Ω speaker load while playing a music input signal to confirm the >400 mW requirement.</p>
-        </div>
-      </div>
- 
-      <div class="portfolio-section">
-        <p class="section-eyebrow">Hardware Verification &amp; Iterative Tweaks</p>
-        <div class="project-description">
-          <p>Several values changed as a result of testing. The high-pass filter resistance was changed from 47Ω to 56Ω to shift the upper curve into alignment with the specification. The band-pass filter resistors were likewise adjusted from 470Ω to 560Ω to more precisely match the target cutoff values. The resistors leading into the summing amplifier were changed from 33kΩ to 22kΩ and 18kΩ respectively to achieve more desirable recombined output levels. The output coupling capacitor was changed to 270µF due to component availability, and the LM386 supply voltage was increased from 5V to 8V, which maximized output headroom into the 8Ω speaker without clipping — though this had only a marginal effect on the final output.</p>
+          <p>Testing was done by sweeping a 1 Vpp signal from 10 Hz to 10 kHz on an oscilloscope, recording -3 dB cutoffs, and iterating on component values until every stage landed within the ±10% tolerance. A few resistor values changed along the way (e.g. the high-pass resistor moved from 47Ω to 56Ω, and the LM386 supply rail was bumped from 5V to 8V for headroom) to compensate for breadboard parasitics and component tolerances.</p>
         </div>
       </div>
  
@@ -419,8 +395,7 @@
         <p class="section-eyebrow">Results</p>
         <div class="project-description">
  
-          <p><strong>Filter Cutoff Precision:</strong></p>
-          <p>The frequency response analysis of the low pass filter showed the -3dB cutoff point between 331.1Hz and 352.1Hz; through linear interpolation, the estimated cutoff was 348.35Hz, falling within the acceptable range of 320Hz ± 10% with a percentage error of approximately 8.85%. The high pass filter showed a -3dB cutoff between 3.388kHz and 3.631kHz, interpolated to 3.427kHz, within the 3.2kHz ± 10% range with an error of approximately 7.09%. For the band pass filter, the lower cutoff fell between 331.1–363.1Hz and the upper cutoff between 3.020–3.31kHz, interpolating to 345.3Hz and 3.238kHz — errors of approximately 7.09% and 1.19% respectively. All measured cutoffs fell within the required specification.</p>
+          <p><strong>Filter Cutoff Precision:</strong> All three filters landed within the ±10% tolerance — low-pass at 348.35 Hz (8.85% error), high-pass at 3.427 kHz (7.09% error), and band-pass spanning 345.3 Hz to 3.238 kHz.</p>
  
           <div class="stack-gallery" data-gallery="fra">
             <div class="stack-main">
@@ -447,8 +422,7 @@
             <div class="sg-pips"></div>
           </div>
  
-          <p><strong>Amplifier Voltage &amp; Ripple:</strong><br>
-          The Vamp was measured across the summation amplifier at minimum settings across 100, 1k, and 10k Hz, recording 4.61, 4.87, and 4.73 mVrms respectively — all well below the 15 mVrms requirement. At maximum settings, the values recorded were 94.32, 109.31, and 95.82 mVrms, with percentage errors of 5.68%, 9.31%, and 4.18% respectively, all falling within the 100 mVRMS ± 10% threshold.</p>
+          <p><strong>Amplifier Voltage &amp; Ripple:</strong> At minimum settings, output stayed under 5 mVrms across 100 Hz–10 kHz (well below the 15 mVrms cap). At maximum settings, output landed within 10% of the 100 mVrms target at all three test frequencies, with total ripple across the sweep of just 1.5 mVrms — far under the 15 mVrms limit.</p>
  
           <div class="stack-gallery" data-gallery="vamp">
             <div class="stack-main">
@@ -481,8 +455,6 @@
             <div class="sg-pips"></div>
           </div>
  
-          <p>The system exhibited an exceptionally flat frequency response profile across the audio spectrum, showing excellent passband uniformity. When sweeping through the targeted frequency bands at maximum gain settings, the maximum output deviation between the extreme values was merely 1.5 mVRMS (a maximum of 95.82 mVRMS and a minimum of 94.32 mVRMS), well below the maximum specified ripple limit of 15 mVRMS.</p>
- 
           <div class="fig-gallery">
             <div class="fig-item" tabindex="0" data-lightbox="placeholder-ripple-analysis.png">
               <img src="placeholder-ripple-analysis.png" alt="Peak Passband Ripple Variance Profile">
@@ -490,8 +462,7 @@
             </div>
           </div>
  
-          <p><strong>Power Stage Evaluation:</strong><br>
-          For a 100Hz input signal, the power was approximately 397.8mW, a slight deviation from the >400mW requirement. Because this deviation is extremely small (0.55%), it is most likely caused by component tolerance, breadboard parasitic resistance, or oscilloscope measurement uncertainty. For a 1kHz input signal, the power was approximately 483.2mW, and for a 10kHz input signal it was approximately 417.2mW — both meeting the >400mW requirement.</p>
+          <p><strong>Power Stage Evaluation:</strong> Output power exceeded the 400 mW target at 1 kHz (483.2 mW) and 10 kHz (417.2 mW). At 100 Hz it came in just under spec at 397.8 mW — a 0.55% shortfall likely due to breadboard parasitics and component tolerance.</p>
  
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Frequency sweep — 100 Hz, 1 kHz, 10 kHz</p>
           <div class="stack-gallery" data-gallery="power">
@@ -539,7 +510,7 @@
             <div class="sg-pips"></div>
           </div>
  
-          <p>As shown above, the amplitude of the wave is smallest at low volume and highest at high volume, confirming the operational functionality of the summing amplifier. Potential deviations could be attributed to inconsistencies in the volume of the audio supplied itself.</p>
+          <p>Amplitude scales cleanly from low to high volume, confirming the summing amplifier works as intended.</p>
  
         </div>
       </div>
@@ -547,9 +518,7 @@
       <div class="portfolio-section">
         <p class="section-eyebrow">Conclusions</p>
         <div class="project-description">
-          <p>In this experiment, an audio equalizer circuit was successfully designed and built by combining passive filters, buffer circuits, operational amplifiers, inverting amplifiers, a summing amplifier, and a power amplifier. The completed circuit demonstrated the practical use of multiple circuit concepts working together in a single system. The performance of the equalizer was verified using an oscilloscope to confirm that the cutoff frequencies for the low-pass, mid-pass, and high-pass filters were within the required tolerance range. In addition, the measured output amplitudes at both minimum and maximum volume control settings met the design requirements, the ripple remained below the specified limit, and the output power was sufficient to drive an 8Ω speaker in most cases.</p>
-          <p>Overall, the project successfully met its design objectives by demonstrating that an input signal can be separated into distinct frequency bands, independently adjusted, recombined, and amplified into a usable audio output. The experimental results closely matched the expected theoretical values, with most deviations remaining within the required percent error bounds. One of the main sources of deviation was the inability to use exact resistor and capacitor values due to the limited selection of standard components in the lab kit — in several cases, multiple resistors or capacitors had to be combined to approximate the desired values, introducing small amounts of error.</p>
-          <p>Additional sources of deviation may have included resistor and capacitor tolerances, imperfections in the operational amplifiers, and breadboard parasitic effects. The breadboard setup and component connections were also highly sensitive, such that even slight movement or contact with wires could significantly change the output measurements. These factors collectively explain why minor discrepancies occurred between the designed and measured performance, even though the overall system still met the required specifications.</p>
+          <p>The finished circuit successfully separates an input signal into three frequency bands, lets each be adjusted independently, and recombines and amplifies them into a usable audio output. All filter cutoffs, output voltages, and ripple met spec, and output power hit target at 1 kHz and 10 kHz with only a marginal 0.55% shortfall at 100 Hz. Most of the deviation from theoretical values traces back to standard component tolerances and breadboard parasitics rather than any design flaw — a good reminder that even a well-calculated circuit needs iterative tuning on real hardware.</p>
         </div>
       </div>
  
@@ -572,16 +541,6 @@
             </div>
           </div>
           <div class="sg-pips"></div>
-        </div>
-      </div>
- 
-      <div class="portfolio-section">
-        <p class="section-eyebrow">References</p>
-        <div class="project-description">
-          <p>Gormley, D., & Manning, B. (2025). ECE20007 Final Project: Audio Equalizer (C. Hack, Ed.).</p>
-          <p>Manning, B. (2025, March 10). ECE20007: Experiment 8 Operational Amplifiers (C. Hack & G. Shaju, Eds.).</p>
-          <p>Manning, B., & Beasley, R. (2024, October 16). ECE20007: Experiment 7 Passive Filters (C. Hack, Ed.).</p>
-          <p>Texas Instruments. (2017). LM386 Low Voltage Audio Power Amplifier. <a href="https://www.ti.com/lit/ds/symlink/lm386.pdf">https://www.ti.com/lit/ds/symlink/lm386.pdf</a></p>
         </div>
       </div>
  
