@@ -311,15 +311,15 @@
  
 <div class="cover-wrap">
   <img class="cover-img"
-       src="https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=900&q=80"
-       alt="Audio equalizer circuit board">
+       src="breadboard.jpg"
+       alt="Audio equalizer">
 </div>
  
 <main>
   <div class="project-hero">
     <p class="project-year">2026</p>
     <h1 class="project-title">Audio Equalizer</h1>
-    <p class="project-subtitle">3-band analog equalizer with passive RC filters and LM386 power amp</p>
+    <p class="project-subtitle">3-band analog equalizer with passive RC filters and LM386 power amplifier</p>
   </div>
  
   <div class="project-content">
@@ -340,34 +340,36 @@
           <thead><tr><th>Specification</th><th>Requirement</th></tr></thead>
           <tbody>
             <tr><td>Speaker Impedance</td><td>8Ω</td></tr>
-            <tr><td>Bass filter −3 dB cutoff</td><td>320 Hz ± 10%</td></tr>
-            <tr><td>Mid filter −3 dB cutoffs</td><td>320–3200 Hz ± 10%</td></tr>
-            <tr><td>Treble filter −3 dB cutoff</td><td>3200 Hz ± 10%</td></tr>
+            <tr><td>Bass filter -3 dB cutoff</td><td>320 Hz ± 10%</td></tr>
+            <tr><td>Mid filter -3 dB cutoffs</td><td>320–3200 Hz ± 10%</td></tr>
+            <tr><td>Treble filter -3 dB cutoff</td><td>3200 Hz ± 10%</td></tr>
             <tr><td>V<sub>amp</sub> (minimum settings)</td><td>&lt; 15 mV<sub>RMS</sub> @ 100, 1k, 10k Hz</td></tr>
             <tr><td>V<sub>amp</sub> (maximum settings)</td><td>100 mV<sub>RMS</sub> ± 10% @ 100, 1k, 10k Hz</td></tr>
             <tr><td>Maximum ripple</td><td>15 mV<sub>RMS</sub></td></tr>
-            <tr><td>Output power</td><td>&gt;400 mW @ 100 Hz – 10 kHz</td></tr>
+            <tr><td>Output power</td><td>&gt;400 mW @ 100 Hz - 10 kHz</td></tr>
           </tbody>
         </table>
       </div>
  
       <div class="portfolio-section">
         <p class="section-eyebrow">System Architecture</p>
-        <p class="project-description" style="margin-bottom:1rem;">The audio equalizer operates through five main functional stages: signal splitting, frequency filtering, volume adjustment, recombination, and power amplification.</p>
+        <p class="project-description" style="margin-bottom:1rem;">The audio equalizer operates through the following stages: signal splitting, frequency filtering, individually-adjustable gain, master gain, power amplification, and output filtering.</p>
         <div class="pipeline-wrap">
           <p class="pipeline-label">Signal flow</p>
           <div class="flow-container">
             <div class="flow-row"><div class="flow-node io">Vin</div></div>
             <div class="flow-arrow">&#x25BC;</div>
-            <div class="flow-branches">
-              <div class="branch branch-bass"><strong style="color:#15803d;">Bass Band:</strong> Low Pass Filter &#x2794; Volume Control with Bass Potentiometer</div>
-              <div class="branch branch-mid"><strong style="color:#1d4ed8;">Mid Band:</strong> Low Pass Filter &#x2794; Buffer &#x2794; High Pass Filter &#x2794; Volume Control with Mid Potentiometer</div>
-              <div class="branch branch-treble"><strong style="color:#7e22ce;">Treble Band:</strong> High Pass Filter &#x2794; Volume Control with Treble Potentiometer</div>
+            <div class="flow-branches" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+              <div class="branch branch-bass"><strong style="color:#15803d;">Bass Band:</strong> Low Pass Filter &#x2794; Gain Stage with Bass Potentiometer</div>
+              <div class="branch branch-mid"><strong style="color:#1d4ed8;">Mid Band:</strong> Band Pass Filter &#x2794; Gain Stage with Mid Potentiometer</div>
+              <div class="branch branch-treble"><strong style="color:#7e22ce;">Treble Band:</strong> High Pass Filter &#x2794; Gain Stage with Treble Potentiometer</div>
             </div>
             <div class="flow-arrow">&#x25BC;</div>
-            <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>Inverting Summing Amplifier</strong> (Master Volume Control)</div></div>
+            <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>Master Gain Stage</strong> (Master Volume Potentiometer)</div></div>
             <div class="flow-arrow">&#x25BC;</div>
             <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>LM386 Power Amplifier</strong></div></div>
+            <div class="flow-arrow">&#x25BC;</div>
+            <div class="flow-row"><div class="flow-node stage" style="width:100%;"><strong>Output Filter</strong> (Zobel Network &#x2794; Coupling Capacitor)</div></div>
             <div class="flow-arrow">&#x25BC;</div>
             <div class="flow-row"><div class="flow-node io">Vout</div></div>
           </div>
@@ -389,60 +391,60 @@
         <p class="section-eyebrow">Results</p>
         <div class="project-description">
  
-          <p><strong>Filter Cutoff Precision:</strong> All three filters landed within the ±10% tolerance — low-pass at 348.35 Hz (8.85% error), high-pass at 3.427 kHz (7.09% error), and band-pass spanning 345.3 Hz to 3.238 kHz.</p>
+          <p><strong>Filter Cutoff Precision:</strong> All three filters landed within the ±10% tolerance: low-pass at 348.35 Hz (8.85% error), high-pass at 3.427 kHz (7.09% error), and band-pass spanning 345.3 Hz to 3.238 kHz.</p>
  
           <div class="stack-gallery" data-gallery="fra">
             <div class="stack-main">
               <img src="lowpass.png" alt="Low Pass Filter Frequency Response Curve">
-              <div class="stack-main-caption">Fig. 1 — Low pass filter frequency response curve</div>
+              <div class="stack-main-caption">Fig. 1 - Low pass filter frequency response curve</div>
               <span class="sg-counter">1 / 4</span>
               <button class="sg-nav sg-prev" aria-label="Previous">&#8249;</button>
               <button class="sg-nav sg-next" aria-label="Next">&#8250;</button>
             </div>
             <div class="stack-thumbs">
-              <div class="stack-thumb active" data-src="lowpass.png" data-caption="Fig. 1 — Low pass filter frequency response curve" data-alt="Low Pass Filter Frequency Response Curve">
+              <div class="stack-thumb active" data-src="lowpass.png" data-caption="Fig. 1 - Low pass filter frequency response curve" data-alt="Low Pass Filter Frequency Response Curve">
                 <img src="lowpass.png" alt="Low pass">
               </div>
-              <div class="stack-thumb" data-src="highpass.png" data-caption="Fig. 2 — High pass filter frequency response curve" data-alt="High Pass Filter Frequency Response Curve">
+              <div class="stack-thumb" data-src="highpass.png" data-caption="Fig. 2 - High pass filter frequency response curve" data-alt="High Pass Filter Frequency Response Curve">
                 <img src="highpass.png" alt="High pass">
               </div>
-              <div class="stack-thumb" data-src="bandlow.png" data-caption="Fig. 3 — Band pass filter response (lower cutoff)" data-alt="Band Pass Filter Low Cutoff">
+              <div class="stack-thumb" data-src="bandlow.png" data-caption="Fig. 3 - Band pass filter response (lower cutoff)" data-alt="Band Pass Filter Low Cutoff">
                 <img src="bandlow.png" alt="Band pass low">
               </div>
-              <div class="stack-thumb" data-src="bandhigh.png" data-caption="Fig. 4 — Band pass filter response (upper cutoff)" data-alt="Band Pass Filter High Cutoff">
+              <div class="stack-thumb" data-src="bandhigh.png" data-caption="Fig. 4 - Band pass filter response (upper cutoff)" data-alt="Band Pass Filter High Cutoff">
                 <img src="bandhigh.png" alt="Band pass high">
               </div>
             </div>
             <div class="sg-pips"></div>
           </div>
  
-          <p><strong>Amplifier Voltage &amp; Ripple:</strong> At minimum settings, output stayed under 5 mVrms across 100 Hz–10 kHz (well below the 15 mVrms cap). At maximum settings, output landed within 10% of the 100 mVrms target at all three test frequencies, with total ripple across the sweep of just 1.5 mVrms — far under the 15 mVrms limit.</p>
+          <p><strong>Amplifier Voltage &amp; Ripple:</strong> At minimum settings, output remained under 5 mVrms across 100 Hz–10 kHz. At maximum settings, output landed within 10% of the 100 mVrms target at all three test frequencies, with total ripple across the sweep of just 1.5 mVrms, far under the 15 mVrms limit.</p>
  
           <div class="stack-gallery" data-gallery="vamp">
             <div class="stack-main">
               <img src="min100.png" alt="Vamp Minimum at 100Hz">
-              <div class="stack-main-caption">Fig. 5 — Minimum output tracking at 100 Hz</div>
+              <div class="stack-main-caption">Fig. 5 - Minimum output at 100 Hz</div>
               <span class="sg-counter">1 / 6</span>
               <button class="sg-nav sg-prev" aria-label="Previous">&#8249;</button>
               <button class="sg-nav sg-next" aria-label="Next">&#8250;</button>
             </div>
             <div class="stack-thumbs">
-              <div class="stack-thumb active" data-src="min100.png" data-caption="Fig. 5 — Minimum output tracking at 100 Hz" data-alt="Vamp Minimum at 100Hz">
+              <div class="stack-thumb active" data-src="min100.png" data-caption="Fig. 5 — Minimum output at 100 Hz" data-alt="Vamp Minimum at 100Hz">
                 <img src="min100.png" alt="Min 100Hz">
               </div>
-              <div class="stack-thumb" data-src="min1k.png" data-caption="Fig. 6 — Minimum output tracking at 1 kHz" data-alt="Vamp Minimum at 1kHz">
+              <div class="stack-thumb" data-src="min1k.png" data-caption="Fig. 6 — Minimum output at 1 kHz" data-alt="Vamp Minimum at 1kHz">
                 <img src="min1k.png" alt="Min 1kHz">
               </div>
-              <div class="stack-thumb" data-src="min10k.png" data-caption="Fig. 7 — Minimum output tracking at 10 kHz" data-alt="Vamp Minimum at 10kHz">
+              <div class="stack-thumb" data-src="min10k.png" data-caption="Fig. 7 — Minimum output at 10 kHz" data-alt="Vamp Minimum at 10kHz">
                 <img src="min10k.png" alt="Min 10kHz">
               </div>
-              <div class="stack-thumb" data-src="max100.png" data-caption="Fig. 8 — Maximum output tracking at 100 Hz" data-alt="Vamp Maximum at 100Hz">
+              <div class="stack-thumb" data-src="max100.png" data-caption="Fig. 8 — Maximum output at 100 Hz" data-alt="Vamp Maximum at 100Hz">
                 <img src="max100.png" alt="Max 100Hz">
               </div>
-              <div class="stack-thumb" data-src="max1k.png" data-caption="Fig. 9 — Maximum output tracking at 1 kHz" data-alt="Vamp Maximum at 1kHz">
+              <div class="stack-thumb" data-src="max1k.png" data-caption="Fig. 9 — Maximum output at 1 kHz" data-alt="Vamp Maximum at 1kHz">
                 <img src="max1k.png" alt="Max 1kHz">
               </div>
-              <div class="stack-thumb" data-src="max10k.png" data-caption="Fig. 10 — Maximum output tracking at 10 kHz" data-alt="Vamp Maximum at 10kHz">
+              <div class="stack-thumb" data-src="max10k.png" data-caption="Fig. 10 — Maximum output at 10 kHz" data-alt="Vamp Maximum at 10kHz">
                 <img src="max10k.png" alt="Max 10kHz">
               </div>
             </div>
@@ -452,52 +454,52 @@
           <div class="fig-gallery" style="grid-template-columns: 1fr;">
             <div class="fig-item" tabindex="0" data-lightbox="ripple.png">
               <img src="ripple.png" alt="Peak Passband Ripple Variance Profile">
-              <div class="fig-caption">Fig. 11 — Ripple analysis</div>
+              <div class="fig-caption">Fig. 11 - Ripple analysis</div>
             </div>
           </div>
  
-          <p><strong>Power Stage Evaluation:</strong> Output power exceeded the 400 mW target at 1 kHz (483.2 mW) and 10 kHz (417.2 mW). At 100 Hz it came in just under spec at 397.8 mW — a 0.55% shortfall likely due to breadboard parasitics and component tolerance.</p>
+          <p><strong>Power Stage Evaluation:</strong> Output power exceeded the 400 mW target at 1 kHz (483.2 mW) and 10 kHz (417.2 mW). At 100 Hz it came in just under spec at 397.8 mW, likely due to breadboard parasitics and component tolerance.</p>
  
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Frequency sweep — 100 Hz, 1 kHz, 10 kHz</p>
           <div class="stack-gallery" data-gallery="power">
             <div class="stack-main">
               <img src="100power.png" alt="Amplifier Output 100Hz">
-              <div class="stack-main-caption">Fig. 12 — Amplifier output at 100 Hz</div>
+              <div class="stack-main-caption">Fig. 12 - Amplifier output at 100 Hz</div>
               <span class="sg-counter">1 / 3</span>
               <button class="sg-nav sg-prev" aria-label="Previous">&#8249;</button>
               <button class="sg-nav sg-next" aria-label="Next">&#8250;</button>
             </div>
             <div class="stack-thumbs">
-              <div class="stack-thumb active" data-src="100power.png" data-caption="Fig. 12 — Amplifier output at 100 Hz" data-alt="Amplifier Output 100Hz">
+              <div class="stack-thumb active" data-src="100power.png" data-caption="Fig. 12 - Amplifier output at 100 Hz" data-alt="Amplifier Output 100Hz">
                 <img src="100power.png" alt="100Hz">
               </div>
-              <div class="stack-thumb" data-src="1kpower.png" data-caption="Fig. 13 — Amplifier output at 1 kHz" data-alt="Amplifier Output 1kHz">
+              <div class="stack-thumb" data-src="1kpower.png" data-caption="Fig. 13 - Amplifier output at 1 kHz" data-alt="Amplifier Output 1kHz">
                 <img src="1kpower.png" alt="1kHz">
               </div>
-              <div class="stack-thumb" data-src="10kpower.png" data-caption="Fig. 14 — Amplifier output at 10 kHz" data-alt="Amplifier Output 10kHz">
+              <div class="stack-thumb" data-src="10kpower.png" data-caption="Fig. 14 - Amplifier output at 10 kHz" data-alt="Amplifier Output 10kHz">
                 <img src="10kpower.png" alt="10kHz">
               </div>
             </div>
             <div class="sg-pips"></div>
           </div>
  
-          <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Volume sweep — low, medium, high</p>
+          <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Volume sweep - low, medium, high</p>
           <div class="stack-gallery" data-gallery="vol">
             <div class="stack-main">
               <img src="lowvol.png" alt="Low Volume Output">
-              <div class="stack-main-caption">Fig. 15 — Low volume output</div>
+              <div class="stack-main-caption">Fig. 15 - Low volume output</div>
               <span class="sg-counter">1 / 3</span>
               <button class="sg-nav sg-prev" aria-label="Previous">&#8249;</button>
               <button class="sg-nav sg-next" aria-label="Next">&#8250;</button>
             </div>
             <div class="stack-thumbs">
-              <div class="stack-thumb active" data-src="lowvol.png" data-caption="Fig. 15 — Low volume output" data-alt="Low Volume Output">
+              <div class="stack-thumb active" data-src="lowvol.png" data-caption="Fig. 15 - Low volume output" data-alt="Low Volume Output">
                 <img src="lowvol.png" alt="Low vol">
               </div>
-              <div class="stack-thumb" data-src="midvol.png" data-caption="Fig. 16 — Medium volume output" data-alt="Medium Volume Output">
+              <div class="stack-thumb" data-src="midvol.png" data-caption="Fig. 16 - Medium volume output" data-alt="Medium Volume Output">
                 <img src="midvol.png" alt="Med vol">
               </div>
-              <div class="stack-thumb" data-src="maxvol.png" data-caption="Fig. 17 — High volume output" data-alt="High Volume Output">
+              <div class="stack-thumb" data-src="maxvol.png" data-caption="Fig. 17 - High volume output" data-alt="High Volume Output">
                 <img src="maxvol.png" alt="High vol">
               </div>
             </div>
@@ -512,7 +514,7 @@
       <div class="portfolio-section">
         <p class="section-eyebrow">Conclusions</p>
         <div class="project-description">
-          <p>The finished circuit successfully separates an input signal into three frequency bands, lets each be adjusted independently, and recombines and amplifies them into a usable audio output. All filter cutoffs, output voltages, and ripple met spec, and output power hit target at 1 kHz and 10 kHz with only a marginal 0.55% shortfall at 100 Hz. Most of the deviation from theoretical values traces back to standard component tolerances and breadboard parasitics rather than any design flaw — a good reminder that even a well-calculated circuit needs iterative tuning on real hardware.</p>
+          <p>The finished circuit successfully separates an input signal into three frequency bands, lets each be adjusted independently, and recombines and amplifies them into a usable audio output. All filter cutoffs, output voltages, and ripple met spec, and output power hit target at 1 kHz and 10 kHz with only a marginal 0.55% shortfall at 100 Hz. Most of the deviation from theoretical values traces back to standard component tolerances and breadboard parasitics rather than any design flaw.</p>
         </div>
       </div>
  
@@ -520,17 +522,17 @@
         <p class="section-eyebrow">Hardware &amp; Schematics</p>
         <div class="stack-gallery" data-gallery="hw">
           <div class="stack-main">
-            <img src="schematic.png" alt="Complete 3-Band Audio Equalizer System Schematic">
-            <div class="stack-main-caption">Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)</div>
+            <img src="schematic.png" alt="Audio Equalizer Schematic">
+            <div class="stack-main-caption">Audio Equalizer Schematic</div>
             <span class="sg-counter">1 / 2</span>
             <button class="sg-nav sg-prev" aria-label="Previous">&#8249;</button>
             <button class="sg-nav sg-next" aria-label="Next">&#8250;</button>
           </div>
           <div class="stack-thumbs">
-            <div class="stack-thumb active" data-src="schematic.png" data-caption="Complete 3-Band Audio Equalizer System Schematic (LTspice Node Capture)" data-alt="Complete 3-Band Audio Equalizer System Schematic">
+            <div class="stack-thumb active" data-src="schematic.png" data-caption="Audio Equalizer Schematic" data-alt="Audio Equalizer Schematic">
               <img src="schematic.png" alt="Schematic">
             </div>
-            <div class="stack-thumb" data-src="breadboard.jpg" data-caption="Final Fabricated Equalizer and LM386 Power Stage on Breadboard" data-alt="Final Fabricated Equalizer and Amplifier Circuit on Breadboard">
+            <div class="stack-thumb" data-src="breadboard.jpg" data-caption="Final Fabricated Circuit on Breadboard" data-alt="Final Fabricated Circuit on Breadboard">
               <img src="breadboard.jpg" alt="Breadboard">
             </div>
           </div>
