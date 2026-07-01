@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Audio Equalizer</title>
-<meta name="description" content="3-band analog equalizer with passive RC filters and LM386 power amp">
+<meta name="description" content="3-band analog equalizer with passive RC filters and LM386 power amplifier">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -379,11 +379,14 @@
       <div class="portfolio-section">
         <p class="section-eyebrow">Theory</p>
         <div class="project-description">
-          <p>The equalizer splits the input into three bands using passive RC filters: a low-pass for bass, a high-pass for treble, and a band-pass (low-pass and high-pass in series, joined by a buffer) for the mids. Both filter types share the same governing equation:</p>
+          <p>The equalizer splits the input into three bands using passive RC filters: a low-pass for bass, a high-pass for treble, and a band-pass (low-pass and high-pass in series) for the mids. Both filter types share the same governing equation:</p>
           <div class="formula-block">$$f_c = \frac{1}{2\pi RC}$$</div>
-          <p>Each band then runs through an inverting op-amp gain stage controlled by a potentiometer, letting bass/mid/treble levels be adjusted independently before an inverting summing amplifier recombines them and the LM386 boosts the result to drive the speaker:</p>
+          <p>For the band-pass stage, the low-pass and high-pass sections are joined by a unity-gain buffer rather than being connected directly. Without it, the second filter stage would load the first, pulling current through its resistor and shifting both cutoff frequencies away from their calculated values. The buffer presents a high input impedance to the first stage and a low output impedance to the second, letting each filter behave as if it were on its own.</p>
+          <p>Each band then runs through an inverting op-amp gain stage controlled by a potentiometer, letting bass/mid/treble levels be adjusted independently:</p>
+          <div class="formula-block">$$A_v = -\frac{R_f}{R_{in}}$$</div>
+          <p>where the potentiometer serves as the variable resistor in the ratio, letting gain be swept from near-zero to its maximum by turning the dial. An inverting summing amplifier then recombines the three adjusted bands, and the LM386 boosts the result to drive the speaker:</p>
           <div class="formula-block">$$P_{out} = \frac{V_{RMS}^2}{R_{load}}$$</div>
-          <p>Testing was done by sweeping a 1 Vpp signal from 10 Hz to 10 kHz on an oscilloscope, recording -3 dB cutoffs, and iterating on component values until every stage landed within the ±10% tolerance. A few resistor values changed along the way (e.g. the high-pass resistor moved from 47Ω to 56Ω, and the LM386 supply rail was bumped from 5V to 8V for headroom) to compensate for breadboard parasitics and component tolerances.</p>
+          <p>Testing was done by sweeping a 1 Vpp signal from 10 Hz to 10 kHz on an oscilloscope, recording -3 dB cutoffs, and iterating on component values until every stage landed within the ±10% tolerance. A few resistor values changed along the way to compensate for breadboard parasitics and component tolerances: the high-pass resistor moved from 47Ω to 56Ω to offset stray parasitic capacitance on the breadboard that was pulling the measured cutoff above the calculated one, and the LM386 supply rail was bumped from 5V to 8V to give the amplifier more voltage headroom and close the gap on the 400 mW output target.</p>
         </div>
       </div>
  
