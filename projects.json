@@ -138,7 +138,7 @@
     "title": "Audio Equalizer",
     "subtitle": "3-band analog equalizer with passive RC filters and LM386 power amp",
     "description": "Designed, constructed, and evaluated a 3-band analog audio equalizer capable of splitting an input signal into low, mid, and high frequency bands, independently adjusting each, recombining them, and amplifying the output to drive an 8Ω speaker.\n\nThe system uses passive RC filters (low-pass at 320 Hz, band-pass from 320–3200 Hz, high-pass at 3200 Hz), potentiometer-based volume controls per band, an op-amp inverting summing stage, and an LM386 power amplifier. Cutoff frequencies were verified via experimental frequency response analysis (FRA). Additional measurements confirmed amplifier input levels, ripple performance under 15 mVRMS, and output power exceeding 400 mW across the full 100 Hz–10 kHz band.\n\nResults met all design specifications within tolerance. Minor deviations from theoretical values were attributed to component tolerances, breadboard parasitics, and measurement uncertainty.",
-    "coverImage": ".../projects/audio-equalizer/breadboard.jpg",
+    "coverImage": "/projects/audio-equalizer/breadboard.jpg",
     "coverImageAlt": "Audio equalizer circuit board",
     "tags": [
       "LTspice",
