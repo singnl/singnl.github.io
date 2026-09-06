@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FSAE Fuel System - Nathan Lee</title>
+<meta name="description" content="E85 fuel system design for Purdue FSAE's PF25 endurance race car">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  PROJECT METADATA - this is the only part the homepage reads.
+  Edit these fields for each new project. Keep the id
+  "project-meta" and type "application/json" exactly as-is.
+  ============================================================
+-->
+<script type="application/json" id="project-meta">
+{
+  "title": "FSAE Fuel System",
+  "coverImage": "./fuel-cell-cad.jpg",
+  "coverImageAlt": "FSAE PF25",
+  "order": 0
+}
+</script>
+
+<link rel="stylesheet" href="../../css/style.css">
+
+<style>
+  /* ─── This project's specific layout ────────────────────────────────── */
+  .project-content {
+    display: block !important;
+    grid-template-columns: unset !important;
+    max-width: 100% !important;
+  }
+  .project-gallery { display: none !important; }
+
+  .portfolio-section { margin-bottom: 2.5rem; }
+
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 1.75rem 0;
+  }
+  .spec-table th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-3);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .spec-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+  .spec-table td:first-child { color: var(--text); font-weight: 500; }
+  .spec-table tr:last-child td { border-bottom: none; }
+
+  /* Calculation callout - a running derivation instead of a formula block per step */
+  .calc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem 1.75rem;
+    margin: 1.75rem 0;
+  }
+  .calc-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 1rem;
+  }
+  .calc-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 14px;
+  }
+  .calc-step:last-child { border-bottom: none; }
+  .calc-step-label { color: var(--text-2); }
+  .calc-step-value { color: var(--text); font-weight: 500; white-space: nowrap; }
+  .calc-step-value.result { color: var(--accent); font-weight: 600; }
+
+  /* Component list - replaces the equalizer's pipeline diagram for a parts-based system */
+  .parts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 1.75rem 0;
+  }
+  .part-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .part-tag {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+  .part-name { color: var(--text); font-weight: 500; }
+  .part-desc { color: var(--text-2); }
+
+  /* Simple image slots for this project - swap src/alt per photo, add/remove blocks as needed */
+  .photo-block {
+    margin: 1.75rem 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+  .photo-block img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .photo-caption {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    background: var(--surface);
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+  }
+  .photo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 1.75rem 0;
+  }
+  .photo-row .photo-block { margin: 0; }
+
+  @media (max-width: 700px) {
+    .photo-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+
+<div class="cover-wrap">
+  <img class="cover-img" id="cover-img"
+       src="fuel-cell-cad.jpg"
+       alt="PF25 fuel system CAD render">
+</div>
+
+<main>
+  <div class="project-hero">
+    <p class="project-year">2025</p>
+    <h1 class="project-title">FSAE Fuel System</h1>
+    <p class="project-subtitle">E85 fuel system design for Purdue FSAE's PF25 endurance race car</p>
+  </div>
+
+  <div class="project-content">
+    <div>
+
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Overview</p>
+        <div class="project-description">
+          <p>Designed the fuel system for Purdue FSAE's PF25 race car to accommodate E85 fuel for endurance events, replacing the previous 93 octane setup. Modeled in Siemens NX, the system integrates a Yamaha R6 fuel rail with Bosch injectors, a Daschewerk fuel pump, Holley HydraMat, an EFI fuel pressure regulator, and a fuel cell with custom internal baffles and chassis mounts.</p>
+        </div>
+      </div>
+
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Capacity Calculation</p>
+        <p class="project-description" style="margin-bottom: 0.5rem;">
+          Fuel capacity was derived from MoTeC i2 telemetry recorded during PF24's Michigan endurance run, which consumed approximately 5L on 93 octane. Ethanol carries roughly 33% less energy content than gasoline (per the U.S. Energy Information Administration), so the equivalent E85 volume, plus a 10% safety margin, set the target tank size.
+        </p>
+        <div class="calc-card">
+          <p class="calc-label">Derivation</p>
+          <div class="calc-step">
+            <span class="calc-step-label">PF24 Michigan endurance consumption (93 octane)</span>
+            <span class="calc-step-value">5.00 L</span>
+          </div>
+          <div class="calc-step">
+            <span class="calc-step-label">E85 energy-content adjustment (× 1.33)</span>
+            <span class="calc-step-value">6.65 L</span>
+          </div>
+          <div class="calc-step">
+            <span class="calc-step-label">10% safety margin</span>
+            <span class="calc-step-value result">7.315 L target</span>
+          </div>
+          <div class="calc-step">
+            <span class="calc-step-label">Final tank capacity (as designed)</span>
+            <span class="calc-step-value result">≈ 7.65 L</span>
+          </div>
+        </div>
+        <p class="project-description">Tank size and location were optimized around this target for regulation compliance within the PF25 chassis.</p>
+      </div>
+
+      <div class="portfolio-section">
+        <p class="section-eyebrow">System Components</p>
+        <div class="parts-list">
+          <div class="part-row">
+            <span class="part-tag">Rail</span>
+            <span class="part-name">Yamaha R6 fuel rail</span>
+            <span class="part-desc">paired with Bosch fuel injectors</span>
+          </div>
+          <div class="part-row">
+            <span class="part-tag">Pump</span>
+            <span class="part-name">Daschewerk fuel pump</span>
+          </div>
+          <div class="part-row">
+            <span class="part-tag">Pickup</span>
+            <span class="part-name">Holley HydraMat</span>
+            <span class="part-desc">fuel pickup for low-level and cornering reliability</span>
+          </div>
+          <div class="part-row">
+            <span class="part-tag">Regulator</span>
+            <span class="part-name">EFI fuel pressure regulator</span>
+          </div>
+          <div class="part-row">
+            <span class="part-tag">Cell</span>
+            <span class="part-name">Custom fuel cell</span>
+            <span class="part-desc">internal baffles and chassis mounts, sized to 7.65 L</span>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        ══════════════════════════════════════════════════════════════
+        IMAGE SLOTS - replace src/alt/caption below with your own
+        photos and CAD renders. Add or delete .photo-block divs as
+        needed; use .photo-row to place two side by side.
+        ══════════════════════════════════════════════════════════════
+      -->
+      <div class="portfolio-section">
+        <p class="section-eyebrow">CAD &amp; Build</p>
+
+        <div class="photo-block">
+          <img src="fuel-cell-cad.jpg" alt="Fuel cell CAD assembly">
+          <div class="photo-caption">Fuel cell assembly modeled in Siemens NX, showing internal baffles and mount points.</div>
+        </div>
+
+        <div class="photo-row">
+          <div class="photo-block">
+            <img src="fuel-rail-cad.jpg" alt="Fuel rail and injector assembly">
+            <div class="photo-caption">Yamaha R6 fuel rail with Bosch injectors integrated into the chassis packaging.</div>
+          </div>
+          <div class="photo-block">
+            <img src="fuel-system-install.jpg" alt="Fuel system installed on PF25 chassis">
+            <div class="photo-caption">System installed on the PF25 chassis.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Outcome</p>
+        <div class="project-description">
+          <p>The redesigned system successfully transitioned PF25 to E85 while meeting endurance fuel demand with margin to spare, and the tank envelope fit within the regulation and chassis packaging constraints carried over from PF24.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Nathan Lee · Engineering Portfolio</p>
+  <p>singnl.github.io</p>
+</footer>
+
+<script>
+  // Keep the header cover image in sync with the project-meta block above,
+  // so this page and the homepage card always show the same image.
+  (function syncCoverFromMeta() {
+    try {
+      const meta = JSON.parse(document.getElementById('project-meta').textContent);
+      const coverImg = document.getElementById('cover-img');
+      if (meta.coverImage) coverImg.src = meta.coverImage;
+      if (meta.coverImageAlt) coverImg.alt = meta.coverImageAlt;
+    } catch (e) {
+      // If project-meta is missing or malformed, leave the hardcoded src/alt as-is.
+    }
+  })();
+</script>
+
+</body>
+</html>
