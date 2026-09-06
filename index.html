@@ -55,6 +55,7 @@
       <div>
         <h2>Building things that work in the real world.</h2>
         <p>I'm Nathan, a mechanical engineering at Purdue University with a passion for solving hard problems through design and fabrication. My work spans the full product lifecycle, from early concept and CAD through prototype, test, and production.</p>
+        <p>I'm especially interested in mechanical design work that interfaces with testing, data, and controls.</p>
         <div class="tl-wrap">
           <div class="tl-item">
             <div class="tl-spine">
@@ -151,10 +152,19 @@
           if (!metaEl) return null;
 
           const meta = JSON.parse(metaEl.textContent);
+
+          // meta.coverImage is written relative to the PROJECT's own folder
+          // (e.g. "./breadboard.jpg"), so resolve it against that folder's
+          // URL rather than using it as-is from the homepage's location.
+          const projectBase = `./${PROJECTS_DIR}/${folder.name}/`;
+          const coverImage = meta.coverImage
+            ? new URL(meta.coverImage, new URL(projectBase, window.location.href)).href
+            : '';
+
           return {
             id: folder.name,
             title: meta.title || folder.name,
-            coverImage: meta.coverImage || '',
+            coverImage,
             coverImageAlt: meta.coverImageAlt || meta.title || '',
             order: typeof meta.order === 'number' ? meta.order : 0
           };
