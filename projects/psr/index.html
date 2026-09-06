@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
- 
+
 <!--
   ============================================================
   PROJECT METADATA — this is the only part the homepage reads.
@@ -24,9 +24,9 @@
   "order": 0
 }
 </script>
- 
+
 <link rel="stylesheet" href="../../css/style.css">
- 
+
 <style>
   /* ─── This project's specific layout ────────────────────────────────── */
   .project-content {
@@ -35,21 +35,14 @@
     max-width: 100% !important;
   }
   .project-gallery { display: none !important; }
- 
+
   .portfolio-section { margin-bottom: 2.5rem; }
- 
-  /* Major section (Suspension / Roll Cage) */
+
+  /* Major section (Suspension / Roll Cage) - same look as section-eyebrow
+     on the other project pages, just with room for subsections beneath */
   .major-section { margin-bottom: 3.5rem; }
   .major-section:last-child { margin-bottom: 0; }
- 
-  .major-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 28px;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
- 
+
   .major-intro {
     font-size: 15px;
     color: var(--text-2);
@@ -57,20 +50,21 @@
     margin-bottom: 1.75rem;
     max-width: 640px;
   }
- 
-  /* Subsection within a major section */
+
+  /* Subsection within a major section - smaller, indented version of the
+     same uppercase eyebrow style, so it reads as a nested level */
   .subsection { margin-bottom: 2.25rem; }
   .subsection:last-child { margin-bottom: 0; }
- 
+
   .subsection-title {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 600;
-    color: var(--text);
-    padding-left: 12px;
-    border-left: 3px solid var(--accent);
-    margin-bottom: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 0 0 1rem 0.9rem;
   }
- 
+
   /* Stat highlight - single big number callout */
   .stat-card {
     display: inline-flex;
@@ -92,7 +86,7 @@
     color: var(--text-2);
     margin-top: 4px;
   }
- 
+
   /* Before/after comparison row */
   .compare-row {
     display: grid;
@@ -122,11 +116,11 @@
   }
   .compare-label.old { color: var(--text-3); }
   .compare-label.new { color: var(--accent); }
- 
+
   @media (max-width: 700px) {
     .compare-row { grid-template-columns: 1fr; }
   }
- 
+
   /* Single photo/figure block */
   .photo-block {
     margin: 1.75rem 0;
@@ -148,7 +142,7 @@
     line-height: 1.5;
     border-top: 1px solid var(--border);
   }
- 
+
   .photo-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -156,11 +150,11 @@
     margin: 1.75rem 0;
   }
   .photo-row .photo-block { margin: 0; }
- 
+
   @media (max-width: 700px) {
     .photo-row { grid-template-columns: 1fr; }
   }
- 
+
   /* Bullet list styled to match project-description */
   .project-description ul {
     margin: 0 0 1.25rem 1.1rem;
@@ -170,7 +164,7 @@
     margin-bottom: 0.4rem;
     line-height: 1.7;
   }
- 
+
   /* Award note - text-only callout instead of reproducing the event photo */
   .award-note {
     display: flex;
@@ -189,7 +183,7 @@
 </style>
 </head>
 <body>
- 
+
 <header>
   <div class="header-inner">
     <a href="/" class="back-btn">
@@ -201,27 +195,27 @@
     </a>
   </div>
 </header>
- 
+
 <div class="cover-wrap">
   <img class="cover-img" id="cover-img"
        src="cover.jpg"
        alt="Purdue Solar Racing vehicle on track">
 </div>
- 
+
 <main>
   <div class="project-hero">
     <p class="project-year">Jan. 2025 — Present</p>
     <h1 class="project-title">Purdue Solar Racing</h1>
     <p class="project-subtitle">Vehicle Dynamics Engineer — designing and building a solar vehicle to compete in the American Solar Challenge and Formula Sun Grand Prix</p>
   </div>
- 
+
   <div class="project-content">
     <div>
- 
+
       <div class="major-section">
-        <h2 class="major-title">Suspension</h2>
+        <p class="section-eyebrow" style="margin-bottom: 0.5rem;">Suspension</p>
         <p class="major-intro">Redesigned the front suspension from a double wishbone to a pushrod architecture, then modeled, analyzed, and machined the resulting hardware.</p>
- 
+
         <div class="subsection">
           <p class="subsection-title">Suspension Architecture</p>
           <div class="project-description">
@@ -251,7 +245,7 @@
             </div>
           </div>
         </div>
- 
+
         <div class="subsection">
           <p class="subsection-title">Suspension Modeling</p>
           <div class="project-description">
@@ -268,7 +262,7 @@
             </div>
           </div>
         </div>
- 
+
         <div class="subsection">
           <p class="subsection-title">FEA</p>
           <div class="project-description">
@@ -293,7 +287,7 @@
             <div class="photo-caption">Hardpoint bracket FEA — von Mises stress, static load case.</div>
           </div>
         </div>
- 
+
         <div class="subsection">
           <p class="subsection-title">Machining</p>
           <div class="project-description">
@@ -321,9 +315,9 @@
           </div>
         </div>
       </div>
- 
+
       <div class="major-section">
-        <h2 class="major-title">Roll Cage</h2>
+        <p class="section-eyebrow" style="margin-bottom: 0.5rem;">Roll Cage</p>
         <p class="major-intro">Led the design and structural analysis of an ASC 2026 regulation-compliant roll cage.</p>
         <div class="award-note">
           <span>🏆</span>
@@ -340,16 +334,16 @@
           </div>
         </div>
       </div>
- 
+
     </div>
   </div>
 </main>
- 
+
 <footer>
   <p>Nathan Lee · Engineering Portfolio</p>
   <p>singnl.github.io</p>
 </footer>
- 
+
 <script>
   // Keep the header cover image in sync with the project-meta block above,
   // so this page and the homepage card always show the same image.
@@ -364,6 +358,6 @@
     }
   })();
 </script>
- 
+
 </body>
 </html>
