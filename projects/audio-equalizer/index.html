@@ -327,7 +327,7 @@
 </header>
 
 <div class="cover-wrap">
-  <img class="cover-img"
+  <img class="cover-img" id="cover-img"
        src="breadboard.jpg"
        alt="Audio equalizer">
 </div>
@@ -656,6 +656,19 @@
   });
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Keep the header cover image in sync with the project-meta block above,
+  // so this page and the homepage card always show the same image.
+  (function syncCoverFromMeta() {
+    try {
+      const meta = JSON.parse(document.getElementById('project-meta').textContent);
+      const coverImg = document.getElementById('cover-img');
+      if (meta.coverImage) coverImg.src = meta.coverImage;
+      if (meta.coverImageAlt) coverImg.alt = meta.coverImageAlt;
+    } catch (e) {
+      // If project-meta is missing or malformed, leave the hardcoded src/alt as-is.
+    }
+  })();
 </script>
 
 </body>
