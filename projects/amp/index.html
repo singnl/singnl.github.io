@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonomous Motorsports Purdue — Nathan Lee</title>
+<meta name="description" content="Autonomous go-kart development for the Autonomous Karting Series Grand Prix Challenge">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+ 
+<!--
+  ============================================================
+  PROJECT METADATA — this is the only part the homepage reads.
+  Edit these fields for each new project. Keep the id
+  "project-meta" and type "application/json" exactly as-is.
+  ============================================================
+-->
+<script type="application/json" id="project-meta">
+{
+  "title": "Autonomous Motorsports Purdue",
+  "coverImage": "./cover.jpg",
+  "coverImageAlt": "Autonomous go-kart on track",
+  "order": 0
+}
+</script>
+ 
+<link rel="stylesheet" href="../../css/style.css">
+ 
+<style>
+  /* ─── This project's specific layout ────────────────────────────────── */
+  .project-content {
+    display: block !important;
+    grid-template-columns: unset !important;
+    max-width: 100% !important;
+  }
+  .project-gallery { display: none !important; }
+ 
+  .portfolio-section { margin-bottom: 2.5rem; }
+ 
+  .project-description ul {
+    margin: 0 0 1.25rem 1.1rem;
+    padding: 0;
+  }
+  .project-description li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+ 
+  .photo-block {
+    margin: 1.75rem 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+  .photo-block img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .photo-caption {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    background: var(--surface);
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+  }
+ 
+  .photo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 1.75rem 0;
+  }
+  .photo-row .photo-block { margin: 0; }
+ 
+  @media (max-width: 700px) {
+    .photo-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+ 
+<div class="cover-wrap">
+  <img class="cover-img" id="cover-img"
+       src="cover.jpg"
+       alt="Autonomous go-kart on track">
+</div>
+ 
+<main>
+  <div class="project-hero">
+    <p class="project-year">Aug. 2025 — Present</p>
+    <h1 class="project-title">Autonomous Motorsports Purdue</h1>
+    <p class="project-subtitle">Mechanical Engineer — designing and building an autonomous go-kart to compete in the Autonomous Karting Series Grand Prix Challenge</p>
+  </div>
+ 
+  <div class="project-content">
+    <div>
+ 
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Overview</p>
+        <div class="project-description">
+          <p>Contributing to the mechanical design of Autonomous Motorsports Purdue's go-kart, which competes in the Autonomous Karting Series Grand Prix Challenge. Work spans early-stage development hardware through vehicle body components.</p>
+        </div>
+        <div class="photo-block">
+          <img src="kart-assembly.jpg" alt="Full autonomous go-kart CAD assembly">
+          <div class="photo-caption">Full vehicle assembly, showing the carbon fiber windshield, roll hoop, and chassis packaging.</div>
+        </div>
+      </div>
+ 
+      <div class="portfolio-section">
+        <p class="section-eyebrow">RC Baseplate</p>
+        <div class="project-description">
+          <ul>
+            <li>Designed and laser cut a modular baseplate for the autonomous development vehicle</li>
+            <li>3D printed brackets for sensor mounting</li>
+          </ul>
+        </div>
+        <div class="photo-row">
+          <div class="photo-block">
+            <img src="rc-baseplate-cad.png" alt="RC baseplate CAD layout">
+            <div class="photo-caption">Baseplate layout in CAD, with compute and driver electronics positioned.</div>
+          </div>
+          <div class="photo-block">
+            <img src="rc-baseplate-photo.jpg" alt="Assembled RC development vehicle">
+            <div class="photo-caption">Assembled development platform with baseplate, battery, and sensor wiring.</div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="portfolio-section">
+        <p class="section-eyebrow">Carbon Fiber Windshield</p>
+        <div class="project-description">
+          <ul>
+            <li>Designed a carbon fiber windshield and custom mounting solution in SolidWorks to protect onboard electronics from debris</li>
+            <li>Designed molds for vacuum bag infusion</li>
+          </ul>
+        </div>
+        <div class="photo-row">
+          <div class="photo-block">
+            <img src="windshield-mount.jpg" alt="Windshield and mounting bracket CAD">
+            <div class="photo-caption">Windshield panel with mounting bracket geometry.</div>
+          </div>
+          <div class="photo-block">
+            <img src="windshield-mold.jpg" alt="Windshield vacuum infusion mold">
+            <div class="photo-caption">Mold surface for vacuum bag infusion.</div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</main>
+ 
+<footer>
+  <p>Nathan Lee · Engineering Portfolio</p>
+  <p>singnl.github.io</p>
+</footer>
+ 
+<script>
+  // Keep the header cover image in sync with the project-meta block above,
+  // so this page and the homepage card always show the same image.
+  (function syncCoverFromMeta() {
+    try {
+      const meta = JSON.parse(document.getElementById('project-meta').textContent);
+      const coverImg = document.getElementById('cover-img');
+      if (meta.coverImage) coverImg.src = meta.coverImage;
+      if (meta.coverImageAlt) coverImg.alt = meta.coverImageAlt;
+    } catch (e) {
+      // If project-meta is missing or malformed, leave the hardcoded src/alt as-is.
+    }
+  })();
+</script>
+ 
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purdue Solar Racing — Nathan Lee</title>
+<meta name="description" content="Pushrod front suspension redesign and roll cage design for Purdue Solar Racing's ASC/FSGP-competing vehicle">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+ 
+<!--
+  ============================================================
+  PROJECT METADATA — this is the only part the homepage reads.
+  Edit these fields for each new project. Keep the id
+  "project-meta" and type "application/json" exactly as-is.
+  ============================================================
+-->
+<script type="application/json" id="project-meta">
+{
+  "title": "Purdue Solar Racing",
+  "coverImage": "./cover.jpg",
+  "coverImageAlt": "Purdue Solar Racing vehicle on track",
+  "order": 0
+}
+</script>
+ 
+<link rel="stylesheet" href="../../css/style.css">
+ 
+<style>
+  /* ─── This project's specific layout ────────────────────────────────── */
+  .project-content {
+    display: block !important;
+    grid-template-columns: unset !important;
+    max-width: 100% !important;
+  }
+  .project-gallery { display: none !important; }
+ 
+  .portfolio-section { margin-bottom: 2.5rem; }
+ 
+  /* Major section (Suspension / Roll Cage) */
+  .major-section { margin-bottom: 3.5rem; }
+  .major-section:last-child { margin-bottom: 0; }
+ 
+  .major-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+ 
+  .major-intro {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.75;
+    margin-bottom: 1.75rem;
+    max-width: 640px;
+  }
+ 
+  /* Subsection within a major section */
+  .subsection { margin-bottom: 2.25rem; }
+  .subsection:last-child { margin-bottom: 0; }
+ 
+  .subsection-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+    margin-bottom: 1rem;
+  }
+ 
+  /* Stat highlight - single big number callout */
+  .stat-card {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--accent-light);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-2);
+    margin-top: 4px;
+  }
+ 
+  /* Before/after comparison row */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 1.75rem 0;
+  }
+  .compare-item {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+  .compare-item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+  .compare-label {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-2);
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .compare-label.old { color: var(--text-3); }
+  .compare-label.new { color: var(--accent); }
+ 
+  @media (max-width: 700px) {
+    .compare-row { grid-template-columns: 1fr; }
+  }
+ 
+  /* Single photo/figure block */
+  .photo-block {
+    margin: 1.75rem 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--border);
+  }
+  .photo-block img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .photo-caption {
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-3);
+    background: var(--surface);
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+  }
+ 
+  .photo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 1.75rem 0;
+  }
+  .photo-row .photo-block { margin: 0; }
+ 
+  @media (max-width: 700px) {
+    .photo-row { grid-template-columns: 1fr; }
+  }
+ 
+  /* Bullet list styled to match project-description */
+  .project-description ul {
+    margin: 0 0 1.25rem 1.1rem;
+    padding: 0;
+  }
+  .project-description li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+ 
+  /* Award note - text-only callout instead of reproducing the event photo */
+  .award-note {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 14px;
+    color: var(--text-2);
+  }
+  .award-note strong { color: var(--text); }
+</style>
+</head>
+<body>
+ 
+<header>
+  <div class="header-inner">
+    <a href="/" class="back-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to projects
+    </a>
+  </div>
+</header>
+ 
+<div class="cover-wrap">
+  <img class="cover-img" id="cover-img"
+       src="cover.jpg"
+       alt="Purdue Solar Racing vehicle on track">
+</div>
+ 
+<main>
+  <div class="project-hero">
+    <p class="project-year">Jan. 2025 — Present</p>
+    <h1 class="project-title">Purdue Solar Racing</h1>
+    <p class="project-subtitle">Vehicle Dynamics Engineer — designing and building a solar vehicle to compete in the American Solar Challenge and Formula Sun Grand Prix</p>
+  </div>
+ 
+  <div class="project-content">
+    <div>
+ 
+      <div class="major-section">
+        <h2 class="major-title">Suspension</h2>
+        <p class="major-intro">Redesigned the front suspension from a double wishbone to a pushrod architecture, then modeled, analyzed, and machined the resulting hardware.</p>
+ 
+        <div class="subsection">
+          <p class="subsection-title">Suspension Architecture</p>
+          <div class="project-description">
+            <p>Redesigned the front suspension architecture from a double wishbone configuration to a pushrod system, improving packaging and load paths into the carbon fiber monocoque.</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">20%</span>
+            <span class="stat-label">weight reduction vs. the previous double wishbone setup</span>
+          </div>
+          <div class="project-description">
+            <ul>
+              <li>Modeled suspension geometry to optimize camber and toe change</li>
+              <li>Optimized suspension load path into the carbon fiber monocoque</li>
+              <li>Simulated turning, bump, and braking load cases using FEA to validate structural integrity</li>
+              <li>Designed suspension components in Siemens NX from the optimized geometry</li>
+              <li>Fabricated front suspension hardware to meet performance requirements</li>
+            </ul>
+          </div>
+          <div class="compare-row">
+            <div class="compare-item">
+              <img src="old-suspension.jpg" alt="Old double wishbone suspension configuration">
+              <div class="compare-label old">Old — double wishbone configuration</div>
+            </div>
+            <div class="compare-item">
+              <img src="new-suspension.jpg" alt="New pushrod suspension configuration">
+              <div class="compare-label new">New — pushrod configuration</div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="subsection">
+          <p class="subsection-title">Suspension Modeling</p>
+          <div class="project-description">
+            <p>Used Lotus Shark to evaluate kinematic behavior and guide suspension design decisions, including how camber changes through bump travel.</p>
+          </div>
+          <div class="photo-row">
+            <div class="photo-block">
+              <img src="camber-vs-bump.png" alt="Camber vs bump chart">
+              <div class="photo-caption">Camber vs. bump: roughly -0.035°/mm, characterized to tune the suspension's camber gain.</div>
+            </div>
+            <div class="photo-block">
+              <img src="lotus-shark.jpg" alt="Lotus Shark kinematic model">
+              <div class="photo-caption">Lotus Shark kinematic model of the suspension linkage.</div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="subsection">
+          <p class="subsection-title">FEA</p>
+          <div class="project-description">
+            <p>Designed the front suspension in Siemens NX from the optimized geometry, then simulated turning, bump, and braking loads with FEA to inform iterative design decisions.</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">2.0+</span>
+            <span class="stat-label">factor of safety across simulated load cases</span>
+          </div>
+          <div class="photo-row">
+            <div class="photo-block">
+              <img src="fea-wishbone.jpg" alt="FEA von Mises stress on wishbone arm">
+              <div class="photo-caption">FEA stress result on the wishbone arm.</div>
+            </div>
+            <div class="photo-block">
+              <img src="fea-hardpoint.jpg" alt="FEA von Mises stress on hardpoint bracket">
+              <div class="photo-caption">FEA stress result on a suspension hardpoint.</div>
+            </div>
+          </div>
+          <div class="photo-block">
+            <img src="fea-bracket.jpg" alt="FEA von Mises stress on hardpoint bracket, top view">
+            <div class="photo-caption">Hardpoint bracket FEA — von Mises stress, static load case.</div>
+          </div>
+        </div>
+ 
+        <div class="subsection">
+          <p class="subsection-title">Machining</p>
+          <div class="project-description">
+            <p>Machined front suspension hardware from Al-7075, moving from 3D-printed prototypes to final 5-axis and 3-axis milled parts.</p>
+          </div>
+          <div class="photo-row">
+            <div class="photo-block">
+              <img src="lower-wishbone-milling.jpg" alt="Lower wishbone 5-axis milling configuration">
+              <div class="photo-caption">Lower wishbone — 5-axis milling configuration.</div>
+            </div>
+            <div class="photo-block">
+              <img src="trailing-arm-milling.jpg" alt="Trailing arm bracket milling configuration">
+              <div class="photo-caption">Trailing arm bracket — milling configuration.</div>
+            </div>
+          </div>
+          <div class="photo-row">
+            <div class="photo-block">
+              <img src="bracket-machined-1.jpg" alt="Machined suspension bracket, Al-7075">
+              <div class="photo-caption">Machined suspension bracket (Al-7075).</div>
+            </div>
+            <div class="photo-block">
+              <img src="bracket-machined-2.jpg" alt="3D printed prototype next to final machined bracket">
+              <div class="photo-caption">3D-printed prototype (left) next to the final machined bracket (right).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="major-section">
+        <h2 class="major-title">Roll Cage</h2>
+        <p class="major-intro">Led the design and structural analysis of an ASC 2026 regulation-compliant roll cage.</p>
+        <div class="award-note">
+          <span>🏆</span>
+          <span><strong>Judges' Choice — Lightest Design</strong>, Altair 2025 FSGP Design Challenge</span>
+        </div>
+        <div class="photo-row">
+          <div class="photo-block">
+            <img src="roll-cage-chassis.jpg" alt="Roll cage integrated on chassis">
+            <div class="photo-caption">Roll cage integrated onto the chassis.</div>
+          </div>
+          <div class="photo-block">
+            <img src="roll-cage-standalone.jpg" alt="Roll cage standalone render">
+            <div class="photo-caption">Roll cage structure, standalone view.</div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+</main>
+ 
+<footer>
+  <p>Nathan Lee · Engineering Portfolio</p>
+  <p>singnl.github.io</p>
+</footer>
+ 
+<script>
+  // Keep the header cover image in sync with the project-meta block above,
+  // so this page and the homepage card always show the same image.
+  (function syncCoverFromMeta() {
+    try {
+      const meta = JSON.parse(document.getElementById('project-meta').textContent);
+      const coverImg = document.getElementById('cover-img');
+      if (meta.coverImage) coverImg.src = meta.coverImage;
+      if (meta.coverImageAlt) coverImg.alt = meta.coverImageAlt;
+    } catch (e) {
+      // If project-meta is missing or malformed, leave the hardcoded src/alt as-is.
+    }
+  })();
+</script>
+ 
+</body>
+</html>
