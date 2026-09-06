@@ -51,7 +51,7 @@
           </a>
         </div>
       </div>
-      
+
       <div>
         <h2>Building things that work in the real world.</h2>
         <p>I'm Nathan, a mechanical engineering at Purdue University with a passion for solving hard problems through design and fabrication. My work spans the full product lifecycle, from early concept and CAD through prototype, test, and production.</p>
@@ -79,7 +79,7 @@
               <p class="tl-org">Purdue University</p>
             </div>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   </section>
@@ -102,32 +102,73 @@
 </footer>
 
 <script>
+  // ---- CONFIGURE THIS TO MATCH YOUR REPO ----
+  const GH_OWNER  = 'singnl';
+  const GH_REPO   = 'singnl.github.io';
+  const GH_BRANCH = 'main';
+  const PROJECTS_DIR = 'projects';
+  // --------------------------------------------
+
   async function loadProjects() {
     const grid = document.getElementById('projects-grid');
     try {
-      const res = await fetch('/projects.json');
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const projects = await res.json();
+      // 1. Ask GitHub's API what folders exist inside /projects.
+      //    This is the only part that needs the network call to GitHub —
+      //    it just gives us the list of folder names, nothing else.
+      const listUrl = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${PROJECTS_DIR}?ref=${GH_BRANCH}`;
+      const listRes = await fetch(listUrl, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!listRes.ok) throw new Error(`GitHub API HTTP ${listRes.status}`);
+      const items = await listRes.json();
+      const folders = items.filter(item => item.type === 'dir');
 
-      if (!projects.length) {
+      if (!folders.length) {
         grid.innerHTML = '<p class="projects-loading">No projects yet.</p>';
         return;
       }
 
-      grid.innerHTML = projects.map(p => `
-        <a href="/projects/${esc(p.id)}/" class="project-card">
+      // 2. For each folder, fetch its index.html directly (fast, no API
+      //    rate limit) and read a small <script id="project-meta"> block
+      //    out of it for the title/description/image/tags.
+      const projects = await Promise.all(folders.map(async (folder) => {
+        try {
+          const pageUrl = `./${PROJECTS_DIR}/${folder.name}/index.html`;
+          const htmlRes = await fetch(pageUrl);
+          if (!htmlRes.ok) return null;
+          const html = await htmlRes.text();
+
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const metaEl = doc.getElementById('project-meta');
+          if (!metaEl) return null;
+
+          const meta = JSON.parse(metaEl.textContent);
+          return {
+            id: folder.name,
+            title: meta.title || folder.name,
+            coverImage: meta.coverImage || '',
+            coverImageAlt: meta.coverImageAlt || meta.title || '',
+            order: typeof meta.order === 'number' ? meta.order : 0
+          };
+        } catch {
+          return null; // skip folders missing/invalid metadata rather than breaking the page
+        }
+      }));
+
+      const valid = projects.filter(Boolean).sort((a, b) => b.order - a.order);
+
+      if (!valid.length) {
+        grid.innerHTML = '<p class="projects-loading">No projects yet.</p>';
+        return;
+      }
+
+      grid.innerHTML = valid.map(p => `
+        <a href="./${PROJECTS_DIR}/${esc(p.id)}/" class="project-card">
           <img class="project-img"
                src="${esc(p.coverImage)}"
-               alt="${esc(p.coverImageAlt || p.title)}"
+               alt="${esc(p.coverImageAlt)}"
                loading="lazy"
                onerror="this.style.background='var(--border)';this.style.opacity='0'">
           <div class="project-body">
             <h3>${esc(p.title)}</h3>
-            <p>${esc(p.description.split('\n')[0])}</p>
-            <div class="project-chips">
-              ${(p.tags || []).map(t => `<span class="chip">${esc(t)}</span>`).join('')}
-            </div>
-            <div class="project-arrow">View project →</div>
           </div>
         </a>
       `).join('');
@@ -135,8 +176,8 @@
     } catch (err) {
       grid.innerHTML = `
         <div class="projects-error">
-          <strong>Couldn't load projects.json</strong> — ${esc(err.message)}<br>
-          <small>Make sure the site is served over HTTP, not opened as a local file.</small>
+          <strong>Couldn't load projects</strong> — ${esc(err.message)}<br>
+          <small>Make sure the site is served over HTTP (not opened as a local file) and that GH_OWNER/GH_REPO above are correct.</small>
         </div>`;
     }
   }

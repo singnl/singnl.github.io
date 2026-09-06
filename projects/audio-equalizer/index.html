@@ -8,12 +8,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../css/style.css">
- 
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
- 
+
+<!--
+  ============================================================
+  PROJECT METADATA — this is the only part the homepage reads.
+  Edit these fields for each new project. Keep the id
+  "project-meta" and type "application/json" exactly as-is.
+  ============================================================
+-->
+<script type="application/json" id="project-meta">
+{
+  "title": "Audio Equalizer",
+  "coverImage": "./breadboard.jpg",
+  "coverImageAlt": "Audio equalizer breadboard build",
+  "order": 0
+}
+</script>
+
+<link rel="stylesheet" href="../../css/style.css">
+
 <style>
   .project-content {
     display: block !important;
@@ -21,7 +38,7 @@
     max-width: 100% !important;
   }
   .project-gallery { display: none !important; }
- 
+
   .spec-table {
     width: 100%;
     border-collapse: collapse;
@@ -46,7 +63,7 @@
   }
   .spec-table td:first-child { color: var(--text); font-weight: 500; }
   .spec-table tr:last-child td { border-bottom: none; }
- 
+
   .pipeline-wrap {
     margin: 1.75rem 0;
     background: var(--surface);
@@ -73,9 +90,9 @@
   .branch-mid     { background: #eff6ff; border: 1px solid #bfdbfe; color: #2563eb; }
   .branch-treble { background: #fdf4ff; border: 1px solid #e9d5ff; color: #9333ea; }
   .flow-arrow { color: var(--text-3); font-weight: bold; font-size: 14px; text-align: center; }
- 
+
   .portfolio-section { margin-bottom: 2.5rem; }
- 
+
   .formula-block {
     background: var(--surface);
     border-left: 3px solid var(--accent);
@@ -86,7 +103,7 @@
     color: var(--text);
     overflow-x: auto;
   }
- 
+
   .stack-gallery {
     margin: 1.5rem 0;
     border-radius: 10px;
@@ -94,7 +111,7 @@
     border: 1px solid var(--border);
     background: var(--surface);
   }
- 
+
   .stack-main {
     position: relative;
     width: 100%;
@@ -124,7 +141,7 @@
     padding: 1.5rem 1rem 0.75rem;
     pointer-events: none;
   }
- 
+
   .sg-counter {
     position: absolute;
     top: 10px; right: 12px;
@@ -137,7 +154,7 @@
     letter-spacing: 0.03em;
     font-family: 'Inter', sans-serif;
   }
- 
+
   .sg-nav {
     position: absolute;
     top: 50%; transform: translateY(-50%);
@@ -158,7 +175,7 @@
   .sg-prev { left: 10px; }
   .sg-next { right: 10px; }
   .stack-main:hover .sg-nav { opacity: 1; }
- 
+
   .stack-thumbs {
     display: flex;
     gap: 6px;
@@ -170,7 +187,7 @@
     align-items: center;
   }
   .stack-thumbs::-webkit-scrollbar { display: none; }
- 
+
   .stack-thumb {
     flex: 0 0 auto;
     width: 72px;
@@ -204,7 +221,7 @@
     border-radius: 4px;
     border: 1.5px solid var(--accent, #2563eb);
   }
- 
+
   .sg-pips {
     display: flex;
     gap: 5px;
@@ -226,7 +243,7 @@
     border-radius: 3px;
     background: var(--accent, #2563eb);
   }
- 
+
   .fig-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -265,7 +282,7 @@
   .fig-item:hover .fig-caption, .fig-item:focus-within .fig-caption {
     opacity: 1; transform: translateY(0);
   }
- 
+
   .lightbox {
     display: none;
     position: fixed;
@@ -296,7 +313,7 @@
 </style>
 </head>
 <body>
- 
+
 <header>
   <div class="header-inner">
     <a href="/" class="back-btn">
@@ -308,23 +325,23 @@
     </a>
   </div>
 </header>
- 
+
 <div class="cover-wrap">
   <img class="cover-img"
        src="breadboard.jpg"
        alt="Audio equalizer">
 </div>
- 
+
 <main>
   <div class="project-hero">
     <p class="project-year">2026</p>
     <h1 class="project-title">Audio Equalizer</h1>
     <p class="project-subtitle">3-band analog equalizer with passive RC filters and LM386 power amplifier</p>
   </div>
- 
+
   <div class="project-content">
     <div>
- 
+
       <div class="portfolio-section">
         <p class="section-eyebrow">Overview</p>
         <div class="project-description">
@@ -333,7 +350,7 @@
           <p>Results demonstrated that the system successfully met the design specifications within acceptable tolerances. Minor deviations from theoretical values were attributed primarily to component tolerances, breadboard parasitics, and measurement uncertainty.</p>
         </div>
       </div>
- 
+
       <div class="portfolio-section">
         <p class="section-eyebrow">Design Specifications</p>
         <table class="spec-table">
@@ -350,7 +367,7 @@
           </tbody>
         </table>
       </div>
- 
+
       <div class="portfolio-section">
         <p class="section-eyebrow">System Architecture</p>
         <p class="project-description" style="margin-bottom:1rem;">The audio equalizer operates through the following stages: signal splitting, frequency filtering, individually-adjustable gain, master gain, power amplification, and output filtering.</p>
@@ -375,7 +392,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="portfolio-section">
         <p class="section-eyebrow">Theory</p>
         <div class="project-description">
@@ -389,13 +406,13 @@
           <p>Testing was done by sweeping a 1 Vpp signal from 10 Hz to 10 kHz on an oscilloscope, recording -3 dB cutoffs, and iterating on component values until every stage landed within the ±10% tolerance. A few resistor values changed along the way to compensate for breadboard parasitics and component tolerances: the high-pass resistor moved from 47Ω to 56Ω to offset stray parasitic capacitance on the breadboard that was pulling the measured cutoff above the calculated one, and the LM386 supply rail was bumped from 5V to 8V to give the amplifier more voltage headroom and close the gap on the 400 mW output target.</p>
         </div>
       </div>
- 
+
       <div class="portfolio-section">
         <p class="section-eyebrow">Results</p>
         <div class="project-description">
- 
+
           <p><strong>Filter Cutoff Precision:</strong> All three filters landed within the ±10% tolerance: low-pass at 348.35 Hz (8.85% error), high-pass at 3.427 kHz (7.09% error), and band-pass spanning 345.3 Hz to 3.238 kHz.</p>
- 
+
           <div class="stack-gallery" data-gallery="fra">
             <div class="stack-main">
               <img src="lowpass.png" alt="Low Pass Filter Frequency Response Curve">
@@ -420,9 +437,9 @@
             </div>
             <div class="sg-pips"></div>
           </div>
- 
+
           <p><strong>Amplifier Voltage &amp; Ripple:</strong> At minimum settings, output remained under 5 mVrms across 100 Hz–10 kHz. At maximum settings, output landed within 10% of the 100 mVrms target at all three test frequencies, with total ripple across the sweep of just 1.5 mVrms, far under the 15 mVrms limit.</p>
- 
+
           <div class="stack-gallery" data-gallery="vamp">
             <div class="stack-main">
               <img src="min100.png" alt="Vamp Minimum at 100Hz">
@@ -453,16 +470,16 @@
             </div>
             <div class="sg-pips"></div>
           </div>
- 
+
           <div class="fig-gallery" style="grid-template-columns: 1fr;">
             <div class="fig-item" tabindex="0" data-lightbox="ripple.png">
               <img src="ripple.png" alt="Peak Passband Ripple Variance Profile">
               <div class="fig-caption">Fig. 11 - Ripple analysis</div>
             </div>
           </div>
- 
+
           <p><strong>Power Stage Evaluation:</strong> Output power exceeded the 400 mW target at 1 kHz (483.2 mW) and 10 kHz (417.2 mW). At 100 Hz it came in just under spec at 397.8 mW, likely due to breadboard parasitics and component tolerance.</p>
- 
+
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Frequency sweep - 100 Hz, 1 kHz, 10 kHz</p>
           <div class="stack-gallery" data-gallery="power">
             <div class="stack-main">
@@ -485,7 +502,7 @@
             </div>
             <div class="sg-pips"></div>
           </div>
- 
+
           <p style="font-size:13px; font-weight:600; color:var(--text-2); margin: 1.25rem 0 0.25rem;">Volume sweep with audio input - low, medium, high</p>
           <div class="stack-gallery" data-gallery="vol">
             <div class="stack-main">
@@ -508,19 +525,19 @@
             </div>
             <div class="sg-pips"></div>
           </div>
- 
+
           <p>Amplitude scales cleanly from low to high volume, confirming the summing amplifier works as intended.</p>
- 
+
         </div>
       </div>
- 
+
       <div class="portfolio-section">
         <p class="section-eyebrow">Conclusions</p>
         <div class="project-description">
           <p>The finished circuit successfully separates an input signal into three frequency bands, lets each be adjusted independently, and recombines and amplifies them into a usable audio output. All filter cutoffs, output voltages, and ripple met spec, and output power hit target at 1 kHz and 10 kHz with only a marginal 0.55% shortfall at 100 Hz. Most of the deviation from theoretical values traces back to standard component tolerances and breadboard parasitics rather than any design flaw.</p>
         </div>
       </div>
- 
+
       <div class="portfolio-section">
         <p class="section-eyebrow">Hardware &amp; Schematics</p>
         <div class="stack-gallery" data-gallery="hw">
@@ -542,21 +559,21 @@
           <div class="sg-pips"></div>
         </div>
       </div>
- 
+
     </div>
   </div>
 </main>
- 
+
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
   <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
- 
+
 <footer>
   <p>Nathan Lee · Engineering Portfolio</p>
   <p>singnl.github.io</p>
 </footer>
- 
+
 <script>
   document.querySelectorAll('.stack-gallery').forEach(gallery => {
     const mainImg   = gallery.querySelector('.stack-main img');
@@ -568,7 +585,7 @@
     const nextBtn   = gallery.querySelector('.sg-next');
     const total     = thumbs.length;
     let cur = 0;
- 
+
     const pips = thumbs.map((_, i) => {
       const p = document.createElement('button');
       p.className = 'sg-pip' + (i === 0 ? ' active' : '');
@@ -577,12 +594,12 @@
       pipsWrap.appendChild(p);
       return p;
     });
- 
+
     function go(idx) {
       if (idx === cur) return;
       cur = (idx + total) % total;
       const t = thumbs[cur];
- 
+
       mainImg.classList.add('sg-fading');
       setTimeout(() => {
         mainImg.src = t.dataset.src;
@@ -591,28 +608,28 @@
         if (counter) counter.textContent = (cur + 1) + ' / ' + total;
         mainImg.classList.remove('sg-fading');
       }, 200);
- 
+
       thumbs.forEach((th, i) => th.classList.toggle('active', i === cur));
       pips.forEach((p, i) => p.classList.toggle('active', i === cur));
- 
+
       thumbs[cur].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
- 
+
     thumbs.forEach((t, i) => t.addEventListener('click', () => go(i)));
     if (prevBtn) prevBtn.addEventListener('click', () => go(cur - 1));
     if (nextBtn) nextBtn.addEventListener('click', () => go(cur + 1));
- 
+
     gallery.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft')  { e.preventDefault(); go(cur - 1); }
       if (e.key === 'ArrowRight') { e.preventDefault(); go(cur + 1); }
     });
- 
+
     gallery.querySelector('.stack-main').addEventListener('click', e => {
       if (e.target.classList.contains('sg-nav') || e.target.closest('.sg-nav')) return;
       openLightbox(mainImg.src, mainImg.alt);
     });
   });
- 
+
   document.querySelectorAll('.fig-item').forEach(el => {
     el.addEventListener('click', () => {
       const img = el.querySelector('img');
@@ -622,7 +639,7 @@
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
     });
   });
- 
+
   function openLightbox(src, alt) {
     document.getElementById('lightbox-img').src = src;
     document.getElementById('lightbox-img').alt = alt || '';
@@ -633,13 +650,13 @@
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
- 
+
   document.getElementById('lightbox').addEventListener('click', e => {
     if (e.target !== document.getElementById('lightbox-img')) closeLightbox();
   });
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
- 
+
 </body>
 </html>
