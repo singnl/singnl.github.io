@@ -20,7 +20,7 @@
 {
   "title": "Purdue Solar Racing",
   "coverImage": "./img/cover.jpg",
-  "coverImageAlt": "Lux",
+  "coverImageAlt": "Purdue Solar Racing vehicle on track",
   "order": 0
 }
 </script>
@@ -121,7 +121,8 @@
     .compare-row { grid-template-columns: 1fr; }
   }
 
-  /* Single photo/figure block */
+  /* Single photo/figure block - fixed aspect ratio so photos of different
+     native shapes still align cleanly when placed side by side */
   .photo-block {
     margin: 1.75rem 0;
     border-radius: var(--radius);
@@ -133,6 +134,7 @@
     width: 100%;
     display: block;
     object-fit: cover;
+    aspect-ratio: 4 / 3;
   }
   .photo-caption {
     padding: 10px 14px;
@@ -150,6 +152,12 @@
     margin: 1.75rem 0;
   }
   .photo-row .photo-block { margin: 0; }
+
+  /* Wide photo - for images that should span full width at a
+     letterboxed ratio instead of matching the square-ish grid photos */
+  .photo-block.wide img {
+    aspect-ratio: 21 / 9;
+  }
 
   @media (max-width: 700px) {
     .photo-row { grid-template-columns: 1fr; }
@@ -214,7 +222,7 @@
 
       <div class="major-section">
         <p class="section-eyebrow" style="margin-bottom: 0.5rem;">Suspension</p>
-        <p class="major-intro">“Redesigned the front suspension from a double wishbone to a pushrod architecture, carrying the design through modeling, analysis, machining, and physical testing.</p>
+        <p class="major-intro">Redesigned the front suspension from a double wishbone to a pushrod architecture, carrying the design through modeling, analysis, machining, and physical testing.</p>
 
         <div class="subsection">
           <p class="subsection-title">Suspension Architecture</p>
@@ -254,11 +262,11 @@
           <div class="photo-row">
             <div class="photo-block">
               <img src="img/lotusshark.png" alt="Lotus Shark kinematic model">
-              <div class="photo-caption">Lotus Shark kinematic model of the suspension linkage</div>
+              <div class="photo-caption">Lotus Shark kinematic model of the suspension linkage.</div>
+            </div>
             <div class="photo-block">
               <img src="img/camberbump.png" alt="Camber vs bump chart">
-              <div class="photo-caption">Camber vs. bump</div>
-            </div>
+              <div class="photo-caption">Camber vs. bump, characterized to tune the suspension's camber gain.</div>
             </div>
           </div>
         </div>
@@ -278,7 +286,7 @@
               <div class="photo-caption">FEA stress result on a suspension hardpoint.</div>
             </div>
           </div>
-          <div class="photo-block">
+          <div class="photo-block wide">
             <img src="img/lowerfea.png" alt="FEA von Mises stress on hardpoint bracket, top view">
             <div class="photo-caption">Hardpoint bracket FEA — von Mises stress, static load case.</div>
           </div>
@@ -292,16 +300,16 @@
           <div class="photo-row">
             <div class="photo-block">
               <img src="img/lowerprocess.jpg" alt="Lower wishbone in process">
-              <div class="photo-caption">lower wishbone in process.</div>
+              <div class="photo-caption">Lower wishbone mid-machining.</div>
             </div>
             <div class="photo-block">
-              <img src="img/lowerumc.jpg" alt="lower wishbone milling configuration">
-              <div class="photo-caption">low wisho configuration.</div>
+              <img src="img/lowerumc.jpg" alt="Lower wishbone milling configuration">
+              <div class="photo-caption">Lower wishbone 5-axis milling configuration.</div>
             </div>
           </div>
-          <div class="photo-block">
-            <img src="img/lowerfinished.jpg" alt="finished lowerwishbone">
-            <div class="photo-caption">wishbone.</div>
+          <div class="photo-block wide">
+            <img src="img/lowerfinished.jpg" alt="Finished lower wishbone">
+            <div class="photo-caption">Finished lower wishbone, machined from Al-7075.</div>
           </div>
         </div>
       </div>
@@ -322,10 +330,10 @@
             <img src="img/cage.png" alt="Roll cage standalone render">
             <div class="photo-caption">Roll cage structure, standalone view.</div>
           </div>
-          <div class="photo-block">
-          <img src="img/fsgp2025.jpg" alt="finalist photo">
-          <div class="photo-caption">Judges' Choice — Lightest Design, Altair 2025 FSGP Design Challenge</div>
-          </div>
+        </div>
+        <div class="photo-block wide">
+          <img src="img/fsgp2025.jpg" alt="Judges' Choice Lightest Design award at FSGP 2025">
+          <div class="photo-caption">Judges' Choice — Lightest Design, Altair 2025 FSGP Design Challenge.</div>
         </div>
       </div>
 
