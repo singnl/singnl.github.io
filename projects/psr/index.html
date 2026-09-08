@@ -159,12 +159,19 @@
     aspect-ratio: 21 / 9;
   }
 
-  /* Chart/diagram variant - uses "contain" instead of "cover" so plots
-     with axis labels or legends never get cropped, at the cost of
-     possible letterboxing (padded with white) inside the frame */
-  .photo-block.chart img {
-    object-fit: contain;
-    background: #fff;
+  /* Suspension Modeling pair - both images use a wider 16:9 box (closer
+     to the chart's natural proportions) with "cover" so both fill the
+     frame fully instead of one being letterboxed. */
+  .photo-row.wide-pair img {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Lotus Shark render has a lot of empty black margin around the small
+     wireframe subject; zoom in slightly so the subject fills more of
+     the frame instead of looking tiny in a sea of black. */
+  .photo-block.zoom img {
+    transform: scale(1.3);
+    transform-origin: center;
   }
 
   @media (max-width: 700px) {
@@ -267,12 +274,12 @@
           <div class="project-description">
             <p>Used Lotus Shark to evaluate kinematic behavior and guide suspension design decisions, including how camber changes through bump travel.</p>
           </div>
-          <div class="photo-row">
-            <div class="photo-block">
+          <div class="photo-row wide-pair">
+            <div class="photo-block zoom">
               <img src="img/lotusshark.png" alt="Lotus Shark kinematic model">
               <div class="photo-caption">Lotus Shark kinematic model of the suspension linkage.</div>
             </div>
-            <div class="photo-block chart">
+            <div class="photo-block">
               <img src="img/camberbump.png" alt="Camber vs bump chart">
               <div class="photo-caption">Camber vs. bump, characterized to tune the suspension's camber gain.</div>
             </div>
@@ -286,17 +293,17 @@
           </div>
           <div class="photo-row">
             <div class="photo-block">
-              <img src="img/shockmountfea.png" alt="FEA von Mises stress on shock mount">
-              <div class="photo-caption">FEA stress result on the shock mount.</div>
+              <img src="img/shockmountfea.png" alt="FEA von Mises stress on wishbone arm">
+              <div class="photo-caption">FEA stress result on the wishbone arm.</div>
             </div>
             <div class="photo-block">
-              <img src="img/upperfea.png" alt="FEA von Mises stress on upper wishbone">
-              <div class="photo-caption">FEA stress result on the upper wishbone.</div>
+              <img src="img/upperfea.png" alt="FEA von Mises stress on hardpoint bracket">
+              <div class="photo-caption">FEA stress result on a suspension hardpoint.</div>
             </div>
           </div>
           <div class="photo-block wide">
-            <img src="img/lowerfea.png" alt="FEA von Mises stress on lower wishbone">
-            <div class="photo-caption">FEA stress result on the lower wishbone.</div>
+            <img src="img/lowerfea.png" alt="FEA von Mises stress on hardpoint bracket, top view">
+            <div class="photo-caption">Hardpoint bracket FEA — von Mises stress, static load case.</div>
           </div>
         </div>
 
@@ -325,10 +332,6 @@
       <div class="major-section">
         <p class="section-eyebrow" style="margin-bottom: 0.5rem;">Roll Cage</p>
         <p class="major-intro">Led the design and structural analysis of an ASC 2026 regulation-compliant roll cage.</p>
-        <div class="award-note">
-          <span>🏆</span>
-          <span><strong>Judges' Choice — Lightest Design</strong>, Altair 2025 FSGP Design Challenge</span>
-        </div>
         <div class="photo-row">
           <div class="photo-block">
             <img src="img/cageassembly.png" alt="Roll cage integrated on chassis">
