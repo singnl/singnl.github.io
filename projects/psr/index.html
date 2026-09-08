@@ -168,8 +168,14 @@
 
   /* Lotus Shark render has a lot of empty black margin around the small
      wireframe subject; zoom in slightly so the subject fills more of
-     the frame instead of looking tiny in a sea of black. */
-  .photo-block.zoom img {
+     the frame instead of looking tiny in a sea of black. The zoom is
+     clipped by its own wrapper (not the whole .photo-block), so the
+     enlarged image can't visually spill over the caption below it. */
+  .img-frame {
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-block.zoom .img-frame img {
     transform: scale(1.3);
     transform-origin: center;
   }
@@ -276,7 +282,9 @@
           </div>
           <div class="photo-row wide-pair">
             <div class="photo-block zoom">
-              <img src="img/lotusshark.png" alt="Lotus Shark kinematic model">
+              <div class="img-frame">
+                <img src="img/lotusshark.png" alt="Lotus Shark kinematic model">
+              </div>
               <div class="photo-caption">Lotus Shark kinematic model of the suspension linkage.</div>
             </div>
             <div class="photo-block">
@@ -332,6 +340,10 @@
       <div class="major-section">
         <p class="section-eyebrow" style="margin-bottom: 0.5rem;">Roll Cage</p>
         <p class="major-intro">Led the design and structural analysis of an ASC 2026 regulation-compliant roll cage.</p>
+        <div class="award-note">
+          <span>🏆</span>
+          <span><strong>Judges' Choice — Lightest Design</strong>, Altair 2025 FSGP Design Challenge</span>
+        </div>
         <div class="photo-row">
           <div class="photo-block">
             <img src="img/cageassembly.png" alt="Roll cage integrated on chassis">
