@@ -159,6 +159,14 @@
     aspect-ratio: 21 / 9;
   }
 
+  /* Chart/diagram variant - uses "contain" instead of "cover" so plots
+     with axis labels or legends never get cropped, at the cost of
+     possible letterboxing (padded with white) inside the frame */
+  .photo-block.chart img {
+    object-fit: contain;
+    background: #fff;
+  }
+
   @media (max-width: 700px) {
     .photo-row { grid-template-columns: 1fr; }
   }
@@ -264,7 +272,7 @@
               <img src="img/lotusshark.png" alt="Lotus Shark kinematic model">
               <div class="photo-caption">Lotus Shark kinematic model of the suspension linkage.</div>
             </div>
-            <div class="photo-block">
+            <div class="photo-block chart">
               <img src="img/camberbump.png" alt="Camber vs bump chart">
               <div class="photo-caption">Camber vs. bump, characterized to tune the suspension's camber gain.</div>
             </div>
@@ -278,17 +286,17 @@
           </div>
           <div class="photo-row">
             <div class="photo-block">
-              <img src="img/shockmountfea.png" alt="FEA von Mises stress on wishbone arm">
-              <div class="photo-caption">FEA stress result on the wishbone arm.</div>
+              <img src="img/shockmountfea.png" alt="FEA von Mises stress on shock mount">
+              <div class="photo-caption">FEA stress result on the shock mount.</div>
             </div>
             <div class="photo-block">
-              <img src="img/upperfea.png" alt="FEA von Mises stress on hardpoint bracket">
-              <div class="photo-caption">FEA stress result on a suspension hardpoint.</div>
+              <img src="img/upperfea.png" alt="FEA von Mises stress on upper wishbone">
+              <div class="photo-caption">FEA stress result on the upper wishbone.</div>
             </div>
           </div>
           <div class="photo-block wide">
-            <img src="img/lowerfea.png" alt="FEA von Mises stress on hardpoint bracket, top view">
-            <div class="photo-caption">Hardpoint bracket FEA — von Mises stress, static load case.</div>
+            <img src="img/lowerfea.png" alt="FEA von Mises stress on lower wishbone">
+            <div class="photo-caption">FEA stress result on the lower wishbone.</div>
           </div>
         </div>
 
